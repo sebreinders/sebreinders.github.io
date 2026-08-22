@@ -848,7 +848,7 @@ const SITE = {
       titre: "Conférence de clôture du Master Ingénierie en e-formation",
       meta: "Master MFEG · Université Rennes 1",
       detail: "Conférence de clôture de l'année du parcours « Ingénierie en e-formation » du Master Métiers de la formation en économie et gestion, formation mixte qui aborde l'e-formation par la pédagogie, la technologie et l'économie des dispositifs.",
-      contexteLabel: "Date", contexte: "2015, Rennes — mois à préciser" },
+      contexteLabel: "Date", contexte: "Rennes, 2015 ou 2016 — année à confirmer" },
 
   ],
 
