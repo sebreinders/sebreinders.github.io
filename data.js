@@ -799,11 +799,11 @@ const SITE = {
 
 
     { annee: 2016, verbe: "parlé", date: "2016-05-26",
-      titre: "L'apport des communautés en ligne",
+      titre: "Hacking pédagogique",
       meta: "TEDux · Le Caire, Égypte",
       detail: "Intervention au premier TEDux organisé en Égypte par l'AUF (Campus numérique francophone d'Alexandrie), l'IFIC et l'Université Senghor, en marge de la conférence eLearning Africa qui réunissait plus de mille professionnels de l'éducation venus de 72 pays.",
       contexteLabel: "Date et lieu", contexte: "26 mai 2016, Le Caire",
-      lien: "https://www.auf.org/nouvelles/actualites/lauf-lific-et-luniversite-senghor-organisent-le-1e/", lienLabel: "Le compte rendu de l'AUF" },
+      lien: "https://fr.slideshare.net/Pedagotic/hacking-pedagogique-tedux-cairo-2016", lienLabel: "Le support de l'intervention" },
 
 
     { annee: 2016, verbe: "parlé", date: "2016-11-26",
