@@ -184,11 +184,13 @@ const SITE = {
       contexteLabel: "Publié", contexte: "1er février 2026",
       lien: "https://medium.com/@sebastienreinders/le-jour-o%C3%B9-les-humains-n%C3%A9crivent-plus-moltbook-ou-l-internet-des-agents-6b11dfb6bce9", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "fait", date: "2026-01-01",
-      titre: "Cadastres INCOR",
+    /* Le cadastre INCOR est relevé tous les deux ans : INCOR22, INCOR24,
+       et INCOR26 en octobre prochain. */
+    { annee: 2026, verbe: "fait", date: "2026-10-01",
+      titre: "Cadastre INCOR26",
       meta: "Dispositif · Wallonie",
-      detail: "Cadastres de l'équipement et des usages numériques dans les écoles et les opérateurs de formation. Savoir ce qui est là avant de décider quoi financer.",
-      contexteLabel: "Statut", contexte: "En cours" },
+      detail: "Troisième relevé de l'équipement et des usages numériques dans les écoles et chez les opérateurs de formation. Savoir ce qui est là avant de décider quoi financer.",
+      contexteLabel: "Statut", contexte: "Octobre 2026, à venir" },
 
     /* ----- 2025 ----- */
         { annee: 2025, verbe: "parlé", date: "2025-09-24",
@@ -398,6 +400,51 @@ const SITE = {
       meta: "Colloque · Spa",
       detail: "Première édition du colloque belge, au Centre culturel de Spa — ouverture avec Benoit Hucq (Agence du Numérique) et une conférence inaugurale de Margarida Romero.",
       contexteLabel: "Dates", contexte: "À partir du mardi 29 octobre 2019" },
+
+
+    /* Jury du Fonds Digital for Youth : un mandat reconduit chaque année. */
+    { annee: 2025, verbe: "fait", date: "2025-01-01",
+      titre: "Jury du Fonds Digital for Youth",
+      meta: "Mandat · Fondation Roi Baudouin",
+      detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
+      contexteLabel: "Rôle", contexte: "Membre du jury" },
+
+    { annee: 2024, verbe: "fait", date: "2024-01-01",
+      titre: "Jury du Fonds Digital for Youth",
+      meta: "Mandat · Fondation Roi Baudouin",
+      detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
+      contexteLabel: "Rôle", contexte: "Membre du jury" },
+
+    { annee: 2023, verbe: "fait", date: "2023-01-01",
+      titre: "Jury du Fonds Digital for Youth",
+      meta: "Mandat · Fondation Roi Baudouin",
+      detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
+      contexteLabel: "Rôle", contexte: "Membre du jury" },
+
+    { annee: 2022, verbe: "fait", date: "2022-01-01",
+      titre: "Jury du Fonds Digital for Youth",
+      meta: "Mandat · Fondation Roi Baudouin",
+      detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
+      contexteLabel: "Rôle", contexte: "Membre du jury" },
+
+    { annee: 2021, verbe: "fait", date: "2021-01-01",
+      titre: "Jury du Fonds Digital for Youth",
+      meta: "Mandat · Fondation Roi Baudouin",
+      detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
+      contexteLabel: "Rôle", contexte: "Membre du jury" },
+
+
+    { annee: 2024, verbe: "fait", date: "2024-01-01",
+      titre: "Cadastre INCOR24",
+      meta: "Dispositif · Wallonie",
+      detail: "Deuxième relevé de l'équipement et des usages numériques dans les écoles et chez les opérateurs de formation, deux ans après INCOR22.",
+      contexteLabel: "Statut", contexte: "Réalisé" },
+
+    { annee: 2022, verbe: "fait", date: "2022-01-01",
+      titre: "Cadastre INCOR22",
+      meta: "Dispositif · Wallonie",
+      detail: "Premier relevé de l'équipement et des usages numériques dans les écoles et chez les opérateurs de formation — l'état des lieux qui sert de base aux décisions d'équipement.",
+      contexteLabel: "Statut", contexte: "Réalisé" },
 
   ],
 
