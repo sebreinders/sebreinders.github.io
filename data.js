@@ -127,6 +127,12 @@ const SITE = {
       detail: "Échange sur l'IA dans l'enseignement supérieur.",
       contexteLabel: "Date", contexte: "Janvier 2026" },
 
+    { annee: 2026, verbe: "parlé", date: "2026-01-22",
+      titre: "L'impact de l'IA sur l'enseignement et la formation",
+      meta: "Conférence · IBEFE Hainaut-Centre",
+      detail: "Conférence organisée par l'Instance Bassin Enseignement qualifiant — Formation — Emploi du Hainaut-Centre, devant les acteurs de l'enseignement qualifiant et de la formation professionnelle.",
+      contexteLabel: "Date", contexte: "Jeudi 22 janvier 2026" },
+
     /* La même conférence donnée quatre fois, une par territoire du SeGEC.
        Quatre entrées plutôt qu'une : ce sont quatre interventions. */
     { annee: 2026, verbe: "parlé", date: "2026-02-02",
@@ -185,11 +191,26 @@ const SITE = {
       contexteLabel: "Statut", contexte: "En cours" },
 
     /* ----- 2025 ----- */
-    { annee: 2025, verbe: "parlé", date: "2025-10-01",
-      titre: "LUDOVIA#BE",
-      meta: "Colloque · Spa",
-      detail: "Colloque annuel du numérique éducatif en Belgique francophone.",
-      contexteLabel: "Date", contexte: "Octobre 2025" },
+        { annee: 2025, verbe: "parlé", date: "2025-09-24",
+      titre: "Politiques publiques du numérique éducatif",
+      meta: "Cours · ULiège · Master Sc. Éduc.",
+      detail: "Intervention de rentrée dans le cours « Introduction aux Usages du Numérique en Éducation » de Jean-François Céci, en binôme sur le volet Pix.",
+      contexteLabel: "Date", contexte: "Mercredi 24 septembre 2025" },
+
+        { annee: 2025, verbe: "parlé", date: "2025-04-17",
+      titre: "Technominds",
+      meta: "Émission · Boukè",
+      detail: "Passage dans l'émission Technominds de la télévision locale Boukè, consacrée au numérique.",
+      contexteLabel: "Diffusion", contexte: "Jeudi 17 avril 2025",
+      lien: "https://youtu.be/uGAkNXGlBE0", lienLabel: "Voir l'émission" },
+
+    { annee: 2025, verbe: "parlé", date: "2025-03-14",
+      titre: "Lancement du WiFi dans les écoles wallonnes",
+      meta: "Conférence de presse · Chênée",
+      detail: "Présentation du volet connectivité de DW4Edu aux côtés du ministre Pierre-Yves Jeholet, à l'Institut Sainte-Thérèse d'Avila : 60 millions d'euros pour équiper les écoles wallonnes, 500 établissements raccordés par an. Reprise par la RTBF, RTL-TVI et les télévisions locales.",
+      contexteLabel: "Date", contexte: "Vendredi 14 mars 2025",
+      lien: "https://www.digitalwallonia.be/fr/publications/digital-wallonia-4-edu-60-millions-connectivite-ecoles-wallonie/",
+      lienLabel: "Le communiqué Digital Wallonia" },
 
     { annee: 2025, verbe: "fait", date: "2025-01-01",
       titre: "Monitoring IT des écoles",
@@ -226,17 +247,23 @@ const SITE = {
       lien: "https://medium.com/@sebastienreinders/m%C3%A9moires-sous-ia-place-%C3%A0-loral-et-%C3%A0-la-promptographie-b7f0e4304815", lienLabel: "Lire l'article" },
 
     /* ----- 2024 et avant ----- */
+    { annee: 2024, verbe: "parlé", date: "2024-09-25",
+      titre: "Politiques publiques du numérique éducatif",
+      meta: "Cours · ULiège · Master Sc. Éduc.",
+      detail: "Intervention de rentrée dans le cours « Introduction aux Usages du Numérique en Éducation » de Jean-François Céci, en binôme sur le volet Pix.",
+      contexteLabel: "Date", contexte: "Mercredi 25 septembre 2024" },
+
     { annee: 2024, verbe: "parlé", date: "2024-03-01",
       titre: "L'enjeu des compétences numériques",
       meta: "Présentation · Agence du Numérique",
       detail: "Présentation externe sur l'état des compétences numériques en Wallonie et les leviers publics disponibles.",
       contexteLabel: "Date", contexte: "Mars 2024" },
 
-    { annee: 2023, verbe: "parlé", date: "2023-01-01",
+    { annee: 2023, verbe: "parlé", date: "2023-10-31",
       titre: "Pecha Kucha — DW4Edu",
       meta: "Format court · LUDOVIA#BE, Spa",
       detail: "Vingt images, vingt secondes chacune, pour présenter le programme régional d'éducation numérique.",
-      contexteLabel: "Format", contexte: "Pecha Kucha" },
+      contexteLabel: "Format", contexte: "Pecha Kucha, LUDOVIA#BE 2023" },
 
     { annee: 2021, verbe: "parlé", date: "2021-01-01",
       titre: "L'école post-Covid, plus smart qu'avant ?",
@@ -244,13 +271,7 @@ const SITE = {
       detail: "Ce que la fermeture des écoles a réellement appris au système éducatif — et ce qu'il en a retenu.",
       contexteLabel: "Format", contexte: "En ligne" },
 
-    { annee: 2019, verbe: "fait", date: "2019-01-01",
-      titre: "LUDOVIA#BE — copilotage",
-      meta: "Organisation · depuis 2019",
-      detail: "Copilotage du colloque belge du numérique éducatif : programme, intervenants, formats. Une semaine par an à Spa, et le reste de l'année à la préparer.",
-      contexteLabel: "Statut", contexte: "En cours depuis 2019" },
-
-    { annee: 2018, verbe: "parlé", date: "2018-01-01",
+        { annee: 2018, verbe: "parlé", date: "2018-01-01",
       titre: "Hacking pédagogique",
       meta: "Webinaire · IFIC",
       detail: "Détourner, bricoler et remixer les outils numériques au service de la pédagogie.",
@@ -273,7 +294,111 @@ const SITE = {
       titre: "Enseignement et présidence de jury — Haute École Condorcet",
       meta: "Mandat · depuis 2010",
       detail: "Chargé de cours en écriture multimédia dans le bachelier du même nom, et président du jury de la section pédagogique.",
-      contexteLabel: "Statut", contexte: "En cours depuis 2010" }
+      contexteLabel: "Statut", contexte: "En cours depuis 2010" },
+
+    /* ---------------------------------------------------------
+       LUDOVIA — toutes les éditions, France et Belgique.
+       Verbe « fait » : c'est une présence et un travail
+       d'organisation, pas une prise de parole. Les interventions
+       qui s'y sont tenues ont leur propre entrée en « parlé ».
+       --------------------------------------------------------- */
+
+    { annee: 2026, verbe: "fait", date: "2026-08-24",
+      titre: "LUDOVIA#FR — 23e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège).",
+      contexteLabel: "Dates", contexte: "Du lundi 24 au jeudi 27 août 2026" },
+
+    { annee: 2025, verbe: "fait", date: "2025-08-25",
+      titre: "LUDOVIA#FR — 22e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Attention, participation et numérique ».",
+      contexteLabel: "Dates", contexte: "Du 25 au 28 août 2025" },
+
+    { annee: 2024, verbe: "fait", date: "2024-08-26",
+      titre: "LUDOVIA#FR — 21e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Quotidienneté et numérique ».",
+      contexteLabel: "Dates", contexte: "Du 26 au 28 août 2024" },
+
+    { annee: 2023, verbe: "fait", date: "2023-08-22",
+      titre: "LUDOVIA#FR — 20e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Bien-être et numérique ».",
+      contexteLabel: "Dates", contexte: "Du 22 au 25 août 2023" },
+
+    { annee: 2022, verbe: "fait", date: "2022-08-22",
+      titre: "LUDOVIA#FR — 19e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Éthique et numérique ».",
+      contexteLabel: "Dates", contexte: "Du 22 au 25 août 2022" },
+
+    { annee: 2021, verbe: "fait", date: "2021-08-23",
+      titre: "LUDOVIA#FR — 18e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Numérique et social ».",
+      contexteLabel: "Dates", contexte: "Du 23 au 26 août 2021" },
+
+    { annee: 2020, verbe: "fait", date: "2020-08-24",
+      titre: "LUDOVIA#FR — 17e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Injonction(s) du numérique ».",
+      contexteLabel: "Dates", contexte: "Du 24 au 27 août 2020" },
+
+    { annee: 2019, verbe: "fait", date: "2019-08-20",
+      titre: "LUDOVIA#FR — 16e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Numérique et représentations ».",
+      contexteLabel: "Dates", contexte: "Du 20 au 23 août 2019" },
+
+    { annee: 2018, verbe: "fait", date: "2018-08-20",
+      titre: "LUDOVIA#FR — 15e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Innovation(s) et institution(s) du numérique ».",
+      contexteLabel: "Dates", contexte: "Du 20 au 23 août 2018" },
+
+                                    { annee: 2026, verbe: "fait", date: "2026-10-20",
+      titre: "LUDOVIA#BE — 7e édition",
+      meta: "Colloque · Spa",
+      detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
+      contexteLabel: "Dates", contexte: "Octobre 2026" },
+
+    { annee: 2025, verbe: "fait", date: "2025-10-21",
+      titre: "LUDOVIA#BE — 6e édition",
+      meta: "Colloque · Spa",
+      detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
+      contexteLabel: "Dates", contexte: "Du mardi 21 au vendredi 24 octobre 2025" },
+
+    { annee: 2024, verbe: "fait", date: "2024-10-22",
+      titre: "LUDOVIA#BE — 5e édition",
+      meta: "Colloque · Spa",
+      detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
+      contexteLabel: "Dates", contexte: "Du 22 au 24 octobre 2024" },
+
+    { annee: 2023, verbe: "fait", date: "2023-10-31",
+      titre: "LUDOVIA#BE — 4e édition",
+      meta: "Colloque · Spa",
+      detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
+      contexteLabel: "Dates", contexte: "Fin octobre 2023" },
+
+    { annee: 2022, verbe: "fait", date: "2022-11-02",
+      titre: "LUDOVIA#BE — 3e édition",
+      meta: "Colloque · Spa",
+      detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
+      contexteLabel: "Dates", contexte: "Novembre 2022" },
+
+    { annee: 2021, verbe: "fait", date: "2021-11-03",
+      titre: "LUDOVIA#BE — 2e édition",
+      meta: "Colloque · Spa",
+      detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
+      contexteLabel: "Dates", contexte: "Du 3 au 5 novembre 2021" },
+
+    { annee: 2019, verbe: "fait", date: "2019-10-29",
+      titre: "LUDOVIA#BE — 1re édition",
+      meta: "Colloque · Spa",
+      detail: "Première édition du colloque belge, au Centre culturel de Spa — ouverture avec Benoit Hucq (Agence du Numérique) et une conférence inaugurale de Margarida Romero.",
+      contexteLabel: "Dates", contexte: "À partir du mardi 29 octobre 2019" },
+
   ],
 
   /* ---------------------------------------------------------
