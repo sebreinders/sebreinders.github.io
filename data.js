@@ -792,7 +792,7 @@ const SITE = {
       lien: "https://youtu.be/IhJhOY_LwqA", lienLabel: "Voir l'intervention" },
 
     { annee: 2014, verbe: "parlé", date: "2014-10-22",
-      titre: "Forum e-Learning",
+      titre: "Forum e-Learning Tunisie",
       meta: "Forum · Tunis",
       detail: "Intervention au Forum e-Learning de Tunis, dans la session consacrée à l'enseignement.",
       contexteLabel: "Dates", contexte: "22 et 23 octobre 2014, Tunisie" },
@@ -804,6 +804,27 @@ const SITE = {
       detail: "Intervention au premier TEDux organisé en Égypte par l'AUF (Campus numérique francophone d'Alexandrie), l'IFIC et l'Université Senghor, en marge de la conférence eLearning Africa qui réunissait plus de mille professionnels de l'éducation venus de 72 pays.",
       contexteLabel: "Date et lieu", contexte: "26 mai 2016, Le Caire",
       lien: "https://www.auf.org/nouvelles/actualites/lauf-lific-et-luniversite-senghor-organisent-le-1e/", lienLabel: "Le compte rendu de l'AUF" },
+
+
+    { annee: 2016, verbe: "parlé", date: "2016-11-26",
+      titre: "Hacking pédagogique et robots",
+      meta: "TEDux · Rabat, Maroc",
+      detail: "Troisième édition de TEDux, à la Faculté des Sciences de Rabat, organisée par l'IFIC avec les universités Mohammed V et Mohammed Ier, le CNAP et l'association MEARN.",
+      contexteLabel: "Date et lieu", contexte: "26 novembre 2016, Rabat" },
+
+
+    { annee: 2015, verbe: "parlé", date: "2015-11-11",
+      titre: "Forum e-Learning Tunisie",
+      meta: "Forum · Technopark El Ghazala, Tunis",
+      detail: "Quatrième édition du Forum e-Learning Tunisie, organisée par le Centre pour le développement des compétences professionnelles.",
+      contexteLabel: "Dates", contexte: "11 et 12 novembre 2015" },
+
+
+    { annee: 2015, verbe: "parlé", date: "2015-06-25",
+      titre: "Bricoler et détourner l'informatique pour innover",
+      meta: "Journées du e-learning · Lyon",
+      detail: "Intervention aux Journées du e-learning de l'Université Jean Moulin Lyon 3, colloque international consacré à la pédagogie numérique.",
+      contexteLabel: "Date", contexte: "Juin 2015, Université Jean Moulin Lyon 3" },
 
   ],
 
