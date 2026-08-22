@@ -25,7 +25,7 @@ const SITE = {
     // Ligne d'en-tête, en petites capitales espacées.
     enseigne: "Registre public",
     periode: "2010 — 2026",
-    lieu: "Wallonie",
+    lieu: "Wallonie - Belgique",
 
     // Colonne de gauche, sous le nom. Une ligne par élément.
     statut: [
@@ -35,7 +35,7 @@ const SITE = {
     ],
 
     // Colonne de droite : ce que le site est.
-    pitch: "Tout ce que j'ai dit, écrit et fait publiquement autour du numérique en éducation. Une seule liste, datée, sans tri favorable.",
+    pitch: "Tout ce que j'ai dit, écrit et fait publiquement autour du numérique en éducation.",
 
     misAJour: "Août 2026"
   },
@@ -86,25 +86,6 @@ const SITE = {
       lien: "https://sebreinders.github.io/ressources/", lienLabel: "Ressources et inventaire de l'atelier" },
 
     { annee: 2026, verbe: "parlé",
-      titre: "Intelligences artificielles : comprendre les impacts pour agir avec discernement",
-      meta: "Atelier · Louvain-la-Neuve",
-      detail: "Second atelier de la même journée, destiné aux directions et aux cadres de l'enseignement catholique.",
-      contexteLabel: "Lieu", contexte: "Aula Magna, 19 août 2026" },
-
-    { annee: 2026, verbe: "fait",
-      titre: "Ressources publiques d'intervention",
-      meta: "Site · en ligne",
-      detail: "Un dépôt ouvert où sont déposés les supports, les mémos et les outils utilisés en atelier — dont un inventaire du parc numérique que les écoles peuvent reprendre tel quel.",
-      contexteLabel: "Statut", contexte: "En ligne, mis à jour au fil des interventions",
-      lien: "https://sebreinders.github.io/ressources/", lienLabel: "Voir le dépôt" },
-
-    { annee: 2026, verbe: "parlé",
-      titre: "ValoRec 240 — valoriser la recherche en 240 secondes",
-      meta: "Table ronde · ULiège",
-      detail: "Festival de médiation et de communication visuelle de la recherche, Faculté de Psychologie, Logopédie et Sciences de l'Éducation.",
-      contexteLabel: "Date", contexte: "13 mai 2026" },
-
-    { annee: 2026, verbe: "parlé",
       titre: "LUDOVIA#CH",
       meta: "Colloque · Suisse",
       detail: "Édition suisse du colloque, sur le thème « Repenser l'apprentissage à l'ère de l'IA et de l'innovation ».",
@@ -115,14 +96,8 @@ const SITE = {
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
       contexteLabel: "Rôle", contexte: "Membre du jury" },
-
-    { annee: 2026, verbe: "parlé",
-      titre: "IA4Sup — #Meeting21",
-      meta: "Rencontre · en ligne",
-      detail: "Échange sur l'IA dans l'enseignement supérieur.",
-      contexteLabel: "Date", contexte: "Janvier 2026" },
-
-    { annee: 2026, verbe: "écrit",
+     
+      { annee: 2026, verbe: "écrit",
       titre: "Faut-il financer toutes les écoles de la même manière ?",
       meta: "Article · Medium",
       detail: "L'égalité de traitement budgétaire produit-elle de l'équité ? Le cas de l'encadrement différencié en Fédération Wallonie-Bruxelles.",
@@ -142,6 +117,12 @@ const SITE = {
       detail: "Le bâtiment scolaire, angle mort de l'école face au dérèglement climatique.",
       contexteLabel: "Publié", contexte: "27 juillet 2026",
       lien: "https://medium.com/@sebastienreinders/l%C3%A9cole-n-a-pas-besoin-de-canadair-mais-de-stores-b877170418bd", lienLabel: "Lire l'article" },
+
+    { annee: 2026, verbe: "parlé",
+      titre: "IA4Sup — #Meeting21",
+      meta: "Rencontre · en ligne",
+      detail: "Échange sur l'IA dans l'enseignement supérieur.",
+      contexteLabel: "Date", contexte: "Janvier 2026" },
 
     { annee: 2026, verbe: "écrit",
       titre: "On a rangé le téléphone, et le débat avec",
@@ -163,12 +144,6 @@ const SITE = {
       detail: "Quand les agents conversationnels deviennent les principaux producteurs de texte en ligne.",
       contexteLabel: "Publié", contexte: "1er février 2026",
       lien: "https://medium.com/@sebastienreinders/le-jour-o%C3%B9-les-humains-n%C3%A9crivent-plus-moltbook-ou-l-internet-des-agents-6b11dfb6bce9", lienLabel: "Lire l'article" },
-
-    { annee: 2026, verbe: "fait",
-      titre: "Attestation des compétences numériques des citoyens",
-      meta: "Programme · référentiel DigComp",
-      detail: "Mise en place d'une attestation des compétences de base fondée sur le référentiel européen DigComp — pour que ce qu'une personne sait faire du numérique puisse enfin être reconnu ailleurs que sur parole.",
-      contexteLabel: "Statut", contexte: "En cours" },
 
     { annee: 2026, verbe: "fait",
       titre: "Cadastres INCOR",
