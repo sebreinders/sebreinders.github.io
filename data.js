@@ -826,6 +826,23 @@ const SITE = {
       detail: "Intervention aux Journées du e-learning de l'Université Jean Moulin Lyon 3, colloque international consacré à la pédagogie numérique.",
       contexteLabel: "Date", contexte: "Juin 2015, Université Jean Moulin Lyon 3" },
 
+
+    /* ---------------------------------------------------------
+       UNIVERNAGE, université d'été BELC régional, Dakar 2018 :
+       deux prises de parole distinctes dans la même semaine.
+       --------------------------------------------------------- */
+    { annee: 2018, verbe: "parlé", date: "2018-09-24",
+      titre: "Les pédagogies innovantes",
+      meta: "Cérémonie d'ouverture · Dakar, Sénégal",
+      detail: "Communication d'ouverture de l'université d'été UNIVERNAGE — BELC régional, formation sous-régionale réunissant 80 participants d'Afrique de l'Ouest (Togo, Bénin, Mali, Mauritanie, Burkina Faso, Cap-Vert, Gambie, Guinée, Côte d'Ivoire). Organisée par l'Institut français du Sénégal avec l'IFEF.",
+      contexteLabel: "Date et lieu", contexte: "Lundi 24 septembre 2018, Dakar" },
+
+    { annee: 2018, verbe: "parlé", date: "2018-09-26",
+      titre: "Pédagogies innovantes : un cas concret",
+      meta: "Table ronde · Dakar, Sénégal",
+      detail: "Table ronde sur la pédagogie innovante, connectée ou non, organisée en marge des journées de formation d'UNIVERNAGE avec la participation de l'IFEF.",
+      contexteLabel: "Date et lieu", contexte: "Mercredi 26 septembre 2018, Dakar" },
+
   ],
 
   /* ---------------------------------------------------------
