@@ -843,6 +843,13 @@ const SITE = {
       detail: "Table ronde sur la pédagogie innovante, connectée ou non, organisée en marge des journées de formation d'UNIVERNAGE avec la participation de l'IFEF.",
       contexteLabel: "Date et lieu", contexte: "Mercredi 26 septembre 2018, Dakar" },
 
+
+    { annee: 2015, verbe: "parlé", date: "2015-01-01",
+      titre: "Conférence de clôture du Master Ingénierie en e-formation",
+      meta: "Master MFEG · Université Rennes 1",
+      detail: "Conférence de clôture de l'année du parcours « Ingénierie en e-formation » du Master Métiers de la formation en économie et gestion, formation mixte qui aborde l'e-formation par la pédagogie, la technologie et l'économie des dispositifs.",
+      contexteLabel: "Date", contexte: "2015, Rennes — mois à préciser" },
+
   ],
 
   /* ---------------------------------------------------------
