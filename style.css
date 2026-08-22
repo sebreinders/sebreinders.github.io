@@ -1,0 +1,302 @@
+/* =============================================================
+   style.css — d'après le mockup « Portfolio v3 ».
+
+   Palette      vert #0E8B4B · orange-brique #E4572E · jaune #F2C400
+   Neutres      encre #0B0B0F · crème #F5F2EA · gris #8A8A96
+   Typographie  Archivo (400 → 900)
+
+   Les trois couleurs de verbe ne sont pas décoratives : elles
+   portent l'information (parlé / écrit / fait). Elles arrivent
+   par les variables --fond et --encre posées sur chaque élément.
+   ============================================================= */
+
+:root{
+  --encre:#0B0B0F;
+  --creme:#F5F2EA;
+  --creme-fonce:#E4E1DA;
+  --gris:#8A8A96;
+  --gris-fonce:#6E6E78;
+  --gris-clair:#C9C6BF;
+  --vert:#0E8B4B;
+  --orange:#E4572E;
+  --jaune:#F2C400;
+  --largeur:1240px;
+  --marge:40px;
+}
+
+*{ box-sizing:border-box }
+html{ scroll-behavior:smooth }
+
+body{
+  margin:0;
+  background:#FFFFFF;
+  color:var(--encre);
+  font-family:Archivo, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:var(--vert); text-decoration:none }
+a:hover{ color:var(--encre); text-decoration:underline; text-underline-offset:3px }
+::selection{ background:var(--jaune); color:var(--encre) }
+
+ul,ol{ margin:0; padding:0; list-style:none }
+p{ margin:0 }
+button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer }
+
+.skip{ position:absolute; left:-9999px }
+.skip:focus{ left:8px; top:8px; background:var(--encre); color:#fff; padding:10px 16px; z-index:99 }
+
+.page{ max-width:var(--largeur); margin:0 auto; padding:0 var(--marge) }
+
+/* petites capitales espacées — le liseré typographique du design */
+.tete__ligne,
+.densite__titre, .densite__compte, .densite__reset,
+.tuile__action, .panneau__label, .pied__maj{
+  font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+}
+
+/* ---------------- en-tête ---------------- */
+.tete{ padding-top:34px }
+
+.tete__ligne{
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:10px 24px; color:var(--gris-fonce);
+}
+.tete__enseigne{ display:flex; align-items:center; gap:9px; color:var(--encre) }
+.pastille{ width:9px; height:9px; border-radius:50%; background:var(--vert); flex:none }
+
+.titre{
+  margin:14px 0 0;
+  font-size:clamp(52px, 12.4vw, 172px);
+  font-weight:900;
+  line-height:.86;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+}
+.titre__prenom,
+.titre__nom{ display:block }
+.titre__nom{ color:var(--vert) }
+
+.chapeau{
+  display:grid; grid-template-columns:1fr 1fr; gap:34px;
+  margin:44px 0 30px; align-items:start;
+}
+.chapeau__statut{ color:var(--gris-fonce); font-size:15px; line-height:1.65 }
+.chapeau__pitch{ font-size:21px; line-height:1.42; font-weight:500; max-width:34ch }
+
+/* ---------------- tuiles de comptage ---------------- */
+.tuiles{ display:grid; grid-template-columns:repeat(3, 1fr); gap:4px }
+
+.tuile{
+  display:block; text-align:left; padding:22px 24px 18px;
+  background:var(--fond); color:var(--encre);
+  transition:opacity .15s;
+}
+.tuile__nombre{
+  display:block; font-size:46px; font-weight:900; line-height:1;
+  letter-spacing:-.03em; color:var(--encre);
+}
+.tuile__label{ display:block; margin-top:6px; font-size:17px; font-weight:700 }
+.tuile__action{ display:block; margin-top:10px; opacity:.62 }
+
+/* Sur vert et orange, le texte passe en blanc ; sur jaune il reste noir. */
+.tuile[data-verbe="parlé"] .tuile__nombre,
+.tuile[data-verbe="parlé"] .tuile__label,
+.tuile[data-verbe="parlé"] .tuile__action,
+.tuile[data-verbe="écrit"] .tuile__nombre,
+.tuile[data-verbe="écrit"] .tuile__label,
+.tuile[data-verbe="écrit"] .tuile__action{ color:#FFFFFF }
+
+.tuile--eteinte{ opacity:.34 }
+.tuile:hover{ opacity:.88 }
+.tuile--active{ box-shadow:inset 0 0 0 4px var(--encre) }
+
+/* ---------------- histogramme ---------------- */
+.densite{
+  display:flex; align-items:flex-end; gap:20px;
+  margin:28px 0 22px; flex-wrap:wrap;
+}
+.densite__barres{ display:flex; align-items:flex-end; gap:5px; height:56px }
+
+.barre{
+  display:flex; flex-direction:column; justify-content:flex-end;
+  align-items:stretch; width:34px; height:100%;
+}
+.barre__corps{ background:var(--couleur-barre, var(--vert)); min-height:3px }
+/* Une année sans rien : un simple trait, pour que l'axe reste continu
+   sans faire croire à une entrée. */
+.barre__corps--vide{ background:var(--creme-fonce) }
+.barre__annee{
+  margin-top:6px; font-size:10.5px; font-weight:600;
+  letter-spacing:.08em; color:var(--gris); text-align:center;
+}
+
+.densite__titre{ color:var(--gris-fonce); margin-bottom:20px }
+.densite__compte{ color:var(--gris-fonce); margin:0 0 20px auto }
+.densite__reset{ color:var(--gris); margin-bottom:20px }
+.densite__reset:hover{ color:var(--encre) }
+.densite__reset[hidden]{ display:none }
+
+/* ---------------- le registre ---------------- */
+.registre{ display:flex; flex-direction:column; gap:3px }
+
+.entree{ background:var(--fond); color:var(--encre) }
+
+.entree__bande{
+  display:grid; width:100%; text-align:left;
+  grid-template-columns:52px 84px 1fr auto 34px;
+  align-items:center; gap:0 16px;
+  padding:19px 22px; color:var(--encre);
+}
+.entree__bande:disabled{ cursor:default }
+
+.entree__numero{
+  font-size:11px; font-weight:600; letter-spacing:.1em; opacity:.62;
+}
+.entree__annee{
+  font-size:23px; font-weight:800; letter-spacing:-.02em;
+}
+.entree__titre{
+  font-size:19px; font-weight:700; line-height:1.3; letter-spacing:-.01em;
+}
+.entree__meta{
+  font-size:12.5px; font-weight:500; opacity:.78; text-align:right;
+}
+.entree__plus{
+  justify-self:end; width:15px; height:15px; opacity:.66;
+  background:
+    linear-gradient(currentColor,currentColor) center/100% 1.6px no-repeat,
+    linear-gradient(currentColor,currentColor) center/1.6px 100% no-repeat;
+  transition:transform .18s;
+}
+.entree__bande:hover .entree__plus{ opacity:1 }
+.entree--ouverte .entree__plus{ transform:rotate(45deg) }
+
+/* Texte blanc sur les bandes vertes et orange. */
+.entree[data-verbe="parlé"],
+.entree[data-verbe="écrit"]{ color:#FFFFFF }
+
+.entree--ouverte .entree__titre{ font-size:22px }
+
+/* --- panneau déplié --- */
+.panneau{ padding:0 22px 22px }
+.panneau__interieur{
+  display:grid; grid-template-columns:1.9fr 1fr; gap:30px;
+  padding:20px 24px; background:rgba(0,0,0,.13);
+}
+.panneau__detail{ font-size:15px; line-height:1.6; max-width:62ch }
+.panneau__label{ display:block; opacity:.66; margin-bottom:3px }
+.panneau__contexte{ font-size:15px }
+.panneau__lien{
+  display:inline-block; margin-top:12px; font-size:14px; font-weight:600;
+  color:inherit; text-decoration:underline; text-underline-offset:3px;
+}
+.panneau__lien:hover{ color:inherit; opacity:.75 }
+
+/* ---------------- parcours ---------------- */
+.parcours{ margin:64px 0 0; padding:34px 0 8px; border-top:2px solid var(--encre) }
+.parcours__titre{
+  margin:0 0 22px; font-size:11px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--gris-fonce);
+}
+.poste{
+  display:grid; grid-template-columns:150px 1fr 1fr; gap:20px;
+  padding:13px 0; border-top:1px solid var(--creme-fonce); align-items:baseline;
+}
+.poste:first-child{ border-top:none }
+.poste__periode{ font-size:13px; font-weight:600; color:var(--vert); letter-spacing:.02em }
+.poste__intitule{ font-size:16px; font-weight:700 }
+.poste__structure{ font-size:14px; color:var(--gris-fonce) }
+
+.parcours__formation{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px; margin-top:26px; padding-top:22px; border-top:1px solid var(--creme-fonce);
+}
+.diplome__titre{ display:block; font-size:14.5px; font-weight:600 }
+.diplome__lieu{ display:block; font-size:13px; color:var(--gris-fonce); margin-top:2px }
+
+/* ---------------- pied de page ---------------- */
+.pied{ background:var(--encre); color:#FFFFFF; margin-top:64px }
+.pied__interieur{
+  max-width:var(--largeur); margin:0 auto; padding:72px var(--marge);
+  display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start;
+}
+.pied__appel{
+  margin:0; font-size:clamp(30px, 4.1vw, 47px); font-weight:800;
+  line-height:1.12; letter-spacing:-.025em;
+}
+.pied__actions{ justify-self:end; text-align:right; max-width:320px }
+
+.pied__mail{
+  display:inline-block; background:var(--jaune); color:var(--encre);
+  font-size:16px; font-weight:700; padding:15px 28px;
+}
+.pied__mail:hover{ background:#FFFFFF; color:var(--encre); text-decoration:none }
+
+.pied__liens{ margin-top:18px; display:flex; flex-direction:column; gap:5px }
+.pied__liens a{ color:var(--creme); font-size:14px }
+.pied__liens a:hover{ color:var(--jaune) }
+
+.pied__maj{ margin-top:18px; color:var(--gris) }
+.pied__mentions{ margin-top:8px; font-size:12px; color:var(--gris-fonce) }
+
+/* ---------------- écrans moyens ---------------- */
+@media (max-width:900px){
+  :root{ --marge:24px }
+  .chapeau{ grid-template-columns:1fr; gap:20px }
+  .chapeau__pitch{ font-size:18px }
+
+  /* Trois tuiles empilées prendraient tout l'écran : on les aplatit
+     en bandeaux, chiffre et libellé sur la même ligne. */
+  .tuiles{ grid-template-columns:1fr; gap:3px }
+  .tuile{
+    display:grid; grid-template-columns:auto 1fr auto;
+    align-items:center; gap:0 14px; padding:14px 18px;
+  }
+  .tuile__nombre{ font-size:30px }
+  .tuile__label{ margin-top:0; font-size:16px }
+  .tuile__action{ margin-top:0; font-size:10px }
+  .entree__bande{
+    grid-template-columns:44px 1fr 26px;
+    grid-template-areas:
+      "num annee plus"
+      "num titre plus"
+      "num meta  plus";
+    gap:2px 14px; padding:16px 18px;
+  }
+  .entree__numero{ grid-area:num; align-self:start; padding-top:4px }
+  .entree__annee{ grid-area:annee; font-size:17px }
+  .entree__titre{ grid-area:titre; font-size:17px }
+  .entree--ouverte .entree__titre{ font-size:18px }
+  .entree__meta{ grid-area:meta; text-align:left; margin-top:4px }
+  .entree__plus{ grid-area:plus; align-self:center }
+  .panneau{ padding:0 18px 18px }
+  .panneau__interieur{ grid-template-columns:1fr; gap:18px; padding:18px }
+  .poste{ grid-template-columns:1fr; gap:2px }
+  .pied__interieur{ grid-template-columns:1fr; padding:52px var(--marge) }
+  .pied__actions{ justify-self:start; text-align:left }
+}
+
+@media (max-width:760px){
+  /* Dix-sept barres à largeur fixe débordent : on les laisse se partager
+     la largeur, et on n'étiquette qu'une année sur deux. */
+  .densite{ gap:10px 16px }
+  .densite__barres{ width:100%; height:46px; gap:3px }
+  .barre{ width:auto; flex:1 1 0; min-width:0 }
+  .barre__annee{ font-size:9.5px; letter-spacing:0 }
+  .barre:nth-child(even) .barre__annee{ visibility:hidden }
+  .densite__compte{ margin-left:0 }
+}
+
+/* ---------------- impression ---------------- */
+@media print{
+  .tuiles, .densite, .skip, .entree__plus, .pied__liens{ display:none }
+  body{ font-size:11pt }
+  .titre{ font-size:54pt }
+  .entree{ break-inside:avoid }
+  .panneau[hidden]{ display:block !important }
+  .pied{ background:#fff; color:var(--encre) }
+  .pied__mail{ background:none; padding:0; text-decoration:underline }
+}

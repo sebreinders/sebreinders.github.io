@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sébastien Reinders — registre public</title>
+<meta name="description" content="Tout ce que Sébastien Reinders a dit, écrit et fait publiquement autour du numérique en éducation. Une seule liste, datée.">
+<meta property="og:title" content="Sébastien Reinders — registre public">
+<meta property="og:description" content="Tout ce que j'ai dit, écrit et fait publiquement autour du numérique en éducation.">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#registre">Aller au registre</a>
+
+<div class="page">
+
+  <!-- ---------- EN-TÊTE ---------- -->
+  <header class="tete">
+    <div class="tete__ligne">
+      <span class="tete__enseigne"><i class="pastille"></i><span data-slot="enseigne"></span></span>
+      <span data-slot="periode"></span>
+      <span data-slot="lieu"></span>
+    </div>
+
+    <h1 class="titre">
+      <span class="titre__prenom" data-slot="prenom"></span>
+      <span class="titre__nom" data-slot="nom"></span>
+    </h1>
+
+    <div class="chapeau">
+      <p class="chapeau__statut" data-slot="statut"></p>
+      <p class="chapeau__pitch" data-slot="pitch"></p>
+    </div>
+  </header>
+
+  <!-- ---------- COMPTEURS / FILTRES ---------- -->
+  <div class="tuiles" data-slot="tuiles" role="group" aria-label="Filtrer le registre"></div>
+
+  <!-- ---------- HISTOGRAMME ---------- -->
+  <div class="densite">
+    <div class="densite__barres" data-slot="histogramme" aria-hidden="true"></div>
+    <span class="densite__titre">Densité par année</span>
+    <span class="densite__compte" data-slot="compte"></span>
+    <button class="densite__reset" type="button" data-slot="reset">Réinitialiser</button>
+  </div>
+
+  <!-- ---------- LE REGISTRE ---------- -->
+  <ol class="registre" id="registre" data-slot="registre"></ol>
+
+  <!-- ---------- PARCOURS ---------- -->
+  <section class="parcours">
+    <h2 class="parcours__titre">D'où je le fais</h2>
+    <ol class="parcours__liste" data-slot="parcours"></ol>
+    <ul class="parcours__formation" data-slot="formation"></ul>
+  </section>
+
+</div>
+
+<!-- ---------- PIED DE PAGE ---------- -->
+<footer class="pied" id="contact">
+  <div class="pied__interieur">
+    <h2 class="pied__appel" data-slot="appel"></h2>
+    <div class="pied__actions">
+      <a class="pied__mail" data-slot="mail"></a>
+      <ul class="pied__liens" data-slot="liens"></ul>
+      <p class="pied__maj">Mis à jour <span data-slot="maj"></span></p>
+      <p class="pied__mentions" data-slot="mentions"></p>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="render.js"></script>
+</body>
+</html>

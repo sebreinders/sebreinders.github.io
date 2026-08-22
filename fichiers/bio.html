@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sébastien Reinders — bio à copier</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Page utilitaire : quelques ajouts, le reste vient de style.css */
+  .utile{ max-width:840px; margin:0 auto; padding:40px var(--marge) 80px }
+  .retour{ display:inline-block; margin-bottom:26px; font-size:12px; font-weight:600;
+           letter-spacing:.18em; text-transform:uppercase }
+  .utile h1{ font-size:clamp(38px,7vw,64px); font-weight:900; line-height:.95;
+             letter-spacing:-.03em; text-transform:uppercase; margin:0 0 12px }
+  .utile__lede{ color:var(--gris-fonce); max-width:56ch; margin-bottom:34px }
+
+  .bloc{ border-top:2px solid var(--encre); padding:20px 0 28px }
+  .bloc__entete{ display:flex; align-items:baseline; gap:14px; margin-bottom:14px }
+  .bloc__titre{ font-size:19px; font-weight:800; margin-right:auto }
+  .bloc__compte{ font-size:11px; font-weight:600; letter-spacing:.18em;
+                 text-transform:uppercase; color:var(--gris) }
+  .copier{ background:var(--vert); color:#fff; font-size:12px; font-weight:700;
+           letter-spacing:.14em; text-transform:uppercase; padding:9px 16px }
+  .copier:hover{ background:var(--encre) }
+  .copier[data-etat="ok"]{ background:var(--jaune); color:var(--encre) }
+  .texte p{ max-width:70ch; margin-bottom:.9em }
+  .texte p:last-child{ margin-bottom:0 }
+  .texte li{ margin-bottom:3px }
+</style>
+</head>
+<body>
+
+<main class="utile">
+  <a class="retour" href="../">← Le registre</a>
+  <h1>Bio à copier</h1>
+  <p class="utile__lede">Pour les programmes de colloque, les présentations d'intervenant et les pages d'inscription. Prenez la version qui tient dans votre gabarit.</p>
+
+  <section class="bloc">
+    <div class="bloc__entete">
+      <h2 class="bloc__titre">Version courte</h2>
+      <span class="bloc__compte" data-compte="courte"></span>
+      <button class="copier" type="button" data-copier="courte">Copier</button>
+    </div>
+    <div class="texte" data-bio="courte"></div>
+  </section>
+
+  <section class="bloc">
+    <div class="bloc__entete">
+      <h2 class="bloc__titre">Version longue</h2>
+      <span class="bloc__compte" data-compte="longue"></span>
+      <button class="copier" type="button" data-copier="longue">Copier</button>
+    </div>
+    <div class="texte" data-bio="longue"></div>
+  </section>
+
+  <section class="bloc">
+    <div class="bloc__entete">
+      <h2 class="bloc__titre">Coordonnées et liens</h2>
+      <button class="copier" type="button" data-copier="liens">Copier</button>
+    </div>
+    <ul class="texte" data-bio="liens"></ul>
+  </section>
+</main>
+
+<script src="../data.js"></script>
+<script>
+(function () {
+  'use strict';
+  const esc = s => String(s ?? '').replace(/[&<>"]/g,
+    c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  const c = SITE.contact;
+
+  // Texte brut de chaque version — c'est lui qui part dans le presse-papiers.
+  const brut = {
+    courte: SITE.bio.courte,
+    longue: SITE.bio.longue.join('\n\n'),
+    liens: [
+      `${SITE.identite.prenom} ${SITE.identite.nom} — ${SITE.identite.statut[0].replace(/\.$/, '')}, ${SITE.identite.statut[1].replace(/\.$/, '')}`,
+      `${c.emailPrincipal.user}@${c.emailPrincipal.domaine}`,
+      ...c.liens.map(l => `${l.nom} : ${l.url}`)
+    ].join('\n')
+  };
+
+  document.querySelector('[data-bio="courte"]').innerHTML = `<p>${esc(brut.courte)}</p>`;
+  document.querySelector('[data-bio="longue"]').innerHTML =
+    SITE.bio.longue.map(p => `<p>${esc(p)}</p>`).join('');
+  document.querySelector('[data-bio="liens"]').innerHTML =
+    brut.liens.split('\n').map(l => `<li>${esc(l)}</li>`).join('');
+
+  // Compteurs de mots — utile quand l'organisateur impose une limite.
+  document.querySelectorAll('[data-compte]').forEach(el => {
+    el.textContent = brut[el.dataset.compte].trim().split(/\s+/).length + ' mots';
+  });
+
+  document.querySelectorAll('[data-copier]').forEach(bouton => {
+    bouton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(brut[bouton.dataset.copier]);
+        bouton.textContent = 'Copié';
+        bouton.dataset.etat = 'ok';
+      } catch {
+        bouton.textContent = 'Copie refusée';
+      }
+      setTimeout(() => {
+        bouton.textContent = 'Copier';
+        delete bouton.dataset.etat;
+      }, 1800);
+    });
+  });
+})();
+</script>
+</body>
+</html>
