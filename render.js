@@ -62,7 +62,7 @@
         <button class="entree__bande" type="button" aria-expanded="false"
                 ${detail ? '' : 'disabled'}>
           <span class="entree__numero">${String(numero).padStart(2, '0')}</span>
-          <span class="entree__annee">${esc(e.annee)}</span>
+          <time class="entree__annee" datetime="${esc(e.date || e.annee)}">${esc(e.annee)}</time>
           <span class="entree__titre">${esc(e.titre)}</span>
           <span class="entree__meta">${esc(e.meta)}</span>
           ${detail ? '<span class="entree__plus" aria-hidden="true"></span>' : ''}

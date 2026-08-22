@@ -56,9 +56,9 @@ const SITE = {
      Ordre antichronologique. Une entrée =
 
        annee    : nombre, sert au tri et à l'histogramme
-       date     : facultatif, "AAAA-MM-JJ" — affine le tri dans l'année.
-                  "2026-01-00" quand seul le mois est connu. Sans date,
-                  l'entrée se range après celles de son année qui en ont une.
+       date     : "AAAA-MM-JJ" — c'est elle qui ordonne le registre.
+                  Convention quand la date exacte manque : mois connu, on
+                  prend le 1er du mois ; année seule, le 1er janvier.
        verbe    : "parlé" | "écrit" | "fait"
        titre    : la ligne visible, en gras
        meta     : la mention discrète à droite (type · lieu · volume)
@@ -94,7 +94,7 @@ const SITE = {
       detail: "Édition suisse du colloque, sur le thème « Repenser l'apprentissage à l'ère de l'IA et de l'innovation ».",
       contexteLabel: "Date", contexte: "21–22 avril 2026" },
 
-    { annee: 2026, verbe: "fait",
+    { annee: 2026, verbe: "fait", date: "2026-01-01",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
@@ -121,7 +121,7 @@ const SITE = {
       contexteLabel: "Publié", contexte: "27 juillet 2026",
       lien: "https://medium.com/@sebastienreinders/l%C3%A9cole-n-a-pas-besoin-de-canadair-mais-de-stores-b877170418bd", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "parlé", date: "2026-01-00",
+    { annee: 2026, verbe: "parlé", date: "2026-01-01",
       titre: "IA4Sup — #Meeting21",
       meta: "Rencontre · en ligne",
       detail: "Échange sur l'IA dans l'enseignement supérieur.",
@@ -178,20 +178,20 @@ const SITE = {
       contexteLabel: "Publié", contexte: "1er février 2026",
       lien: "https://medium.com/@sebastienreinders/le-jour-o%C3%B9-les-humains-n%C3%A9crivent-plus-moltbook-ou-l-internet-des-agents-6b11dfb6bce9", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "fait",
+    { annee: 2026, verbe: "fait", date: "2026-01-01",
       titre: "Cadastres INCOR",
       meta: "Dispositif · Wallonie",
       detail: "Cadastres de l'équipement et des usages numériques dans les écoles et les opérateurs de formation. Savoir ce qui est là avant de décider quoi financer.",
       contexteLabel: "Statut", contexte: "En cours" },
 
     /* ----- 2025 ----- */
-    { annee: 2025, verbe: "parlé", date: "2025-10-00",
+    { annee: 2025, verbe: "parlé", date: "2025-10-01",
       titre: "LUDOVIA#BE",
       meta: "Colloque · Spa",
       detail: "Colloque annuel du numérique éducatif en Belgique francophone.",
       contexteLabel: "Date", contexte: "Octobre 2025" },
 
-    { annee: 2025, verbe: "fait",
+    { annee: 2025, verbe: "fait", date: "2025-01-01",
       titre: "Monitoring IT des écoles",
       meta: "Projet · accord RW-FWB",
       detail: "Construction d'un dispositif de suivi de l'équipement et de la connectivité des établissements, mené conjointement par la Région wallonne et la Fédération Wallonie-Bruxelles.",
@@ -226,50 +226,50 @@ const SITE = {
       lien: "https://medium.com/@sebastienreinders/m%C3%A9moires-sous-ia-place-%C3%A0-loral-et-%C3%A0-la-promptographie-b7f0e4304815", lienLabel: "Lire l'article" },
 
     /* ----- 2024 et avant ----- */
-    { annee: 2024, verbe: "parlé", date: "2024-03-00",
+    { annee: 2024, verbe: "parlé", date: "2024-03-01",
       titre: "L'enjeu des compétences numériques",
       meta: "Présentation · Agence du Numérique",
       detail: "Présentation externe sur l'état des compétences numériques en Wallonie et les leviers publics disponibles.",
       contexteLabel: "Date", contexte: "Mars 2024" },
 
-    { annee: 2023, verbe: "parlé",
+    { annee: 2023, verbe: "parlé", date: "2023-01-01",
       titre: "Pecha Kucha — DW4Edu",
       meta: "Format court · LUDOVIA#BE, Spa",
       detail: "Vingt images, vingt secondes chacune, pour présenter le programme régional d'éducation numérique.",
       contexteLabel: "Format", contexte: "Pecha Kucha" },
 
-    { annee: 2021, verbe: "parlé",
+    { annee: 2021, verbe: "parlé", date: "2021-01-01",
       titre: "L'école post-Covid, plus smart qu'avant ?",
       meta: "Table ronde · Smart City Wallonia",
       detail: "Ce que la fermeture des écoles a réellement appris au système éducatif — et ce qu'il en a retenu.",
       contexteLabel: "Format", contexte: "En ligne" },
 
-    { annee: 2019, verbe: "fait",
+    { annee: 2019, verbe: "fait", date: "2019-01-01",
       titre: "LUDOVIA#BE — copilotage",
       meta: "Organisation · depuis 2019",
       detail: "Copilotage du colloque belge du numérique éducatif : programme, intervenants, formats. Une semaine par an à Spa, et le reste de l'année à la préparer.",
       contexteLabel: "Statut", contexte: "En cours depuis 2019" },
 
-    { annee: 2018, verbe: "parlé",
+    { annee: 2018, verbe: "parlé", date: "2018-01-01",
       titre: "Hacking pédagogique",
       meta: "Webinaire · IFIC",
       detail: "Détourner, bricoler et remixer les outils numériques au service de la pédagogie.",
       contexteLabel: "Format", contexte: "Webinaire" },
 
-    { annee: 2016, verbe: "parlé",
+    { annee: 2016, verbe: "parlé", date: "2016-01-01",
       titre: "Cycle TICE : BYOD, EdTech, escape games, robotique",
       meta: "Formations · 2016 — 2019",
       detail: "Une série d'interventions et de formations sur l'intégration des usages numériques en classe, menées pour Technofutur TIC, EvoluTIC, l'EFP Bruxelles et la Haute École Condorcet.",
       contexteLabel: "Période", contexte: "2016 — 2019" },
 
-    { annee: 2015, verbe: "fait",
+    { annee: 2015, verbe: "fait", date: "2015-01-01",
       titre: "DW4Edu — École Numérique",
       meta: "Programme · depuis 2015",
       detail: "Coordination du programme régional d'éducation numérique : appels à projets pour l'équipement des écoles, infrastructure réseau, outillage des équipes éducatives.",
       contexteLabel: "Statut", contexte: "En cours depuis 2015",
       lien: "https://digitalwallonia.be/education/", lienLabel: "La stratégie wallonne" },
 
-    { annee: 2010, verbe: "fait",
+    { annee: 2010, verbe: "fait", date: "2010-01-01",
       titre: "Enseignement et présidence de jury — Haute École Condorcet",
       meta: "Mandat · depuis 2010",
       detail: "Chargé de cours en écriture multimédia dans le bachelier du même nom, et président du jury de la section pédagogique.",

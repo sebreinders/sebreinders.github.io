@@ -14,13 +14,17 @@ Pour ajouter quelque chose : une entrée de plus dans le tableau `registre`.
 Les compteurs, l'histogramme, les filtres et la numérotation se recalculent seuls.
 
 ```js
-{ annee: 2026, verbe: "parlé",
+{ annee: 2026, verbe: "parlé", date: "2026-11-12",
   titre: "Le titre affiché sur la bande",
   meta: "Type · Lieu · Volume",          // la mention discrète à droite
   detail: "Le texte qui apparaît au dépliage.",
   contexteLabel: "Date", contexte: "12 novembre 2026",
   lien: "https://…", lienLabel: "Voir le support" },   // les deux sont facultatifs
 ```
+
+`date` ordonne le registre. Quand la date exacte manque : **mois connu → le 1er du
+mois** (`"2025-10-01"`), **année seule → le 1er janvier** (`"2015-01-01"`). Une
+entrée qui en serait dépourvue se rangerait en fin d'année, mais toutes en ont une.
 
 `verbe` vaut **`"parlé"`**, **`"écrit"`** ou **`"fait"`** — rien d'autre. C'est lui
 qui donne sa couleur à la bande :
