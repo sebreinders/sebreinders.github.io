@@ -38,9 +38,17 @@
      Trié par année décroissante ; l'ordre du fichier départage
      les entrées d'une même année.
      --------------------------------------------------------- */
+  // Tri : année décroissante, puis date précise décroissante. Une entrée sans
+  // date (un mandat « en cours », un programme) se range après celles de son
+  // année qui en ont une ; l'ordre du fichier départage le reste.
+  const cleDate = e => e.date || `${e.annee}-00-00`;
+
   const entrees = SITE.registre
     .map((e, rang) => ({ ...e, rang }))
-    .sort((a, b) => b.annee - a.annee || a.rang - b.rang);
+    .sort((a, b) =>
+      b.annee - a.annee ||
+      cleDate(b).localeCompare(cleDate(a)) ||
+      a.rang - b.rang);
 
   let filtreActif = null;   // null = tout afficher
 

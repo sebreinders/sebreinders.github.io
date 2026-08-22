@@ -56,6 +56,9 @@ const SITE = {
      Ordre antichronologique. Une entrée =
 
        annee    : nombre, sert au tri et à l'histogramme
+       date     : facultatif, "AAAA-MM-JJ" — affine le tri dans l'année.
+                  "2026-01-00" quand seul le mois est connu. Sans date,
+                  l'entrée se range après celles de son année qui en ont une.
        verbe    : "parlé" | "écrit" | "fait"
        titre    : la ligne visible, en gras
        meta     : la mention discrète à droite (type · lieu · volume)
@@ -66,26 +69,26 @@ const SITE = {
   registre: [
 
     /* ----- 2026 ----- */
-    { annee: 2026, verbe: "parlé",
+    { annee: 2026, verbe: "parlé", date: "2026-09-23",
       titre: "Politiques publiques du numérique éducatif",
       meta: "Cours · ULiège · Master Sc. Éduc.",
       detail: "Intervention annuelle dans le cours « Introduction aux Usages du Numérique en Éducation » de Jean-François Céci, en binôme sur le volet Pix. Une heure : ce que l'État peut et ne peut pas faire pour outiller une école.",
       contexteLabel: "Date", contexte: "23 septembre 2026" },
 
-    { annee: 2026, verbe: "parlé",
+    { annee: 2026, verbe: "parlé", date: "2026-09-14",
       titre: "L'IA au travail : comprendre avant de décider",
       meta: "Conférence · Trivières · 20 pers.",
       detail: "Sensibilisation de l'équipe du Centre Régional d'Intégration Centre & Wallonie picarde. Objectif assumé : construire une culture commune de l'IA avant d'écrire une charte d'usage, pas l'inverse.",
       contexteLabel: "Date", contexte: "14 septembre 2026" },
 
-    { annee: 2026, verbe: "parlé",
+    { annee: 2026, verbe: "parlé", date: "2026-08-19",
       titre: "Du plan d'équipement au pilotage pédagogique",
       meta: "Atelier · Louvain-la-Neuve",
       detail: "Penser le numérique à l'échelle de l'établissement : passer de l'achat de matériel à une stratégie de pilotage. Université d'été du SeGEC, journée « De la craie au cloud, l'école en mutation ».",
       contexteLabel: "Lieu", contexte: "Aula Magna, 19 août 2026",
       lien: "https://sebreinders.github.io/ressources/", lienLabel: "Ressources et inventaire de l'atelier" },
 
-    { annee: 2026, verbe: "parlé",
+    { annee: 2026, verbe: "parlé", date: "2026-04-21",
       titre: "LUDOVIA#CH",
       meta: "Colloque · Suisse",
       detail: "Édition suisse du colloque, sur le thème « Repenser l'apprentissage à l'ère de l'IA et de l'innovation ».",
@@ -97,48 +100,78 @@ const SITE = {
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
       contexteLabel: "Rôle", contexte: "Membre du jury" },
      
-      { annee: 2026, verbe: "écrit",
+      { annee: 2026, verbe: "écrit", date: "2026-08-17",
       titre: "Faut-il financer toutes les écoles de la même manière ?",
       meta: "Article · Medium",
       detail: "L'égalité de traitement budgétaire produit-elle de l'équité ? Le cas de l'encadrement différencié en Fédération Wallonie-Bruxelles.",
       contexteLabel: "Publié", contexte: "17 août 2026",
       lien: "https://medium.com/@sebastienreinders/faut-il-financer-toutes-les-%C3%A9coles-de-la-m%C3%AAme-mani%C3%A8re-49086b0a98a2", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "écrit",
+    { annee: 2026, verbe: "écrit", date: "2026-08-06",
       titre: "Le cartable et le Cloud Act",
       meta: "Article · Medium",
       detail: "Qui possède l'infrastructure numérique de l'école, et ce que cela change pour les données des élèves.",
       contexteLabel: "Publié", contexte: "6 août 2026",
       lien: "https://medium.com/@sebastienreinders/le-cartable-et-le-cloud-act-a26959011cca", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "écrit",
+    { annee: 2026, verbe: "écrit", date: "2026-07-27",
       titre: "L'école n'a pas besoin de Canadair, mais de stores",
       meta: "Article · Medium",
       detail: "Le bâtiment scolaire, angle mort de l'école face au dérèglement climatique.",
       contexteLabel: "Publié", contexte: "27 juillet 2026",
       lien: "https://medium.com/@sebastienreinders/l%C3%A9cole-n-a-pas-besoin-de-canadair-mais-de-stores-b877170418bd", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "parlé",
+    { annee: 2026, verbe: "parlé", date: "2026-01-00",
       titre: "IA4Sup — #Meeting21",
       meta: "Rencontre · en ligne",
       detail: "Échange sur l'IA dans l'enseignement supérieur.",
       contexteLabel: "Date", contexte: "Janvier 2026" },
 
-    { annee: 2026, verbe: "écrit",
+    /* La même conférence donnée quatre fois, une par territoire du SeGEC.
+       Quatre entrées plutôt qu'une : ce sont quatre interventions. */
+    { annee: 2026, verbe: "parlé", date: "2026-02-02",
+      titre: "Les IA au cœur de mon métier de direction et de mon management",
+      meta: "Conférence · SeGEC Liège",
+      detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
+      contexteLabel: "Date et lieu",
+      contexte: "Lundi 2 février 2026, 8h30 — 13h00. Rue Hors-Château 61, 4000 Liège." },
+
+    { annee: 2026, verbe: "parlé", date: "2026-01-26",
+      titre: "Les IA au cœur de mon métier de direction et de mon management",
+      meta: "Conférence · SeGEC Hainaut",
+      detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
+      contexteLabel: "Date et lieu",
+      contexte: "Lundi 26 janvier 2026, 8h30 — 13h00. Chaussée de Binche 151, 7000 Mons." },
+
+    { annee: 2026, verbe: "parlé", date: "2026-01-19",
+      titre: "Les IA au cœur de mon métier de direction et de mon management",
+      meta: "Conférence · SeGEC Namur-Luxembourg",
+      detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
+      contexteLabel: "Date et lieu",
+      contexte: "Lundi 19 janvier 2026, 8h30 — 13h00. Rue Bâtis de Corère 6, 5336 Assesse." },
+
+    { annee: 2026, verbe: "parlé", date: "2026-01-14",
+      titre: "Les IA au cœur de mon métier de direction et de mon management",
+      meta: "Conférence · SeGEC Bruxelles-Brabant",
+      detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
+      contexteLabel: "Date et lieu",
+      contexte: "Mercredi 14 janvier 2026, 8h30 — 13h00. Avenue de l'Église Saint-Julien 15, 1160 Auderghem." },
+
+    { annee: 2026, verbe: "écrit", date: "2026-07-22",
       titre: "On a rangé le téléphone, et le débat avec",
       meta: "Article · Medium",
       detail: "Interdire le smartphone à l'école sans poser la question de l'éducation aux usages.",
       contexteLabel: "Publié", contexte: "22 juillet 2026",
       lien: "https://medium.com/@sebastienreinders/on-a-rang%C3%A9-le-t%C3%A9l%C3%A9phone-et-le-d%C3%A9bat-avec-dc2aab9a3583", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "écrit",
+    { annee: 2026, verbe: "écrit", date: "2026-07-12",
       titre: "Et si l'école faisait comme Buurtzorg ?",
       meta: "Article · Medium",
       detail: "Ce que le modèle néerlandais de soins à domicile en équipes autonomes suggère à la gouvernance scolaire.",
       contexteLabel: "Publié", contexte: "12 juillet 2026",
       lien: "https://medium.com/@sebastienreinders/et-si-l%C3%A9cole-faisait-comme-buurtzorg-a21f0074b00b", lienLabel: "Lire l'article" },
 
-    { annee: 2026, verbe: "écrit",
+    { annee: 2026, verbe: "écrit", date: "2026-02-01",
       titre: "Le jour où les humains n'écrivent plus : Moltbook, ou l'Internet des agents",
       meta: "Article · Medium",
       detail: "Quand les agents conversationnels deviennent les principaux producteurs de texte en ligne.",
@@ -152,17 +185,11 @@ const SITE = {
       contexteLabel: "Statut", contexte: "En cours" },
 
     /* ----- 2025 ----- */
-    { annee: 2025, verbe: "parlé",
+    { annee: 2025, verbe: "parlé", date: "2025-10-00",
       titre: "LUDOVIA#BE",
       meta: "Colloque · Spa",
       detail: "Colloque annuel du numérique éducatif en Belgique francophone.",
       contexteLabel: "Date", contexte: "Octobre 2025" },
-
-    { annee: 2025, verbe: "parlé",
-      titre: "Les IA au cœur de mon métier de direction et de mon management",
-      meta: "Keynote · SeGEC · 100 directions",
-      detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
-      contexteLabel: "Public", contexte: "Directions d'écoles" },
 
     { annee: 2025, verbe: "fait",
       titre: "Monitoring IT des écoles",
@@ -170,28 +197,28 @@ const SITE = {
       detail: "Construction d'un dispositif de suivi de l'équipement et de la connectivité des établissements, mené conjointement par la Région wallonne et la Fédération Wallonie-Bruxelles.",
       contexteLabel: "Statut", contexte: "En cours" },
 
-    { annee: 2025, verbe: "écrit",
+    { annee: 2025, verbe: "écrit", date: "2025-11-25",
       titre: "L'école au cœur du brasier : éduquer dans un monde qui vacille",
       meta: "Article · Medium",
       detail: "Enseigner dans la polycrise : ce que l'école peut encore tenir.",
       contexteLabel: "Publié", contexte: "25 novembre 2025",
       lien: "https://medium.com/@sebastienreinders/l%C3%A9cole-au-c%C5%93ur-du-brasier-%C3%A9duquer-dans-un-monde-qui-vacille-f0c853e9ea44", lienLabel: "Lire l'article" },
 
-    { annee: 2025, verbe: "écrit",
+    { annee: 2025, verbe: "écrit", date: "2025-11-04",
       titre: "Un directeur, une IA et un café froid : mieux gérer pour mieux diriger",
       meta: "Article · Medium",
       detail: "Une journée de direction d'école, revisitée avec l'IA comme outil de gestion.",
       contexteLabel: "Publié", contexte: "4 novembre 2025",
       lien: "https://medium.com/@sebastienreinders/un-directeur-une-ia-et-un-caf%C3%A9-froid-mieux-g%C3%A9rer-pour-mieux-diriger-855bba7d91f8", lienLabel: "Lire l'article" },
 
-    { annee: 2025, verbe: "écrit",
+    { annee: 2025, verbe: "écrit", date: "2025-11-02",
       titre: "Jianwei Xun ou la tentation de l'auteur sans corps",
       meta: "Article · Medium",
       detail: "Sur le philosophe qui n'existait pas, et ce que la supercherie révèle de notre rapport aux textes.",
       contexteLabel: "Publié", contexte: "2 novembre 2025",
       lien: "https://medium.com/@sebastienreinders/jianwei-xun-ou-la-tentation-de-lauteur-sans-corps-a3e566bc88c3", lienLabel: "Lire l'article" },
 
-    { annee: 2025, verbe: "écrit",
+    { annee: 2025, verbe: "écrit", date: "2025-06-26",
       titre: "Mémoires sous IA : place à l'oral et à la promptographie",
       meta: "Article · Medium",
       detail: "Évaluer un travail de fin d'études quand l'IA rédige : déplacer la preuve vers le processus.",
@@ -199,7 +226,7 @@ const SITE = {
       lien: "https://medium.com/@sebastienreinders/m%C3%A9moires-sous-ia-place-%C3%A0-loral-et-%C3%A0-la-promptographie-b7f0e4304815", lienLabel: "Lire l'article" },
 
     /* ----- 2024 et avant ----- */
-    { annee: 2024, verbe: "parlé",
+    { annee: 2024, verbe: "parlé", date: "2024-03-00",
       titre: "L'enjeu des compétences numériques",
       meta: "Présentation · Agence du Numérique",
       detail: "Présentation externe sur l'état des compétences numériques en Wallonie et les leviers publics disponibles.",
