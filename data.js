@@ -845,9 +845,9 @@ const SITE = {
 
 
         { annee: 2018, verbe: "parlé", date: "2018-11-21",
-      titre: "Les ENT dans cinq ans",
+      titre: "Évolution et usages des outils et plates-formes de travail collaboratif en milieu scolaire",
       meta: "Educatec-Educatice · Paris",
-      detail: "Conférence donnée pour la Direction du numérique pour l'éducation du ministère français de l'Éducation nationale, dans le cadre de sa journée consacrée aux espaces numériques de travail. Salon Educatec-Educatice, Porte de Versailles.",
+      detail: "Retour d'expérience à l'international, donné pour la Direction du numérique pour l'éducation du ministère français de l'Éducation nationale, dans le cadre de sa journée consacrée aux espaces numériques de travail. Salon Educatec-Educatice, Porte de Versailles.",
       contexteLabel: "Date et horaire", contexte: "Mercredi 21 novembre 2018, 11h45 — 12h25" },
     { annee: 2019, verbe: "parlé", date: "2019-02-17",
       titre: "Conférence d'ouverture du BELC hiver",
