@@ -849,6 +849,11 @@ const SITE = {
       meta: "Educatec-Educatice · Paris",
       detail: "Conférence donnée pour la Direction du numérique pour l'éducation du ministère français de l'Éducation nationale, dans le cadre de sa journée consacrée aux espaces numériques de travail. Salon Educatec-Educatice, Porte de Versailles.",
       contexteLabel: "Date et horaire", contexte: "Mercredi 21 novembre 2018, 11h45 — 12h25" },
+    { annee: 2019, verbe: "parlé", date: "2019-02-17",
+      titre: "Conférence d'ouverture du BELC hiver",
+      meta: "CIEP · Paris",
+      detail: "Ouverture de l'université d'hiver du Centre international d'études pédagogiques, stage de formation des professeurs et cadres éducatifs de français dans le monde.",
+      contexteLabel: "Date", contexte: "17 février 2019, Paris" },
   ],
 
   /* ---------------------------------------------------------
