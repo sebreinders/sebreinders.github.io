@@ -160,9 +160,19 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 }
 .entree__titre{
   font-size:19px; font-weight:700; line-height:1.3; letter-spacing:-.01em;
+  min-width:0;                      /* sans cela, un titre long refuse de se réduire */
 }
+/* Bande fermée : deux lignes suffisent, la suite se lit au dépliage.
+   Un titre à rallonge ne fait donc plus enfler la bande. */
+.entree__bande:not([aria-expanded="true"]) .entree__titre{
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+/* `auto` en grille prend la largeur du texte : on plafonne en ch plutôt
+   qu'en %, sinon la colonne se resserre et le libellé s'enroule. */
 .entree__meta{
   font-size:12.5px; font-weight:500; opacity:.78; text-align:right;
+  max-width:32ch; min-width:0;
 }
 .entree__plus{
   justify-self:end; width:15px; height:15px; opacity:.66;
