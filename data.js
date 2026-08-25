@@ -885,20 +885,12 @@ const SITE = {
       detail: "Intervention au quatrième EdTechForum, consacré à l'école numérique en Belgique francophone, autour des six leviers d'une transition numérique réussie.",
       contexteLabel: "Date", contexte: "Mars 2016" },
 
-    /* Les FabCamps étaient portés par l'asbl Pedago-TIC dans le cadre
-       d'École Numérique ; le suivi côté Service public de Wallonie
-       revenait à Sébastien. */
-    { annee: 2015, verbe: "fait", date: "2015-06-10",
-      titre: "FabCamp — deuxième édition",
-      meta: "Atelier · Haute École Ferrer",
-      detail: "Seconde session des FabCamps d'École Numérique, ateliers de fabrication et de bricolage pédagogique destinés aux enseignants. Initialement prévue le 22 avril, reportée au 10 juin.",
-      contexteLabel: "Date", contexte: "10 juin 2015" },
 
-    { annee: 2015, verbe: "fait", date: "2015-02-25",
-      titre: "FabCamp — première édition",
-      meta: "Atelier · École Numérique",
-      detail: "Première session des FabCamps, ateliers où les enseignants viennent fabriquer, détourner et tester des dispositifs numériques pour leur classe.",
-      contexteLabel: "Date", contexte: "25 février 2015" },
+    { annee: 2008, verbe: "fait", date: "2008-01-01",
+      titre: "Pedago-TIC",
+      meta: "Projet · Technofutur TIC",
+      detail: "Projet d'accompagnement des enseignants aux usages numériques, mené depuis Technofutur TIC : formations, ateliers et suivi de terrain. À la fin du projet, Sébastien rejoint le Service public de Wallonie et Pedago-TIC s'autonomise en asbl, portée par Sylvain Denis et Vinciane Amorini, qui poursuivra l'accompagnement des écoles dans le cadre d'École Numérique.",
+      contexteLabel: "Période", contexte: "De 2008 à 2013, Technofutur TIC" },
   ],
 
   /* ---------------------------------------------------------
