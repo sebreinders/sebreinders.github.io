@@ -911,6 +911,11 @@ const SITE = {
       meta: "Camp pédagogique · Pedago-TIC",
       detail: "Première édition, organisée dans le cadre de Pedago-TIC : un barcamp consacré à l'éducation 2.0, où les participants proposent eux-mêmes les ateliers.",
       contexteLabel: "Date", contexte: "2009 — jour à préciser" },
+    { annee: 2013, verbe: "fait", date: "2013-03-11",
+      titre: "MOOC ReSOP — Les Réseaux Sociaux comme Outils Pédagogiques",
+      meta: "MOOC · Pedago-TIC et École Numérique",
+      detail: "Cours en ligne ouvert et gratuit de quatre semaines, initié par Pedago-TIC et École Numérique : découvrir la notion de réseau social et défaire les préjugés, expérimenter en contexte de formation, puis analyser l'usage pédagogique de ces outils en milieu scolaire. Facebook et Google+ y tenaient la place centrale.",
+      contexteLabel: "Dates", contexte: "Du 11 mars au 7 avril 2013" },
   ],
 
   /* ---------------------------------------------------------
