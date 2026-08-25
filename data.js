@@ -863,17 +863,16 @@ const SITE = {
       detail: "Intervention au colloque annuel consacré à la fracture numérique, aux côtés d'André Delacharlerie (Agence du Numérique) et d'enseignants innovants.",
       contexteLabel: "Date et horaire", contexte: "Jeudi 23 avril 2015, 9h45 — Parlement de la Fédération Wallonie-Bruxelles" },
 
-    { annee: 2015, verbe: "parlé", date: "2015-04-23",
-      titre: "Le passeport TIC",
-      meta: "Colloque · Parlement FWB",
-      detail: "Seconde intervention de la matinée, avec François Brixy (AGERS), sur le dispositif de certification des compétences numériques des élèves.",
-      contexteLabel: "Date et horaire", contexte: "Jeudi 23 avril 2015, 10h45 — Parlement de la Fédération Wallonie-Bruxelles" },
-
     { annee: 2014, verbe: "fait", date: "2014-01-01",
       titre: "École Numérique 3 — troisième appel à projets pilotes",
       meta: "Appel à projets · SPW",
       detail: "Conduite du troisième appel à projets pilotes « École Numérique » comme conseiller-expert au Service public de Wallonie : 3,5 millions d'euros, 200 écoles lauréates annoncées en septembre 2014, puis accompagnement pédagogique et technique des projets jusqu'en juin 2016. Le lancement officiel a pris la forme de rencontres délocalisées avec les porteurs de projets, en décembre 2014 et janvier 2015.",
       contexteLabel: "Période", contexte: "Appel lancé en 2014, projets suivis jusqu'en juin 2016" },
+    { annee: 2014, verbe: "fait", date: "2014-10-15",
+      titre: "Espace conférences du SPW au Salon Éducation",
+      meta: "Organisation · Charleroi Expo",
+      detail: "Conception et organisation du programme de conférences tenues sur le stand « École Numérique / Cyberclasse » du Service public de Wallonie : appel à participation, sélection des intervenants, planning et relais presse. Salon de l'Éducation et du livre jeunesse de Charleroi.",
+      contexteLabel: "Dates", contexte: "Du 15 au 19 octobre 2014, Charleroi Expo" },
   ],
 
   /* ---------------------------------------------------------
