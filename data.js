@@ -854,6 +854,26 @@ const SITE = {
       meta: "CIEP · Paris",
       detail: "Ouverture de l'université d'hiver du Centre international d'études pédagogiques, stage de formation des professeurs et cadres éducatifs de français dans le monde.",
       contexteLabel: "Date", contexte: "17 février 2019, Paris" },
+    /* Colloque annuel « Fracture numérique » du Parlement de la FWB,
+       à l'initiative de la députée Olga Zrihen : deux interventions
+       dans la même matinée. */
+    { annee: 2015, verbe: "parlé", date: "2015-04-23",
+      titre: "Les TIC et les TICE au service de l'enseignement",
+      meta: "Colloque · Parlement FWB",
+      detail: "Intervention au colloque annuel consacré à la fracture numérique, aux côtés d'André Delacharlerie (Agence du Numérique) et d'enseignants innovants.",
+      contexteLabel: "Date et horaire", contexte: "Jeudi 23 avril 2015, 9h45 — Parlement de la Fédération Wallonie-Bruxelles" },
+
+    { annee: 2015, verbe: "parlé", date: "2015-04-23",
+      titre: "Le passeport TIC",
+      meta: "Colloque · Parlement FWB",
+      detail: "Seconde intervention de la matinée, avec François Brixy (AGERS), sur le dispositif de certification des compétences numériques des élèves.",
+      contexteLabel: "Date et horaire", contexte: "Jeudi 23 avril 2015, 10h45 — Parlement de la Fédération Wallonie-Bruxelles" },
+
+    { annee: 2014, verbe: "fait", date: "2014-01-01",
+      titre: "École Numérique 3 — troisième appel à projets pilotes",
+      meta: "Appel à projets · SPW",
+      detail: "Conduite du troisième appel à projets pilotes « École Numérique » comme conseiller-expert au Service public de Wallonie : 3,5 millions d'euros, 200 écoles lauréates annoncées en septembre 2014, puis accompagnement pédagogique et technique des projets jusqu'en juin 2016. Le lancement officiel a pris la forme de rencontres délocalisées avec les porteurs de projets, en décembre 2014 et janvier 2015.",
+      contexteLabel: "Période", contexte: "Appel lancé en 2014, projets suivis jusqu'en juin 2016" },
   ],
 
   /* ---------------------------------------------------------
