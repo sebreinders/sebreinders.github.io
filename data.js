@@ -873,6 +873,32 @@ const SITE = {
       meta: "Organisation · Charleroi Expo",
       detail: "Conception et organisation du programme de conférences tenues sur le stand « École Numérique / Cyberclasse » du Service public de Wallonie : appel à participation, sélection des intervenants, planning et relais presse. Salon de l'Éducation et du livre jeunesse de Charleroi.",
       contexteLabel: "Dates", contexte: "Du 15 au 19 octobre 2014, Charleroi Expo" },
+    { annee: 2018, verbe: "parlé", date: "2018-05-30",
+      titre: "Un projet pilote pour tester le BYOD à l'école",
+      meta: "6e #EdTechForum · Digital Wallonia",
+      detail: "Intervention au sixième EdTechForum, consacré aux usages numériques éducatifs et destiné aux directions d'écoles : quel projet et quelle ambition numérique pour son établissement.",
+      contexteLabel: "Date", contexte: "30 mai 2018" },
+
+    { annee: 2016, verbe: "parlé", date: "2016-03-01",
+      titre: "Bring Your Own Device",
+      meta: "4e #EdTechForum · Technofutur TIC",
+      detail: "Intervention au quatrième EdTechForum, consacré à l'école numérique en Belgique francophone, autour des six leviers d'une transition numérique réussie.",
+      contexteLabel: "Date", contexte: "Mars 2016" },
+
+    /* Les FabCamps étaient portés par l'asbl Pedago-TIC dans le cadre
+       d'École Numérique ; le suivi côté Service public de Wallonie
+       revenait à Sébastien. */
+    { annee: 2015, verbe: "fait", date: "2015-06-10",
+      titre: "FabCamp — deuxième édition",
+      meta: "Atelier · Haute École Ferrer",
+      detail: "Seconde session des FabCamps d'École Numérique, ateliers de fabrication et de bricolage pédagogique destinés aux enseignants. Initialement prévue le 22 avril, reportée au 10 juin.",
+      contexteLabel: "Date", contexte: "10 juin 2015" },
+
+    { annee: 2015, verbe: "fait", date: "2015-02-25",
+      titre: "FabCamp — première édition",
+      meta: "Atelier · École Numérique",
+      detail: "Première session des FabCamps, ateliers où les enseignants viennent fabriquer, détourner et tester des dispositifs numériques pour leur classe.",
+      contexteLabel: "Date", contexte: "25 février 2015" },
   ],
 
   /* ---------------------------------------------------------
