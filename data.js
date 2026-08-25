@@ -891,6 +891,26 @@ const SITE = {
       meta: "Projet · Technofutur TIC",
       detail: "Projet d'accompagnement des enseignants aux usages numériques, mené depuis Technofutur TIC : formations, ateliers et suivi de terrain. À la fin du projet, Sébastien rejoint le Service public de Wallonie et Pedago-TIC s'autonomise en asbl, portée par Sylvain Denis et Vinciane Amorini, qui poursuivra l'accompagnement des écoles dans le cadre d'École Numérique.",
       contexteLabel: "Période", contexte: "De 2008 à 2013, Technofutur TIC" },
+    /* Les EduCamps — « camps pédagogiques » belges sur les usages
+       numériques, sur le modèle du barcamp : pas de conférence, des
+       ateliers montés par les participants eux-mêmes. */
+    { annee: 2016, verbe: "fait", date: "2016-11-04",
+      titre: "EduCamp Belgium — troisième édition",
+      meta: "Camp pédagogique · Condorcet, Marcinelle",
+      detail: "Organisation du troisième camp pédagogique belge consacré aux usages numériques, monté avec Technofutur TIC et la catégorie pédagogique de la Haute École Condorcet : programme, promotion, inscriptions et logistique.",
+      contexteLabel: "Date", contexte: "Vendredi 4 novembre 2016" },
+
+    { annee: 2012, verbe: "fait", date: "2012-10-31",
+      titre: "EduCamp — deuxième édition",
+      meta: "Camp pédagogique · Technofutur TIC",
+      detail: "Deuxième édition du camp pédagogique, avec ateliers autour du tableau blanc interactif et des outils de langues.",
+      contexteLabel: "Date", contexte: "Mercredi 31 octobre 2012" },
+
+    { annee: 2009, verbe: "fait", date: "2009-01-01",
+      titre: "EduCamp 2009 — Barcamp éducation 2.0",
+      meta: "Camp pédagogique · Pedago-TIC",
+      detail: "Première édition, organisée dans le cadre de Pedago-TIC : un barcamp consacré à l'éducation 2.0, où les participants proposent eux-mêmes les ateliers.",
+      contexteLabel: "Date", contexte: "2009 — jour à préciser" },
   ],
 
   /* ---------------------------------------------------------
