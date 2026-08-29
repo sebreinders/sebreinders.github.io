@@ -74,7 +74,7 @@ const SITE = {
     "ludovia-fr": {
       titre: "LUDOVIA#FR",
       meta: "Université d'été · Ax-les-Thermes",
-      detail: "L'université d'été du numérique éducatif, en Ariège. J'y vais chaque année depuis 2018." },
+      detail: "L'université d'été du numérique éducatif, à Ax-les-Thermes en Ariège. J'y vais chaque année depuis 2010." },
 
     "ludovia-be": {
       titre: "LUDOVIA#BE",
@@ -980,6 +980,54 @@ const SITE = {
       meta: "Appel à projets · Wallonie",
       detail: "Premier appel à projets pilotes « École Numérique », lancé par la Wallonie pour expérimenter des scénarios pédagogiques nouveaux — classes mobiles, tableaux interactifs, tablettes, manuels numériques. Pedago-TIC y accompagnait les écoles depuis Technofutur TIC.",
       contexteLabel: "Période", contexte: "Appel lancé en 2011" },
+
+    { annee: 2017, verbe: "fait", date: "2017-08-22", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 14e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Partage, échange, contribution, participation ».",
+      contexteLabel: "Dates", contexte: "Du 22 au 24 août 2017" },
+
+    { annee: 2016, verbe: "fait", date: "2016-08-24", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 13e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Formes d'attention, formes de présence, engagement ».",
+      contexteLabel: "Dates", contexte: "Du 24 au 26 août 2016" },
+
+    { annee: 2015, verbe: "fait", date: "2015-08-24", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 12e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Les objets numériques : appropriations et détournements ».",
+      contexteLabel: "Dates", contexte: "Du 24 au 26 août 2015" },
+
+    { annee: 2014, verbe: "fait", date: "2014-08-25", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 11e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Les objets numériques : création et consommation ».",
+      contexteLabel: "Dates", contexte: "Du 25 au 27 août 2014" },
+
+    { annee: 2013, verbe: "fait", date: "2013-08-26", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 10e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Imaginaire(s) du numérique ».",
+      contexteLabel: "Dates", contexte: "Du 26 au 29 août 2013" },
+
+    { annee: 2012, verbe: "fait", date: "2012-08-27", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 9e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Plaisir et numérique ».",
+      contexteLabel: "Dates", contexte: "Du 27 au 30 août 2012" },
+
+    { annee: 2011, verbe: "fait", date: "2011-08-29", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 8e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Mobilités numériques ».",
+      contexteLabel: "Dates", contexte: "Du 29 août au 1er septembre 2011" },
+
+    { annee: 2010, verbe: "fait", date: "2010-08-01", serie: "ludovia-fr",
+      titre: "LUDOVIA#FR — 7e édition",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Interactivité et interactions ».",
+      contexteLabel: "Dates", contexte: "Août 2010" },
 
   ],
 
