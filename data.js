@@ -52,7 +52,53 @@ const SITE = {
   ],
 
   /* ---------------------------------------------------------
-     3. LE REGISTRE
+     3. LES SÉRIES
+     Certaines choses reviennent chaque année : une édition de
+     colloque, un appel à projets, un mandat reconduit. Les lister
+     une à une remplissait la page de bandes presque identiques.
+
+     Une entrée qui porte `serie: "clé"` est donc repliée avec ses
+     semblables sous une seule bande, qui en donne le nombre et la
+     période ; le détail de chaque édition reste lisible au
+     dépliage. Rien n'est retiré du registre : les compteurs et
+     l'histogramme comptent toujours les entrées réelles.
+
+     Retirer `serie:` d'une entrée la fait ressortir seule.
+     --------------------------------------------------------- */
+  series: {
+    "presse": {
+      titre: "Revue de presse",
+      meta: "Retombées · presse et radio",
+      detail: "Articles et interviews parus dans la presse belge à propos des programmes que je porte : École Numérique, connectivité des écoles, compétences numériques." },
+
+    "ludovia-fr": {
+      titre: "LUDOVIA#FR",
+      meta: "Université d'été · Ax-les-Thermes",
+      detail: "L'université d'été du numérique éducatif, en Ariège. J'y vais chaque année depuis 2018." },
+
+    "ludovia-be": {
+      titre: "LUDOVIA#BE",
+      meta: "Colloque · Spa",
+      detail: "Le colloque belge du numérique éducatif, dont je copilote l'organisation pour l'Agence du Numérique depuis la première édition." },
+
+    "equipement": {
+      titre: "Équipement informatique des écoles",
+      meta: "Appels à projets · École numérique",
+      detail: "Les appels à projets annuels qui mettent du matériel à disposition des établissements scolaires wallons, de 2017 à aujourd'hui." },
+
+    "digital-youth": {
+      titre: "Jury du Fonds Digital for Youth",
+      meta: "Mandat · Fondation Roi Baudouin",
+      detail: "Mandat reconduit chaque année : évaluation des dossiers et délibérations du fonds, qui soutient les initiatives numériques destinées aux enfants et aux jeunes." },
+
+    "segec-ia": {
+      titre: "Les IA au cœur de mon métier de direction et de mon management",
+      meta: "Tournée de conférences · SeGEC",
+      detail: "La même conférence donnée dans les quatre territoires du SeGEC, devant les directions d'écoles : ce que l'IA change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas." }
+  },
+
+  /* ---------------------------------------------------------
+     4. LE REGISTRE
      Ordre antichronologique. Une entrée =
 
        annee    : nombre, sert au tri et à l'histogramme
@@ -94,7 +140,7 @@ const SITE = {
       detail: "Édition suisse du colloque, sur le thème « Repenser l'apprentissage à l'ère de l'IA et de l'innovation ».",
       contexteLabel: "Date", contexte: "21–22 avril 2026" },
 
-    { annee: 2026, verbe: "fait", date: "2026-01-01",
+    { annee: 2026, verbe: "fait", date: "2026-01-01", serie: "digital-youth",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
@@ -135,28 +181,28 @@ const SITE = {
 
     /* La même conférence donnée quatre fois, une par territoire du SeGEC.
        Quatre entrées plutôt qu'une : ce sont quatre interventions. */
-    { annee: 2026, verbe: "parlé", date: "2026-02-02",
+    { annee: 2026, verbe: "parlé", date: "2026-02-02", serie: "segec-ia",
       titre: "Les IA au cœur de mon métier de direction et de mon management",
       meta: "Conférence · SeGEC Liège",
       detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
       contexteLabel: "Date et lieu",
       contexte: "Lundi 2 février 2026, 8h30 — 13h00. Rue Hors-Château 61, 4000 Liège." },
 
-    { annee: 2026, verbe: "parlé", date: "2026-01-26",
+    { annee: 2026, verbe: "parlé", date: "2026-01-26", serie: "segec-ia",
       titre: "Les IA au cœur de mon métier de direction et de mon management",
       meta: "Conférence · SeGEC Hainaut",
       detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
       contexteLabel: "Date et lieu",
       contexte: "Lundi 26 janvier 2026, 8h30 — 13h00. Chaussée de Binche 151, 7000 Mons." },
 
-    { annee: 2026, verbe: "parlé", date: "2026-01-19",
+    { annee: 2026, verbe: "parlé", date: "2026-01-19", serie: "segec-ia",
       titre: "Les IA au cœur de mon métier de direction et de mon management",
       meta: "Conférence · SeGEC Namur-Luxembourg",
       detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
       contexteLabel: "Date et lieu",
       contexte: "Lundi 19 janvier 2026, 8h30 — 13h00. Rue Bâtis de Corère 6, 5336 Assesse." },
 
-    { annee: 2026, verbe: "parlé", date: "2026-01-14",
+    { annee: 2026, verbe: "parlé", date: "2026-01-14", serie: "segec-ia",
       titre: "Les IA au cœur de mon métier de direction et de mon management",
       meta: "Conférence · SeGEC Bruxelles-Brabant",
       detail: "L'IA vue depuis le poste de direction : ce qu'elle change dans la gestion quotidienne, les garde-fous à poser, les décisions qui ne se délèguent pas.",
@@ -305,97 +351,97 @@ const SITE = {
        qui s'y sont tenues ont leur propre entrée en « parlé ».
        --------------------------------------------------------- */
 
-    { annee: 2026, verbe: "fait", date: "2026-08-24",
+    { annee: 2026, verbe: "fait", date: "2026-08-24", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 23e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège).",
       contexteLabel: "Dates", contexte: "Du lundi 24 au jeudi 27 août 2026" },
 
-    { annee: 2025, verbe: "fait", date: "2025-08-25",
+    { annee: 2025, verbe: "fait", date: "2025-08-25", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 22e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Attention, participation et numérique ».",
       contexteLabel: "Dates", contexte: "Du 25 au 28 août 2025" },
 
-    { annee: 2024, verbe: "fait", date: "2024-08-26",
+    { annee: 2024, verbe: "fait", date: "2024-08-26", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 21e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Quotidienneté et numérique ».",
       contexteLabel: "Dates", contexte: "Du 26 au 28 août 2024" },
 
-    { annee: 2023, verbe: "fait", date: "2023-08-22",
+    { annee: 2023, verbe: "fait", date: "2023-08-22", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 20e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Bien-être et numérique ».",
       contexteLabel: "Dates", contexte: "Du 22 au 25 août 2023" },
 
-    { annee: 2022, verbe: "fait", date: "2022-08-22",
+    { annee: 2022, verbe: "fait", date: "2022-08-22", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 19e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Éthique et numérique ».",
       contexteLabel: "Dates", contexte: "Du 22 au 25 août 2022" },
 
-    { annee: 2021, verbe: "fait", date: "2021-08-23",
+    { annee: 2021, verbe: "fait", date: "2021-08-23", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 18e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Numérique et social ».",
       contexteLabel: "Dates", contexte: "Du 23 au 26 août 2021" },
 
-    { annee: 2020, verbe: "fait", date: "2020-08-24",
+    { annee: 2020, verbe: "fait", date: "2020-08-24", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 17e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Injonction(s) du numérique ».",
       contexteLabel: "Dates", contexte: "Du 24 au 27 août 2020" },
 
-    { annee: 2019, verbe: "fait", date: "2019-08-20",
+    { annee: 2019, verbe: "fait", date: "2019-08-20", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 16e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Numérique et représentations ».",
       contexteLabel: "Dates", contexte: "Du 20 au 23 août 2019" },
 
-    { annee: 2018, verbe: "fait", date: "2018-08-20",
+    { annee: 2018, verbe: "fait", date: "2018-08-20", serie: "ludovia-fr",
       titre: "LUDOVIA#FR — 15e édition",
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Innovation(s) et institution(s) du numérique ».",
       contexteLabel: "Dates", contexte: "Du 20 au 23 août 2018" },
 
-                                    { annee: 2026, verbe: "fait", date: "2026-10-20",
+                                    { annee: 2026, verbe: "fait", date: "2026-10-20", serie: "ludovia-be",
       titre: "LUDOVIA#BE — 7e édition",
       meta: "Colloque · Spa",
       detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
       contexteLabel: "Dates", contexte: "Octobre 2026" },
 
-    { annee: 2025, verbe: "fait", date: "2025-10-21",
+    { annee: 2025, verbe: "fait", date: "2025-10-21", serie: "ludovia-be",
       titre: "LUDOVIA#BE — 6e édition",
       meta: "Colloque · Spa",
       detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
       contexteLabel: "Dates", contexte: "Du mardi 21 au vendredi 24 octobre 2025" },
 
-    { annee: 2024, verbe: "fait", date: "2024-10-22",
+    { annee: 2024, verbe: "fait", date: "2024-10-22", serie: "ludovia-be",
       titre: "LUDOVIA#BE — 5e édition",
       meta: "Colloque · Spa",
       detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
       contexteLabel: "Dates", contexte: "Du 22 au 24 octobre 2024" },
 
-    { annee: 2023, verbe: "fait", date: "2023-11-01",
+    { annee: 2023, verbe: "fait", date: "2023-11-01", serie: "ludovia-be",
       titre: "LUDOVIA#BE — 4e édition",
       meta: "Colloque · Spa",
       detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
       contexteLabel: "Dates", contexte: "Du 1er au 3 novembre 2023, 616 participants" },
 
-    { annee: 2022, verbe: "fait", date: "2022-11-02",
+    { annee: 2022, verbe: "fait", date: "2022-11-02", serie: "ludovia-be",
       titre: "LUDOVIA#BE — 3e édition",
       meta: "Colloque · Spa",
       detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
       contexteLabel: "Dates", contexte: "Du 2 au 4 novembre 2022, 450 participants" },
 
-    { annee: 2021, verbe: "fait", date: "2021-11-03",
+    { annee: 2021, verbe: "fait", date: "2021-11-03", serie: "ludovia-be",
       titre: "LUDOVIA#BE — 2e édition",
       meta: "Colloque · Spa",
       detail: "Colloque du numérique éducatif en Belgique francophone, au Centre culturel de Spa. Je copilote l'organisation de l'événement pour l'Agence du Numérique.",
       contexteLabel: "Dates", contexte: "Du 3 au 5 novembre 2021, 400 participants" },
 
-    { annee: 2019, verbe: "fait", date: "2019-10-29",
+    { annee: 2019, verbe: "fait", date: "2019-10-29", serie: "ludovia-be",
       titre: "LUDOVIA#BE — 1re édition",
       meta: "Colloque · Spa",
       detail: "Première édition du colloque belge, au Centre culturel de Spa — ouverture avec Benoit Hucq (Agence du Numérique) et une conférence inaugurale de Margarida Romero.",
@@ -403,31 +449,31 @@ const SITE = {
 
 
     /* Jury du Fonds Digital for Youth : un mandat reconduit chaque année. */
-    { annee: 2025, verbe: "fait", date: "2025-01-01",
+    { annee: 2025, verbe: "fait", date: "2025-01-01", serie: "digital-youth",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
       contexteLabel: "Rôle", contexte: "Membre du jury" },
 
-    { annee: 2024, verbe: "fait", date: "2024-01-01",
+    { annee: 2024, verbe: "fait", date: "2024-01-01", serie: "digital-youth",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
       contexteLabel: "Rôle", contexte: "Membre du jury" },
 
-    { annee: 2023, verbe: "fait", date: "2023-01-01",
+    { annee: 2023, verbe: "fait", date: "2023-01-01", serie: "digital-youth",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
       contexteLabel: "Rôle", contexte: "Membre du jury" },
 
-    { annee: 2022, verbe: "fait", date: "2022-01-01",
+    { annee: 2022, verbe: "fait", date: "2022-01-01", serie: "digital-youth",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
       contexteLabel: "Rôle", contexte: "Membre du jury" },
 
-    { annee: 2021, verbe: "fait", date: "2021-01-01",
+    { annee: 2021, verbe: "fait", date: "2021-01-01", serie: "digital-youth",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
       detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
@@ -582,79 +628,79 @@ const SITE = {
        Retombées presse : interviews et citations.
        --------------------------------------------------------- */
 
-    { annee: 2025, verbe: "parlé", date: "2025-03-18",
+    { annee: 2025, verbe: "fait", date: "2025-03-18", serie: "presse",
       titre: "La Wallonie investit 60 millions d’euros pour une connectivité complète dans les établissements scolaires",
       meta: "Presse · Le Soir",
       detail: "La Wallonie a annoncé un investissement de 60 millions d’euros pour développer une couverture Wi-Fi dans les établissements scolaires wallons. Par ailleurs, un autre investissement de 60 millions d’euros est destiné à fournir des outils numériques…",
       contexteLabel: "Paru le", contexte: "2025-03-18" },
 
-    { annee: 2025, verbe: "parlé", date: "2025-03-14",
+    { annee: 2025, verbe: "fait", date: "2025-03-14", serie: "presse",
       titre: "Interview de Sébastien Reinders dans le cadre du projet \"Ecole Numérique 2022-2026\"",
       meta: "Presse · La Première",
       detail: "Interview de Sébastien Reinders dans le cadre de l’action “École numérique 2022-2026” du programme Digital Wallonia for Education (DW4Edu).",
       contexteLabel: "Paru le", contexte: "2025-03-14" },
 
-    { annee: 2025, verbe: "parlé", date: "2025-03-14",
+    { annee: 2025, verbe: "fait", date: "2025-03-14", serie: "presse",
       titre: "La Région wallonne investit 60 millions € pour mieux connecter les écoles au Wifi",
       meta: "Presse · RTL",
       detail: "La région wallonne a décidé d’investir 60 millions pour mieux connecter les écoles au réseau de communication. La région wallonne va équiper 500 écoles par années. Prochaine étape : accentuer la formation des enseignants à ces projets numériques d’ici 4 ans.",
       contexteLabel: "Paru le", contexte: "2025-03-14" },
 
-    { annee: 2025, verbe: "parlé", date: "2025-03-14",
+    { annee: 2025, verbe: "fait", date: "2025-03-14", serie: "presse",
       titre: "Du wifi à l'école. 60 millions € débloqués pour une meilleure connectivité",
       meta: "Presse · RTBF",
       detail: "Les écoles wallonnes seront bientôt mieux connectées. Le gouvernement wallon débloque 60 millions d'euros pour activer le plan wifi. Quelques 3000 écoles sont éligibles. Cela devrait booster le développement des compétences numériques des élèves. La région…",
       contexteLabel: "Paru le", contexte: "2025-03-14" },
 
-    { annee: 2023, verbe: "parlé", date: "2023-09-26",
+    { annee: 2023, verbe: "fait", date: "2023-09-26", serie: "presse",
       titre: "On saura tout sur la digitalisation. Sébastien Reinders parmi les experts",
       meta: "Presse · LN24",
       detail: "Sommes-nous prêts à un quotidien ultra digitalisé ? Est-ce une réalité bien établie ou encore en devenir? Exploite-t-on toutes les formes de la digitalisation dans notre quotidien? Participants : Sébastien Reinders, Digital Education Ambassador à l’ADN,…",
       contexteLabel: "Paru le", contexte: "2023-09-26" },
 
-    { annee: 2022, verbe: "parlé", date: "2022-11-09",
+    { annee: 2022, verbe: "fait", date: "2022-11-09", serie: "presse",
       titre: "Scolaire: l’aide à l’équipement numérique change de boussole",
       meta: "Presse · Regional-IT",
       detail: "Le programme \"Ecole Numérique\" de Digital Wallonia fait peau neuve : une enveloppe revue à la hausse et l’abandon du principe de l’appel à projets pour passer à une formule davantage structurelle et \"lissée\" notamment en termes de sélection. Toutefois, il…",
       contexteLabel: "Paru le", contexte: "2022-11-09" },
 
-    { annee: 2021, verbe: "parlé", date: "2021-07-05",
+    { annee: 2021, verbe: "fait", date: "2021-07-05", serie: "presse",
       titre: "Le numérique à l'école, un essai à transformer",
       meta: "Presse · L'Echo",
       detail: "La crise pandémique a \"fait gagner 20 ans\" au numérique à l'école. Certains mettent toutefois en garde en rappelant que l'épisode du covid a été long, à tel point qu'une lassitude s'est installée. Il faudra agir dès la rentrée pour s'assurer que cela…",
       contexteLabel: "Paru le", contexte: "2021-07-05" },
 
-    { annee: 2021, verbe: "parlé", date: "2021-02-15",
+    { annee: 2021, verbe: "fait", date: "2021-02-15", serie: "presse",
       titre: "Sébastien Reinders (AdN): “un grand plan d’accompagnement est nécessaire pour le numérique éducatif”",
       meta: "Presse · Regional-IT",
       detail: "En filigrane, le propos que l’on retrouvait notamment dans la bouche de Sébastien Reinders, spécialiste \"ed tech \" - école numérique à l’AdN, était le reflet fidèle des demandes de la FICT (association de personnes-ressource) qui étaient redites et…",
       contexteLabel: "Paru le", contexte: "2021-02-15" },
 
-    { annee: 2020, verbe: "parlé", date: "2020-08-24",
+    { annee: 2020, verbe: "fait", date: "2020-08-24", serie: "presse",
       titre: "Enseignement numérique à la traîne côté francophone : il faut tripler les moyens",
       meta: "Presse · La Meuse",
       detail: "La crise du coronavirus a boosté l’enseignement numérique partout en Europe. Mais du côté de la FWB, il faut encore progresser. Selon Sébastien Reinders, ambassadeur du numérique éducatif pour l’Agence du Numérique, les enseignants sont motivés. Il faut…",
       contexteLabel: "Paru le", contexte: "2020-08-24" },
 
-    { annee: 2018, verbe: "parlé", date: "2018-08-27",
+    { annee: 2018, verbe: "fait", date: "2018-08-27", serie: "presse",
       titre: "Le numérique à la traîne dans l'enseignement",
       meta: "Presse · Vers l'Avenir",
       detail: "Les établissements scolaires n'ont pas suivi le virage du numérique. Résultat: des cours de numérique sont enseignés de manière transversale.",
       contexteLabel: "Paru le", contexte: "2018-08-27" },
 
-    { annee: 2018, verbe: "parlé", date: "2018-08-22",
+    { annee: 2018, verbe: "fait", date: "2018-08-22", serie: "presse",
       titre: "L'école fait sa mise à jour",
       meta: "Presse · Le Vif/L'Express",
       detail: "Même si le matériel et la formation font toujours défaut, les nouvelles technologies se font enfin une (petite) place dans le quotidien des enseignants et des élèves en Fédération Wallonie-Bruxelles. Même le smartphone revient en odeur de sainteté, avec…",
       contexteLabel: "Paru le", contexte: "2018-08-22" },
 
-    { annee: 2018, verbe: "parlé", date: "2018-04-19",
+    { annee: 2018, verbe: "fait", date: "2018-04-19", serie: "presse",
       titre: "Salon EvoluTIC: comment être citoyen (wallon) à l’heure du numérique",
       meta: "Presse · Regional-IT",
       detail: "Actif ou passif, le visiteur aura le choix entre naviguer parmi des stands, assister à des conférences ou participer à des ateliers. Un espace Agora a par ailleurs été prévu. Le but: susciter échanges, dialogues, questions. Sur différents thèmes: dialogue…",
       contexteLabel: "Paru le", contexte: "2018-04-19" },
 
-    { annee: 2016, verbe: "parlé", date: "2016-03-02",
+    { annee: 2016, verbe: "fait", date: "2016-03-02", serie: "presse",
       titre: "Petit à petit, les smartphones viennent défier les cahiers",
       meta: "Presse · La Libre Belgique",
       detail: "Plutôt que de les interdire, pourquoi ne pas utiliser les smartphones ou les ordinateurs dans les classes? Peu connu, expliquait ce 2 mars l'expert en numérique Sébastien Reinders lors de la quatrième édition du EdTechForum organisé par la plateforme…",
@@ -667,21 +713,21 @@ const SITE = {
        leur entrée plus haut.
        --------------------------------------------------------- */
 
-    { annee: 2025, verbe: "fait", date: "2025-01-01",
+    { annee: 2025, verbe: "fait", date: "2025-01-01", serie: "equipement",
       titre: "Équipement informatique. École numérique 2025",
       meta: "Dispositif · Digital Wallonia",
       detail: "Mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 10.7 million d'euros.",
       contexteLabel: "Période", contexte: "Du 2025-01-01 au 2025-12-31",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/equipement-informatique-ecole-numerique-2025/", lienLabel: "La fiche action" },
 
-    { annee: 2024, verbe: "fait", date: "2024-01-01",
+    { annee: 2024, verbe: "fait", date: "2024-01-01", serie: "equipement",
       titre: "Équipement informatique. École numérique 2024",
       meta: "Dispositif · Digital Wallonia",
       detail: "Mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 10.7 million d'euros.",
       contexteLabel: "Période", contexte: "Du 2024-01-01 au 2024-12-31",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/equipement-informatique-ecole-numerique-2024/", lienLabel: "La fiche action" },
 
-    { annee: 2023, verbe: "fait", date: "2023-01-01",
+    { annee: 2023, verbe: "fait", date: "2023-01-01", serie: "equipement",
       titre: "Équipement informatique. École numérique 2023",
       meta: "Dispositif · Digital Wallonia",
       detail: "Mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 10.7 million d'euros.",
@@ -702,21 +748,21 @@ const SITE = {
       contexteLabel: "Période", contexte: "Depuis 2022-07-01",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/connectivite-wifi-ensemble-etablissements-scolaires/", lienLabel: "La fiche action" },
 
-    { annee: 2022, verbe: "fait", date: "2022-01-01",
+    { annee: 2022, verbe: "fait", date: "2022-01-01", serie: "equipement",
       titre: "Équipement informatique. École numérique 2022",
       meta: "Dispositif · Digital Wallonia",
       detail: "Appel à projets pour la mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 7.3 million d'euros.",
       contexteLabel: "Période", contexte: "Du 2022-01-01 au 2022-12-31",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/equipement-informatique-ecole-numerique-2022/", lienLabel: "La fiche action" },
 
-    { annee: 2021, verbe: "fait", date: "2021-01-01",
+    { annee: 2021, verbe: "fait", date: "2021-01-01", serie: "equipement",
       titre: "Équipement informatique. École numérique 2021",
       meta: "Dispositif · Digital Wallonia",
       detail: "Appel à projets pour la mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 6.9 million d'euros.",
       contexteLabel: "Période", contexte: "Du 2021-01-01 au 2021-12-31",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/ecole-numerique-appels-a-projet-2021/", lienLabel: "La fiche action" },
 
-    { annee: 2020, verbe: "fait", date: "2020-02-03",
+    { annee: 2020, verbe: "fait", date: "2020-02-03", serie: "equipement",
       titre: "Équipement informatique. École numérique 2020.",
       meta: "Dispositif · Digital Wallonia",
       detail: "Appel à projets pour la mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 8.9 million d'euros.",
@@ -730,14 +776,14 @@ const SITE = {
       contexteLabel: "Période", contexte: "Du 2019-06-01 au 2022-06-01",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/ecole-numerique-byod-2019-2022/", lienLabel: "La fiche action" },
 
-    { annee: 2019, verbe: "fait", date: "2019-02-01",
+    { annee: 2019, verbe: "fait", date: "2019-02-01", serie: "equipement",
       titre: "Équipement informatique. École numérique 2019.",
       meta: "Dispositif · Digital Wallonia",
       detail: "Appel à projets pour la mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 6.8 million d'euros.",
       contexteLabel: "Période", contexte: "Du 2019-02-01 au 2019-10-31",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/ecole-numerique-appels-a-projet-2019/", lienLabel: "La fiche action" },
 
-    { annee: 2018, verbe: "fait", date: "2018-01-15",
+    { annee: 2018, verbe: "fait", date: "2018-01-15", serie: "equipement",
       titre: "Équipement informatique. École numérique 2018.",
       meta: "Dispositif · Digital Wallonia",
       detail: "Appel à projets pour la mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 6.9 million d'euros.",
@@ -765,7 +811,7 @@ const SITE = {
       contexteLabel: "Période", contexte: "Du 2017-06-01 au 2019-12-31",
       lien: "https://www.digitalwallonia.be/fr/fiches-action/projet-pilote-equipement-wifi/", lienLabel: "La fiche action" },
 
-    { annee: 2017, verbe: "fait", date: "2017-01-01",
+    { annee: 2017, verbe: "fait", date: "2017-01-01", serie: "equipement",
       titre: "Équipement informatique. École numérique 2017.",
       meta: "Dispositif · Digital Wallonia",
       detail: "Appel à projets pour la mise à disposition d'équipements informatiques dans les établissements scolaires. Budget : 7.3 million d'euros.",

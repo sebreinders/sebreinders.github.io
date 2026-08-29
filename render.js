@@ -51,24 +51,84 @@
       a.rang - b.rang);
 
   let filtreActif = null;   // null = tout afficher
+  let toutAfficher = false; // false = seulement les cinq dernières années
+
+  const ANNEE_MAX = Math.max(...entrees.map(e => e.annee));
+  const SEUIL = ANNEE_MAX - 4;   // cinq années glissantes, bornes comprises
+
+  /* Replie les entrées d'une même série sous une bande unique. La liste
+     étant déjà triée, la première rencontrée est la plus récente : c'est
+     elle qui donne sa date au groupe. */
+  function grouper(liste) {
+    const sortie = [], ouverts = new Map();
+    for (const e of liste) {
+      const def = e.serie && SITE.series && SITE.series[e.serie];
+      if (!def) { sortie.push(e); continue; }
+      if (ouverts.has(e.serie)) { ouverts.get(e.serie).membres.push(e); continue; }
+      const groupe = { groupe: true, ...def, verbe: e.verbe, annee: e.annee,
+                       date: e.date, membres: [e] };
+      ouverts.set(e.serie, groupe);
+      sortie.push(groupe);
+    }
+    return sortie;
+  }
 
   function ligne(e, numero) {
     const v = VERBE[e.verbe];
-    const detail = e.detail || e.contexte || e.lien;
+    const detail = e.groupe || e.detail || e.contexte || e.lien;
+
+    // Un groupe annonce son volume et sa période à la place de l'année seule.
+    let annee = `<time class="entree__annee" datetime="${esc(e.date || e.annee)}">${esc(e.annee)}</time>`;
+    let meta = esc(e.meta);
+    if (e.groupe) {
+      const annees = e.membres.map(m => m.annee);
+      const de = Math.min(...annees), a = Math.max(...annees);
+      annee = `<span class="entree__annee entree__annee--serie">${de === a ? de : de + '–' + a}</span>`;
+      meta = `${esc(e.meta)} <span class="entree__compte">${e.membres.length}</span>`;
+    }
 
     return `
-      <li class="entree" data-verbe="${esc(e.verbe)}"
+      <li class="entree${e.groupe ? ' entree--serie' : ''}" data-verbe="${esc(e.verbe)}"
           style="--fond:${v.couleur}; --encre:${v.encre}">
         <button class="entree__bande" type="button" aria-expanded="false"
                 ${detail ? '' : 'disabled'}>
           <span class="entree__numero">${String(numero).padStart(2, '0')}</span>
-          <time class="entree__annee" datetime="${esc(e.date || e.annee)}">${esc(e.annee)}</time>
+          ${annee}
           <span class="entree__titre">${esc(e.titre)}</span>
-          <span class="entree__meta">${esc(e.meta)}</span>
+          <span class="entree__meta">${meta}</span>
           ${detail ? '<span class="entree__plus" aria-hidden="true"></span>' : ''}
         </button>
-        ${detail ? panneau(e) : ''}
+        ${detail ? (e.groupe ? panneauSerie(e) : panneau(e)) : ''}
       </li>`;
+  }
+
+  /* Panneau d'une série : le texte de cadrage, puis chaque édition datée.
+     Le nom de la série chapeaute déjà la liste : inutile de le répéter
+     à chaque ligne, ni de redonner un libellé identique à celui du groupe. */
+  function panneauSerie(g) {
+    const lignes = g.membres.map(m => {
+      let titre = m.titre;
+      if (titre.startsWith(g.titre)) {
+        titre = titre.slice(g.titre.length).replace(/^\s*[—–-]\s*/, '') || m.titre;
+        titre = titre.charAt(0).toUpperCase() + titre.slice(1);
+      }
+      const meta = (m.meta && m.meta !== g.meta) ? m.meta : '';
+      return `
+      <li class="edition">
+        <time class="edition__date" datetime="${esc(m.date)}">${esc(m.contexte || m.annee)}</time>
+        <span class="edition__titre">${m.lien
+          ? `<a href="${esc(m.lien)}" target="_blank" rel="noopener">${esc(titre)}</a>`
+          : esc(titre)}${meta ? ` <span class="edition__meta">${esc(meta)}</span>` : ''}</span>
+      </li>`;
+    }).join('');
+
+    return `
+      <div class="panneau" hidden>
+        <div class="panneau__interieur panneau__interieur--serie">
+          ${g.detail ? `<p class="panneau__detail">${esc(g.detail)}</p>` : ''}
+          <ol class="editions">${lignes}</ol>
+        </div>
+      </div>`;
   }
 
   function panneau(e) {
@@ -99,7 +159,29 @@
       ? entrees.filter(e => e.verbe === filtreActif)
       : entrees;
 
-    fill('registre', visibles.map((e, i) => ligne(e, i + 1)).join(''));
+    // On groupe d'abord, on filtre par date ensuite : une série repliée
+    // garde ainsi toutes ses éditions, même celles d'avant la fenêtre.
+    const bandes = grouper(visibles);
+    const recentes = bandes.filter(b => b.annee >= SEUIL);
+    const anciennes = bandes.filter(b => b.annee < SEUIL);
+    const affichees = toutAfficher ? bandes : recentes;
+
+    let html = affichees.map((e, i) => ligne(e, i + 1)).join('');
+
+    if (!toutAfficher && anciennes.length) {
+      // Le décompte annoncé porte sur les entrées réelles, pas sur les bandes.
+      const cachees = anciennes.reduce((n, b) => n + (b.membres ? b.membres.length : 1), 0);
+      const de = Math.min(...anciennes.map(b => b.annee));
+      html += `
+        <li class="entree entree--plus">
+          <button class="deplier" type="button" data-slot="deplier">
+            Voir les années antérieures
+            <span class="deplier__compte">${cachees} entrées, ${de} à ${SEUIL - 1}</span>
+          </button>
+        </li>`;
+    }
+
+    fill('registre', html);
     fill('compte', `${visibles.length} sur ${entrees.length}`);
     dessinerHistogramme(visibles);
 
@@ -215,6 +297,13 @@
     if (e.target.closest('[data-slot="reset"]')) {
       filtreActif = null;
       dessinerTuiles();
+      dessinerRegistre();
+      return;
+    }
+
+    // Sortir de la fenêtre des cinq dernières années.
+    if (e.target.closest('[data-slot="deplier"]')) {
+      toutAfficher = true;
       dessinerRegistre();
       return;
     }
