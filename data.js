@@ -1091,6 +1091,10 @@ const SITE = {
     // Adresse mise en avant dans le bouton. Assemblée en JS.
     emailPrincipal: { user: "sebastien.reinders", domaine: "adn.be" },
     emailSecondaire: { user: "sebastienreinders", domaine: "gmail.com" },
+
+    // Scindé comme les adresses : le numéro n'apparaît pas en clair dans
+    // le source, il est reconstitué à l'affichage.
+    telephone: { indicatif: "+32", reste: ["497", "08", "13", "66"] },
     liens: [
       { nom: "LinkedIn", url: "https://be.linkedin.com/in/sebastienreinders/" },
       { nom: "Bluesky",  url: "https://bsky.app/profile/sebreinders.bsky.social" },

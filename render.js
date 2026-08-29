@@ -287,7 +287,12 @@
     </ul>`);
 
   const secondaire = `${c.emailSecondaire.user}@${c.emailSecondaire.domaine}`;
+  const tel = c.telephone;
+  const telLisible = tel ? `${tel.indicatif} ${tel.reste.join(' ')}` : '';
+  const telBrut = tel ? tel.indicatif + tel.reste.join('') : '';
+
   fill('liens',
+    (tel ? `<li><a href="tel:${esc(telBrut)}">${esc(telLisible)}</a></li>` : '') +
     c.liens.map(l => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.nom)}<span aria-hidden="true"> ↗</span></a></li>`).join('') +
     (c.documents || []).map(d => {
       const externe = /^https?:/.test(d.url);

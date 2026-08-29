@@ -92,6 +92,7 @@
     liens: [
       `${SITE.identite.prenom} ${SITE.identite.nom} — ${SITE.identite.statut[0].replace(/\.$/, '')}, ${SITE.identite.statut[1].replace(/\.$/, '')}`,
       `${c.emailPrincipal.user}@${c.emailPrincipal.domaine}`,
+      ...(c.telephone ? [`${c.telephone.indicatif} ${c.telephone.reste.join(' ')}`] : []),
       ...c.liens.map(l => `${l.nom} : ${l.url}`)
     ].join('\n')
   };

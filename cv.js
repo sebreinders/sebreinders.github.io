@@ -34,8 +34,14 @@
   fill('mentions', esc(c.mentions));
 
   const adresse = `${c.emailPrincipal.user}@${c.emailPrincipal.domaine}`;
+
+  const tel = c.telephone;
+  const telLisible = tel ? `${tel.indicatif} ${tel.reste.join(' ')}` : '';
+  const telBrut = tel ? tel.indicatif + tel.reste.join('') : '';
+
   fill('contact',
     `<li><a href="mailto:${esc(adresse)}">${esc(adresse)}</a></li>` +
+    (tel ? `<li><a href="tel:${esc(telBrut)}">${esc(telLisible)}</a></li>` : '') +
     c.liens.map(l => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.nom)}</a></li>`).join(''));
 
   /* ---------- bio et formation ---------- */
