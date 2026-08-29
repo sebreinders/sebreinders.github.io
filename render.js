@@ -269,6 +269,15 @@
     boutonMail.href = 'mailto:' + adresse;
   }
 
+  // Le même contact, repris en haut de page à hauteur du nom : on ne
+  // devrait pas avoir à dérouler tout le registre pour trouver l'adresse.
+  fill('contact-haut', `
+    <a class="contact-haut__mail" href="mailto:${esc(adresse)}">${esc(adresse)}</a>
+    <ul class="contact-haut__liens">
+      ${c.liens.slice(0, 3).map(l =>
+        `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.nom)}</a></li>`).join('')}
+    </ul>`);
+
   const secondaire = `${c.emailSecondaire.user}@${c.emailSecondaire.domaine}`;
   fill('liens',
     c.liens.map(l => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.nom)}<span aria-hidden="true"> ↗</span></a></li>`).join('') +

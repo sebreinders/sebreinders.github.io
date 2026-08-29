@@ -27,10 +27,15 @@
       <span data-slot="lieu"></span>
     </div>
 
-    <h1 class="titre">
-      <span class="titre__prenom" data-slot="prenom"></span>
-      <span class="titre__nom" data-slot="nom"></span>
-    </h1>
+    <!-- Le nom laisse un vide à sa droite : le contact vient s'y loger,
+         aligné sur la dernière ligne du titre. -->
+    <div class="tete__nom">
+      <h1 class="titre">
+        <span class="titre__prenom" data-slot="prenom"></span>
+        <span class="titre__nom" data-slot="nom"></span>
+      </h1>
+      <div class="contact-haut" data-slot="contact-haut"></div>
+    </div>
 
     <div class="chapeau">
       <p class="chapeau__statut" data-slot="statut"></p>

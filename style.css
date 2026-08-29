@@ -69,7 +69,8 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 
 .titre{
   margin:14px 0 0;
-  font-size:clamp(52px, 12.4vw, 172px);
+  /* réduit par rapport au plein cadre : le contact occupe la colonne de droite */
+  font-size:clamp(46px, 9.4vw, 132px);
   font-weight:900;
   line-height:.86;
   letter-spacing:-.035em;
@@ -78,6 +79,27 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 .titre__prenom,
 .titre__nom{ display:block }
 .titre__nom{ color:var(--vert) }
+
+/* ---------- contact, repris à hauteur du nom ----------
+   Le titre cède un peu de corps pour dégager une colonne à sa droite ;
+   le contact s'y aligne sur la dernière ligne du nom. */
+.tete__nom{
+  display:grid; grid-template-columns:1fr auto; align-items:end; gap:12px 44px;
+}
+.contact-haut{ text-align:right; padding-bottom:.2em }
+.contact-haut__mail{
+  display:inline-block; background:var(--jaune); color:var(--encre);
+  font-size:14px; font-weight:700; padding:11px 18px; white-space:nowrap;
+}
+.contact-haut__mail:hover{ background:var(--encre); color:#fff; text-decoration:none }
+.contact-haut__liens{
+  display:flex; flex-wrap:wrap; justify-content:flex-end; gap:4px 14px; margin-top:10px;
+}
+.contact-haut__liens a{
+  font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gris-fonce);
+}
+.contact-haut__liens a:hover{ color:var(--encre) }
 
 .chapeau{
   display:grid; grid-template-columns:1fr 1fr; gap:34px;
@@ -298,6 +320,9 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 /* ---------------- écrans moyens ---------------- */
 @media (max-width:900px){
   :root{ --marge:24px }
+  .tete__nom{ grid-template-columns:1fr; gap:22px }
+  .contact-haut{ text-align:left; padding-bottom:0 }
+  .contact-haut__liens{ justify-content:flex-start }
   .chapeau{ grid-template-columns:1fr; gap:20px }
   .chapeau__pitch{ font-size:18px }
 
