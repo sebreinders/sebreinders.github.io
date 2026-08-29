@@ -37,7 +37,10 @@ const SITE = {
     // Colonne de droite : ce que le site est.
     pitch: "Tout ce que j'ai dit, écrit et fait publiquement autour du numérique en éducation.",
 
-    misAJour: "Août 2026"
+    misAJour: "Août 2026",
+
+    // Portrait, repris sur le CV et sur la page bio.
+    photo: "fichiers/portrait.webp"
   },
 
   /* ---------------------------------------------------------
@@ -1096,8 +1099,8 @@ const SITE = {
 
     // Les pages à emporter : un CV, une bio prête à copier, les supports.
     documents: [
-      { nom: "CV",         url: "cv.html" },
       { nom: "Bio",        url: "fichiers/bio.html" },
+      { nom: "CV",         url: "cv.html" },
       { nom: "Ressources", url: "https://sebreinders.github.io/ressources/" }
     ],
     mentions: "Page personnelle. Les propos qui y figurent n'engagent que moi."

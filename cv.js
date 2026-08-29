@@ -24,6 +24,13 @@
   // troisième ligne (la disponibilité) n'a pas sa place sous le nom.
   fill('fonction', id.statut.slice(0, 2).map(l => esc(l.replace(/\.$/, ''))).join(' · '));
   fill('maj', esc(id.misAJour));
+
+  const portrait = slot('portrait');
+  if (portrait && id.photo) {
+    portrait.src = id.photo;
+    portrait.alt = `${id.prenom} ${id.nom}`;
+    portrait.hidden = false;
+  }
   fill('mentions', esc(c.mentions));
 
   const adresse = `${c.emailPrincipal.user}@${c.emailPrincipal.domaine}`;
@@ -88,7 +95,8 @@
   const anneeMax = Math.max(...registre.map(e => e.annee));
   const recent = registre
     .filter(e => !e.serie && e.annee >= anneeMax - 2)
-    .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+    .slice(0, 15);   // un CV se parcourt : au-delà, le registre prend le relais
 
   fill('recent', recent.map(e => `
     <li class="cv__item cv__item--${esc(e.verbe)}">

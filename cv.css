@@ -23,8 +23,14 @@
   display:grid; grid-template-columns:1fr auto; gap:18px 40px; align-items:end;
   padding-bottom:26px; border-bottom:3px solid var(--encre);
 }
+.cv__identite{ display:flex; align-items:flex-end; gap:22px }
+.cv__portrait{
+  width:104px; height:104px; flex:none; object-fit:cover;
+  object-position:50% 22%;          /* cadré sur le visage */
+  border-radius:50%;
+}
 .cv__nom{
-  margin:0; font-size:clamp(38px,6.4vw,66px); font-weight:900;
+  margin:0; font-size:clamp(34px,5.6vw,58px); font-weight:900;
   line-height:.92; letter-spacing:-.035em; text-transform:uppercase;
 }
 .cv__fonction{ margin:8px 0 0; font-size:15px; color:var(--gris-fonce) }
