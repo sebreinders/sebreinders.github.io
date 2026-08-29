@@ -26,7 +26,7 @@
 .cv__identite{ display:flex; align-items:flex-end; gap:22px }
 .cv__portrait{
   width:104px; height:104px; flex:none; object-fit:cover;
-  object-position:50% 22%;          /* cadré sur le visage */
+  object-position:50% 8%;           /* remonté : à 22 %, le crâne était rogné */
   border-radius:50%;
 }
 .cv__nom{
