@@ -124,7 +124,7 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
   display:flex; flex-direction:column; justify-content:flex-end;
   align-items:stretch; width:34px; height:100%;
 }
-.barre__corps{ background:var(--couleur-barre, var(--vert)); min-height:3px }
+.barre__corps{ background:var(--couleur-barre, var(--encre)); min-height:3px }
 /* Une année sans rien : un simple trait, pour que l'axe reste continu
    sans faire croire à une entrée. */
 .barre__corps--vide{ background:var(--creme-fonce) }

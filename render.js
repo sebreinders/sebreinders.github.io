@@ -234,11 +234,13 @@
     }
     fill('histogramme', barres);
 
-    // Les barres prennent la couleur du verbe filtré : l'histogramme dit
-    // alors « voilà quand j'ai écrit », pas seulement « voilà quand ».
+    // Sous filtre, les barres prennent la couleur du verbe : l'histogramme
+    // dit alors « voilà quand j'ai écrit ». Sans filtre elles comptent les
+    // trois verbes à la fois, donc aucune des trois couleurs ne conviendrait :
+    // on passe à l'encre, qui n'appartient à aucun d'eux.
     const h = slot('histogramme');
     if (h) h.style.setProperty('--couleur-barre',
-      filtreActif ? VERBE[filtreActif].couleur : SITE.verbes[0].couleur);
+      filtreActif ? VERBE[filtreActif].couleur : 'var(--encre)');
   }
 
   /* ---------------------------------------------------------
@@ -251,11 +253,8 @@
       <span class="poste__structure">${esc(p.structure)}</span>
     </li>`).join(''));
 
-  fill('formation', SITE.formation.map(f => `
-    <li class="diplome">
-      <span class="diplome__titre">${esc(f.titre)}</span>
-      <span class="diplome__lieu">${f.precision ? esc(f.precision) + ' · ' : ''}${esc(f.lieu)}</span>
-    </li>`).join(''));
+  // `SITE.formation` n'est plus rendu sur cette page — il alimentera la vue CV.
+  // `fill` retire de lui-même un conteneur absent, rien d'autre à faire ici.
 
   /* ---------------------------------------------------------
      6. PIED DE PAGE
