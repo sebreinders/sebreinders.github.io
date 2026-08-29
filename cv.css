@@ -1,0 +1,107 @@
+/* =============================================================
+   cv.css — la vue CV.
+
+   Reprend les variables et la typographie de style.css, mais dans
+   une mise en page de document : deux colonnes date / contenu,
+   pensée pour être lue à l'écran comme imprimée sur A4.
+   ============================================================= */
+
+.page-cv{ background:var(--creme) }
+
+.cv{
+  max-width:860px; margin:0 auto; padding:40px var(--marge) 90px;
+  background:#fff; min-height:100vh;
+}
+
+.cv__retour{
+  display:inline-block; margin-bottom:30px;
+  font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+}
+
+/* ---------- identité ---------- */
+.cv__tete{
+  display:grid; grid-template-columns:1fr auto; gap:18px 40px; align-items:end;
+  padding-bottom:26px; border-bottom:3px solid var(--encre);
+}
+.cv__nom{
+  margin:0; font-size:clamp(38px,6.4vw,66px); font-weight:900;
+  line-height:.92; letter-spacing:-.035em; text-transform:uppercase;
+}
+.cv__fonction{ margin:8px 0 0; font-size:15px; color:var(--gris-fonce) }
+
+.cv__contact{ list-style:none; margin:0; padding:0; text-align:right }
+.cv__contact li{ margin-bottom:3px }
+.cv__contact a{ font-size:13px; font-weight:600 }
+
+/* ---------- blocs ---------- */
+.cv__bloc{ padding:30px 0; border-bottom:1px solid var(--creme-fonce) }
+.cv__bloc:last-of-type{ border-bottom:none }
+.cv__titre{
+  margin:0 0 18px; font-size:11px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--accent);
+}
+.cv__lede{ margin:0 0 16px; font-size:14px; color:var(--gris-fonce); max-width:66ch }
+.cv__bio p{ margin:0 0 .85em; max-width:70ch; font-size:14.5px; line-height:1.62 }
+.cv__bio p:last-child{ margin-bottom:0 }
+
+/* ---------- listes date / contenu ---------- */
+.cv__liste{ list-style:none; margin:0; padding:0 }
+.cv__item{
+  display:grid; grid-template-columns:180px 1fr; gap:3px 24px;
+  padding:11px 0; border-top:1px solid var(--creme-fonce);
+}
+.cv__item:first-child{ border-top:none; padding-top:0 }
+.cv__quand{
+  font-size:12.5px; font-weight:600; color:var(--pine);
+  letter-spacing:.02em; padding-top:2px;
+}
+.cv__quoi strong{ display:block; font-size:15px; font-weight:700; line-height:1.35 }
+.cv__quoi a{ color:inherit; text-decoration:underline; text-underline-offset:3px }
+.cv__precision{ display:block; font-size:13px; color:var(--gris-fonce); margin-top:2px }
+.cv__detail{ display:block; font-size:13px; color:var(--ink-2); margin-top:4px; max-width:62ch }
+
+.cv__item--actuel .cv__quand{ color:var(--accent) }
+
+/* Une pastille de couleur rappelle le verbe dans la sélection récente */
+.cv__liste--recent .cv__item{ position:relative; padding-left:16px }
+.cv__liste--recent .cv__item::before{
+  content:""; position:absolute; left:0; top:15px;
+  width:7px; height:7px; border-radius:50%;
+}
+.cv__item--parlé::before{ background:var(--vert) }
+.cv__item--écrit::before{ background:var(--orange) }
+.cv__item--fait::before{ background:var(--jaune) }
+.cv__liste--recent .cv__item:first-child{ padding-top:0 }
+.cv__liste--recent .cv__item:first-child::before{ top:4px }
+
+/* ---------- chiffres ---------- */
+.cv__chiffres{ display:grid; grid-template-columns:repeat(3,1fr); gap:3px; list-style:none; margin:0; padding:0 }
+.cv__chiffre{ background:var(--fond); color:var(--encre); padding:16px 18px }
+.cv__chiffre[style*="0E8B4B"], .cv__chiffre[style*="E4572E"]{ color:#fff }
+.cv__nombre{ display:block; font-size:32px; font-weight:900; line-height:1 }
+.cv__label{ display:block; margin-top:4px; font-size:14px; font-weight:700 }
+
+/* ---------- pied ---------- */
+.cv__pied{ padding-top:26px; border-top:1px solid var(--creme-fonce) }
+.cv__pied p{ margin:0; font-size:12px; color:var(--gris) }
+.cv__maj{ margin-top:4px !important }
+
+/* ---------- petits écrans ---------- */
+@media (max-width:700px){
+  .cv__tete{ grid-template-columns:1fr }
+  .cv__contact{ text-align:left }
+  .cv__item{ grid-template-columns:1fr; gap:2px }
+  .cv__chiffres{ grid-template-columns:1fr }
+}
+
+/* ---------- impression ---------- */
+@media print{
+  .page-cv{ background:#fff }
+  .cv{ max-width:none; padding:0; min-height:0 }
+  .cv__retour{ display:none }
+  .cv__bloc{ break-inside:avoid; padding:18px 0 }
+  .cv__item{ break-inside:avoid }
+  .cv__nom{ font-size:34pt }
+  body{ font-size:10.5pt }
+  .cv__chiffre{ border:1px solid var(--creme-fonce) }
+}

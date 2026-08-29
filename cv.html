@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sébastien Reinders — CV</title>
+<meta name="description" content="Curriculum vitae de Sébastien Reinders — expert senior en éducation numérique, Agence du Numérique, Wallonie.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="cv.css">
+</head>
+<body class="page-cv">
+
+<main class="cv">
+
+  <a class="cv__retour" href="./">← Le registre</a>
+
+  <!-- ---------- identité ---------- -->
+  <header class="cv__tete">
+    <div>
+      <h1 class="cv__nom" data-slot="nom"></h1>
+      <p class="cv__fonction" data-slot="fonction"></p>
+    </div>
+    <ul class="cv__contact" data-slot="contact"></ul>
+  </header>
+
+  <!-- ---------- bio ---------- -->
+  <section class="cv__bloc">
+    <h2 class="cv__titre">En quelques lignes</h2>
+    <div class="cv__bio" data-slot="bio"></div>
+  </section>
+
+  <!-- ---------- parcours ---------- -->
+  <section class="cv__bloc">
+    <h2 class="cv__titre">Parcours</h2>
+    <ol class="cv__liste" data-slot="parcours"></ol>
+  </section>
+
+  <!-- ---------- formation ---------- -->
+  <section class="cv__bloc">
+    <h2 class="cv__titre">Formation</h2>
+    <ol class="cv__liste" data-slot="formation"></ol>
+  </section>
+
+  <!-- ---------- ce que dit le registre ---------- -->
+  <section class="cv__bloc">
+    <h2 class="cv__titre">Le registre en bref</h2>
+    <p class="cv__lede">Le détail de chaque intervention, article et projet se trouve dans le <a href="./">registre public</a>, tenu à jour.</p>
+    <ul class="cv__chiffres" data-slot="chiffres"></ul>
+  </section>
+
+  <!-- ---------- ce qui revient ---------- -->
+  <section class="cv__bloc">
+    <h2 class="cv__titre">Engagements récurrents</h2>
+    <ol class="cv__liste" data-slot="series"></ol>
+  </section>
+
+  <!-- ---------- sélection récente ---------- -->
+  <section class="cv__bloc cv__bloc--large">
+    <h2 class="cv__titre">Ces trois dernières années</h2>
+    <ol class="cv__liste cv__liste--recent" data-slot="recent"></ol>
+  </section>
+
+  <footer class="cv__pied">
+    <p data-slot="mentions"></p>
+    <p class="cv__maj">Mis à jour <span data-slot="maj"></span></p>
+  </footer>
+
+</main>
+
+<script src="data.js"></script>
+<script src="cv.js"></script>
+</body>
+</html>

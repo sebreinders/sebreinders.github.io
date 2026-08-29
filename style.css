@@ -101,6 +101,17 @@ button{ font:inherit; color:inherit; background:none; border:none; cursor:pointe
 }
 .contact-haut__liens a:hover{ color:var(--encre) }
 
+/* Les documents à emporter, distingués des réseaux par le trait */
+.contact-haut__docs{
+  display:flex; flex-wrap:wrap; justify-content:flex-end; gap:4px 14px;
+  margin-top:7px; padding-top:7px; border-top:1px solid var(--creme-fonce);
+}
+.contact-haut__docs a{
+  font-size:12px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--pin, var(--vert));
+}
+.contact-haut__docs a:hover{ color:var(--encre) }
+
 .chapeau{
   display:grid; grid-template-columns:1fr 1fr; gap:34px;
   margin:44px 0 30px; align-items:start;

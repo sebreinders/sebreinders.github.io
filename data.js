@@ -1091,8 +1091,14 @@ const SITE = {
     liens: [
       { nom: "LinkedIn", url: "https://be.linkedin.com/in/sebastienreinders/" },
       { nom: "Bluesky",  url: "https://bsky.app/profile/sebreinders.bsky.social" },
-      { nom: "Medium",   url: "https://medium.com/@sebastienreinders" },
-      { nom: "Ressources d'intervention", url: "https://sebreinders.github.io/ressources/" }
+      { nom: "Medium",   url: "https://medium.com/@sebastienreinders" }
+    ],
+
+    // Les pages à emporter : un CV, une bio prête à copier, les supports.
+    documents: [
+      { nom: "CV",         url: "cv.html" },
+      { nom: "Bio",        url: "fichiers/bio.html" },
+      { nom: "Ressources", url: "https://sebreinders.github.io/ressources/" }
     ],
     mentions: "Page personnelle. Les propos qui y figurent n'engagent que moi."
   }

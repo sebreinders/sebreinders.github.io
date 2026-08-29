@@ -271,17 +271,28 @@
 
   // Le même contact, repris en haut de page à hauteur du nom : on ne
   // devrait pas avoir à dérouler tout le registre pour trouver l'adresse.
+  const lienDoc = d => {
+    const externe = /^https?:/.test(d.url);
+    return `<li><a href="${esc(d.url)}"${externe ? ' target="_blank" rel="noopener"' : ''}>${esc(d.nom)}</a></li>`;
+  };
+
   fill('contact-haut', `
     <a class="contact-haut__mail" href="mailto:${esc(adresse)}">${esc(adresse)}</a>
     <ul class="contact-haut__liens">
-      ${c.liens.slice(0, 3).map(l =>
+      ${c.liens.map(l =>
         `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.nom)}</a></li>`).join('')}
+    </ul>
+    <ul class="contact-haut__docs">
+      ${(c.documents || []).map(lienDoc).join('')}
     </ul>`);
 
   const secondaire = `${c.emailSecondaire.user}@${c.emailSecondaire.domaine}`;
   fill('liens',
     c.liens.map(l => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.nom)}<span aria-hidden="true"> ↗</span></a></li>`).join('') +
-    `<li><a href="fichiers/bio.html">Ma bio, prête à copier</a></li>` +
+    (c.documents || []).map(d => {
+      const externe = /^https?:/.test(d.url);
+      return `<li><a href="${esc(d.url)}"${externe ? ' target="_blank" rel="noopener"' : ''}>${esc(d.nom)}${externe ? '<span aria-hidden="true"> ↗</span>' : ''}</a></li>`;
+    }).join('') +
     `<li><a href="mailto:${esc(secondaire)}">${esc(secondaire)}</a></li>`);
 
   fill('mentions', esc(c.mentions));
