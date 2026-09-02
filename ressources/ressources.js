@@ -31,15 +31,20 @@ const RESSOURCES = {
       resume: "Atelier « Du plan d'équipement au pilotage pédagogique », dans la journée « De la craie au cloud, l'école en mutation ».",
       lienRegistre: "../#registre",
       fichiers: [
+        { nom: "Du plan d'équipement au pilotage pédagogique",
+          type: "Présentation",
+          fichier: "atelier-segec-du-plan-dequipement-au-pilotage.pdf",
+          description: "Le support de l'atelier, 23 pages. Son fil rouge : un plan d'équipement n'est pas un plan d'achat, mais la traduction matérielle d'un projet pédagogique — donc un objet de pilotage. Avec les cinq angles morts les plus fréquents." },
+
         { nom: "Inventaire du parc numérique",
           type: "Outil",
           fichier: "",
           description: "Un tableau à remplir pour recenser matériel et logiciels de l'établissement, et voir où l'on en est avant de décider quoi acheter. Tout reste dans le navigateur, rien n'est envoyé." },
 
-        { nom: "Du plan d'équipement au pilotage",
-          type: "PDF",
+        { nom: "Le pilotage numérique en une page",
+          type: "Mémo",
           fichier: "pilotage-numerique-A4.pdf",
-          description: "Le mémo d'une page qui accompagne l'atelier : les étapes, les questions à se poser, les écueils." }
+          description: "L'essentiel de l'atelier ramené à un A4 : les étapes, les questions à se poser, les écueils. À afficher ou à faire circuler en salle des profs." }
       ]
     }
   ]
