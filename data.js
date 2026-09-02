@@ -1103,7 +1103,7 @@ const SITE = {
 
     // Les pages à emporter : un CV, une bio prête à copier, les supports.
     documents: [
-      { nom: "Bio",        url: "fichiers/bio.html" },
+      { nom: "Bio",        url: "bio.html" },
       { nom: "CV",         url: "cv.html" },
       { nom: "Ressources", url: "https://sebreinders.github.io/ressources/" }
     ],

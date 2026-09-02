@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventaire du parc numérique — matériel et logiciels</title>
+<style>
+  :root{
+    --ink:#12262E; --ink2:#1D3A44; --pine:#2E6157; --acc:#D9541E;
+    --card:#EFF3F2; --line:#D7E0DE; --mute:#6E7F84; --warn:#B8860B;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#E4EAE9; color:var(--ink);
+    font-family:"Segoe UI",Roboto,-apple-system,Helvetica,Arial,sans-serif;
+    font-size:14px; line-height:1.5;}
+  h1,h2,h3,.serif{font-family:Georgia,"Times New Roman",serif}
+
+  .toolbar{position:sticky; top:0; z-index:60; background:var(--ink); color:#fff;
+    display:flex; flex-wrap:wrap; align-items:center; gap:9px; padding:11px 18px;}
+  .toolbar .brand{font-weight:700; font-size:14px; letter-spacing:.03em; margin-right:auto}
+  .toolbar .brand span{color:#A8BCC2; font-weight:400}
+  button{font:inherit; font-size:12.5px; font-weight:600; border:1px solid rgba(255,255,255,.28);
+    background:transparent; color:#fff; padding:6px 12px; border-radius:6px; cursor:pointer}
+  button:hover{background:rgba(255,255,255,.12)}
+  button.primary{background:var(--acc); border-color:var(--acc)}
+  button.primary:hover{background:#c24916}
+  button.danger:hover{background:rgba(217,84,30,.28); border-color:var(--acc)}
+  .status{font-size:11.5px; color:#A8BCC2; min-width:145px; text-align:right}
+  .exportwarn{display:none; align-items:center; gap:8px; background:#3A2318; border:1px solid var(--acc);
+    color:#F7D9C9; border-radius:7px; padding:8px 13px; margin:14px 0 0; font-size:13px}
+  .exportwarn.on{display:flex}
+  .exportwarn b{color:#fff}
+  .exportwarn button{border-color:var(--acc); background:var(--acc); color:#fff; margin-left:auto; white-space:nowrap}
+  .exportwarn button:hover{background:#c24916}
+  @media print{ .exportwarn{display:none !important} }
+
+  .tabs{background:var(--ink2); display:flex; gap:2px; padding:0 18px; position:sticky; top:47px; z-index:55}
+  .tabs button{border:none; border-radius:0; background:transparent; color:#A8BCC2;
+    padding:11px 18px; font-size:13.5px; font-weight:600; border-bottom:3px solid transparent}
+  .tabs button:hover{background:rgba(255,255,255,.07)}
+  .tabs button.on{color:#fff; border-bottom-color:var(--acc); background:rgba(255,255,255,.05)}
+
+  .wrap{max-width:1500px; margin:22px auto 70px; padding:0 18px}
+  .panel{background:#fff; border-radius:10px; padding:24px 26px 22px; box-shadow:0 2px 14px rgba(18,38,46,.09); margin-bottom:22px}
+  .eyebrow{font-size:10.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--acc); margin:0 0 7px}
+  h1{font-size:25px; line-height:1.2; margin:0 0 8px}
+  h2{font-size:19px; margin:0 0 6px}
+  .lede{color:var(--ink2); margin:0 0 18px; max-width:70ch; font-size:14px}
+  .hide{display:none}
+
+  .meta{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:18px}
+  .meta label{font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--mute); display:block; margin-bottom:3px}
+  .meta input{font:inherit; padding:6px 9px; border:1px solid var(--line); border-radius:6px; min-width:210px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--pine); outline-offset:1px}
+
+  /* ---------- tableau de bord ---------- */
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(178px,1fr)); gap:12px; margin-bottom:8px}
+  .kpi{background:var(--card); border-radius:9px; padding:14px 16px}
+  .kpi .n{font-family:Georgia,serif; font-size:31px; font-weight:700; line-height:1.1; color:var(--pine)}
+  .kpi .l{font-size:12px; color:var(--ink2); margin-top:3px; line-height:1.35}
+  .kpi.alert{background:var(--ink)}
+  .kpi.alert .n{color:var(--acc)} .kpi.alert .l{color:#C8D6D4}
+  .kpi.zero .n{color:var(--mute)}
+  .sect-title{font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--mute); margin:26px 0 10px}
+  .findings{margin-top:8px}
+  .finding{display:flex; gap:11px; align-items:flex-start; padding:10px 13px; border-radius:8px;
+    background:var(--card); margin-bottom:7px; font-size:13.5px}
+  .finding.hot{background:#FBEDE6}
+  .finding .dot{width:9px; height:9px; border-radius:50%; background:var(--pine); margin-top:6px; flex:0 0 auto}
+  .finding.hot .dot{background:var(--acc)}
+  .finding b{display:block}
+  .finding span{color:var(--ink2)}
+  .empty{color:var(--mute); font-style:italic; font-size:13.5px; padding:8px 0}
+
+  /* ---------- tableaux de saisie ---------- */
+  .paneltop{display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between;
+    gap:14px 22px; margin-bottom:2px}
+  .paneltop > div{min-width:0}
+  .addtop{background:var(--pine); border-color:var(--pine); color:#fff;
+    padding:10px 17px; font-size:13.5px; white-space:nowrap; flex:0 0 auto; margin-top:6px}
+  .addtop:hover{background:#24504a}
+  @media print{ .addtop{display:none !important} }
+
+  .filterbar{display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    background:var(--card); border-radius:9px; padding:11px 13px; margin-bottom:12px}
+  .filterbar input[type=search]{font:inherit; font-size:13px; padding:7px 10px; border:1px solid var(--line);
+    border-radius:6px; background:#fff; min-width:210px}
+  .filterbar select{font:inherit; font-size:12.5px; padding:6px 8px; border:1px solid var(--line);
+    border-radius:6px; background:#fff; color:var(--ink); max-width:190px}
+  .chip{font:inherit; font-size:12px; font-weight:600; padding:6px 11px; border-radius:14px;
+    border:1.5px solid var(--line); background:#fff; color:var(--mute); cursor:pointer}
+  .chip:hover{border-color:var(--acc); color:var(--acc)}
+  .chip.on{background:var(--acc); border-color:var(--acc); color:#fff}
+  .filterbar .reset{border:none; background:transparent; color:var(--pine); font-size:12.5px;
+    text-decoration:underline; padding:6px 2px}
+  .filterbar .reset:hover{background:transparent; color:var(--acc)}
+  .filterbar .shown{margin-left:auto; font-size:12.5px; color:var(--mute); white-space:nowrap}
+  .filternote{display:none; font-size:8.4pt; color:var(--mute); margin-bottom:5pt}
+
+  table.rows th.sortable{cursor:pointer; user-select:none}
+  table.rows th.sortable:hover{color:var(--pine)}
+  table.rows th .arw{color:var(--acc); font-size:11px; margin-left:3px}
+  .noresult{padding:22px 4px; color:var(--mute); font-style:italic; font-size:13.5px}
+
+  .tablewrap{overflow-x:auto; margin-top:4px}
+  table.rows{width:100%; border-collapse:collapse; font-size:13px}
+  table.rows th{text-align:left; font-size:10px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--mute); padding:0 6px 7px; white-space:nowrap; vertical-align:bottom}
+  table.rows td{padding:3px 4px; vertical-align:top; border-top:1px solid var(--line)}
+  table.rows tr:first-child td{border-top:none}
+  table.rows input, table.rows select{
+    font:inherit; font-size:13px; width:100%; padding:6px 7px; border:1px solid transparent;
+    border-radius:5px; background:#F7FAF9; color:var(--ink)}
+  table.rows input:hover, table.rows select:hover{border-color:var(--line)}
+  table.rows input[type=number]{text-align:right}
+  td.flags{white-space:nowrap; padding-top:9px}
+  .tag{display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.03em;
+    padding:2px 7px; border-radius:10px; margin:0 3px 3px 0; white-space:nowrap}
+  .tag.ok{background:var(--card); color:var(--pine)}
+  .tag.warn{background:#FBEDE6; color:var(--acc)}
+  .tag.mid{background:#F6F0DC; color:var(--warn)}
+  .del{background:transparent; border:1px solid var(--line); color:var(--mute);
+    padding:5px 9px; font-size:13px; border-radius:5px}
+  .del:hover{background:#FBEDE6; border-color:var(--acc); color:var(--acc)}
+  .helper{font-size:12.5px; color:var(--mute); margin-top:12px; line-height:1.5; max-width:80ch}
+
+  /* ---------- formulaire modal ---------- */
+  .backdrop{position:fixed; inset:0; background:rgba(18,38,46,.62); z-index:200;
+    display:none; align-items:flex-start; justify-content:center; padding:34px 18px; overflow-y:auto}
+  .backdrop.on{display:flex}
+  .modal{background:#fff; border-radius:12px; width:100%; max-width:760px;
+    box-shadow:0 18px 50px rgba(18,38,46,.34); overflow:hidden}
+  .modal header{background:var(--ink); color:#fff; padding:19px 26px}
+  .modal header .kick{font-size:10.5px; font-weight:700; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--acc); margin-bottom:5px}
+  .modal header h3{font-family:Georgia,serif; font-size:22px; margin:0; font-weight:700}
+  .modal header p{margin:6px 0 0; font-size:13px; color:#A8BCC2; line-height:1.45}
+  .modal .body{padding:22px 26px 6px}
+  .fgrid{display:grid; grid-template-columns:1fr 1fr; gap:15px 20px}
+  .field.full{grid-column:1 / -1}
+  .field label{display:block; font-size:11px; font-weight:700; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--mute); margin-bottom:4px}
+  .field input, .field select{font:inherit; font-size:14px; width:100%; padding:9px 11px;
+    border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink)}
+  .field .help{font-size:12px; color:var(--mute); margin-top:4px; line-height:1.4}
+  .field.bad input, .field.bad select{border-color:var(--acc); background:#FDF4F0}
+  .previewbox{margin:20px 0 0; background:var(--card); border-radius:8px; padding:13px 15px}
+  .previewbox .t{font-size:10.5px; font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--mute); margin-bottom:7px}
+  .previewbox .none{font-size:13px; color:var(--mute); font-style:italic}
+  .modal footer{display:flex; gap:10px; align-items:center; padding:17px 26px 21px; flex-wrap:wrap}
+  .modal footer .msg{font-size:12.5px; color:var(--acc); margin-right:auto}
+  .modal footer button{color:var(--ink); border-color:var(--line); padding:9px 16px; font-size:13.5px}
+  .modal footer button:hover{background:var(--card)}
+  .modal footer button.go{background:var(--pine); border-color:var(--pine); color:#fff}
+  .modal footer button.go:hover{background:#24504a}
+  .modal footer button.cancel{color:var(--mute); border-color:transparent}
+  .edit{background:transparent; border:1px solid var(--line); color:var(--mute);
+    padding:5px 9px; font-size:13px; border-radius:5px; margin-right:4px}
+  .edit:hover{background:var(--card); border-color:var(--pine); color:var(--pine)}
+  .emptybtn{margin-top:12px}
+  @media (max-width:680px){ .fgrid{grid-template-columns:1fr} }
+  @media print{ .backdrop{display:none !important} .edit{display:none !important} }
+
+  @page{size:A4 landscape; margin:10mm}
+  @media print{
+    body{background:#fff; font-size:8.6pt}
+    .toolbar,.tabs,.noprint,.del,.filterbar{display:none !important}
+    .filternote{display:block}
+    .wrap{max-width:none; margin:0; padding:0}
+    .panel{box-shadow:none; border-radius:0; padding:0; margin:0 0 10pt}
+    .panel.hide{display:block !important}
+    .panel + .panel{page-break-before:always}
+    h1{font-size:16pt} .kpi .n{font-size:20pt}
+    table.rows input, table.rows select{background:transparent; border:none; padding:2pt 3pt; font-size:8.4pt}
+    table.rows td{padding:1pt 2pt}
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="brand">Inventaire du parc numérique <span>— matériel et logiciels</span></div>
+  <button onclick="window.print()">Imprimer / PDF</button>
+  <button onclick="exportJSON()">Exporter (JSON)</button>
+  <button onclick="exportCSV()">Exporter (CSV)</button>
+  <button onclick="document.getElementById('imp').click()">Recharger un fichier</button>
+  <input type="file" id="imp" accept=".json,.csv,application/json,text/csv" style="display:none" onchange="importFile(event)">
+  <button class="danger" onclick="resetAll()">Réinitialiser</button>
+  <div class="status" id="status">—</div>
+</div>
+
+<div class="tabs">
+  <button id="tab-synthese" class="on" onclick="show('synthese')">Synthèse</button>
+  <button id="tab-materiel" onclick="show('materiel')">Matériel</button>
+  <button id="tab-logiciels" onclick="show('logiciels')">Logiciels et services</button>
+</div>
+
+<div class="wrap">
+
+  <div class="exportwarn noprint" id="exportwarn">
+    <div><b>Des modifications n'ont pas encore été exportées.</b>
+      Le relevé est conservé dans ce navigateur uniquement. Un export de sauvegarde est recommandé
+      avant de fermer l'onglet, notamment si le poste est partagé ou si les données de navigation
+      sont effacées automatiquement.</div>
+    <button onclick="exportJSON()">Exporter maintenant</button>
+  </div>
+
+  <!-- ================= SYNTHÈSE ================= -->
+  <section class="panel" id="p-synthese">
+    <p class="eyebrow">Synthèse</p>
+    <h1>État des lieux</h1>
+    <p class="lede">Cette page est calculée automatiquement à partir des données saisies dans les onglets
+      « Matériel » et « Logiciels et services ». Elle rassemble les éléments chiffrés utiles à l'arbitrage
+      budgétaire et à l'inscription du numérique au plan de pilotage de l'établissement.</p>
+
+    <div class="meta">
+      <div><label for="etab">Établissement</label><input id="etab" data-meta="etab" placeholder="Nom de l'école"></div>
+      <div><label for="qui">Relevé par</label><input id="qui" data-meta="qui" placeholder="Prénom et nom"></div>
+      <div><label for="dat">Date du relevé</label><input id="dat" data-meta="dat" type="date"></div>
+    </div>
+
+    <div class="sect-title">Matériel</div>
+    <div class="kpis" id="kpiMat"></div>
+
+    <div class="sect-title">Logiciels et services</div>
+    <div class="kpis" id="kpiLog"></div>
+
+    <div class="sect-title">Complétude du relevé</div>
+    <div class="kpis" id="kpiComp"></div>
+
+    <div class="sect-title">Points d'attention</div>
+    <div class="findings" id="findings"></div>
+
+    <p class="helper">Les données saisies sont conservées localement, dans le navigateur, et ne sont transmises
+      à aucun service extérieur. La fonction « Exporter » permet d'archiver le relevé, de le comparer d'un
+      exercice à l'autre ou de le transmettre au pouvoir organisateur. Cette sauvegarde locale ne constitue
+      pas un archivage : elle disparaît si les données de navigation sont effacées ou si le poste change.
+      Un export en fin de séance de saisie est donc recommandé.</p>
+  </section>
+
+  <!-- ================= MATÉRIEL ================= -->
+  <section class="panel hide" id="p-materiel">
+    <div class="paneltop">
+      <div>
+        <p class="eyebrow">Onglet 1</p>
+        <h1>Matériel</h1>
+      </div>
+      <button class="addtop noprint" onclick="openForm('materiel')">+ Ajouter du matériel</button>
+    </div>
+    <p class="lede">Le relevé s'effectue par lot homogène ; un encodage unitaire n'est pas nécessaire.
+      La colonne « Fin de support » indique l'année à laquelle le système d'exploitation cesse d'être mis à jour :
+      cette échéance conditionne la durée d'usage effective au même titre que l'état du matériel.</p>
+    <div class="filterbar" id="fbMat"></div>
+    <div class="filternote" id="fnMat"></div>
+    <div class="tablewrap">
+      <table class="rows">
+        <thead id="thMat"></thead>
+        <tbody id="tbMat"></tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- ================= LOGICIELS ================= -->
+  <section class="panel hide" id="p-logiciels">
+    <div class="paneltop">
+      <div>
+        <p class="eyebrow">Onglet 2</p>
+        <h1>Logiciels et services</h1>
+      </div>
+      <button class="addtop noprint" onclick="openForm('logiciels')">+ Ajouter un outil</button>
+    </div>
+    <p class="lede">Le relevé porte sur l'ensemble des outils effectivement utilisés avec les élèves, y compris
+      ceux mis en place à l'initiative d'un membre de l'équipe. Trois colonnes appellent une attention
+      particulière : la prise en charge financière, le traitement de données à caractère personnel et la
+      possibilité de récupérer les données en cas de changement d'outil.</p>
+    <div class="filterbar" id="fbLog"></div>
+    <div class="filternote" id="fnLog"></div>
+    <div class="tablewrap">
+      <table class="rows">
+        <thead id="thLog"></thead>
+        <tbody id="tbLog"></tbody>
+      </table>
+    </div>
+
+  </section>
+</div>
+
+<div class="backdrop noprint" id="backdrop" role="dialog" aria-modal="true" aria-labelledby="mdTitle">
+  <div class="modal">
+    <header>
+      <div class="kick" id="mdKick"></div>
+      <h3 id="mdTitle"></h3>
+      <p id="mdSub"></p>
+    </header>
+    <div class="body">
+      <div class="fgrid" id="mdFields"></div>
+      <div class="previewbox">
+        <div class="t">Points d'attention détectés</div>
+        <div id="mdPreview"></div>
+      </div>
+    </div>
+    <footer>
+      <span class="msg" id="mdMsg"></span>
+      <button class="cancel" onclick="closeForm()">Annuler</button>
+      <button id="mdAgain" onclick="saveForm(true)">Enregistrer et ajouter un autre</button>
+      <button class="go" onclick="saveForm(false)">Enregistrer</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   Modèle
+   ===================================================================== */
+const ANNEE = new Date().getFullYear();
+
+const TYPES = ["Portable","Fixe","Tablette","Écran interactif / TBI","Projecteur",
+               "Serveur / NAS","Réseau (borne, switch)","Imprimante / scanner","Autre"];
+const ETATS = ["En service","En service, dégradé","En stock, inutilisé","À réformer"];
+const PAYEUR = ["École","Enseignant, à titre personnel","Gratuit","Pouvoir organisateur / subside","Ne sait pas"];
+const OUINON = ["Oui","Non","Ne sait pas"];
+const CONTRAT = ["Oui, signé par l'établissement","Non","Ne sait pas"];
+const EXPORT = ["Testé, il fonctionne","Annoncé, jamais testé","Impossible","Ne sait pas"];
+
+const COLS = {
+  materiel:[
+    {k:"designation", lab:"Désignation",    w:190, t:"text",   req:true, span:2,
+     ph:"Ex. : portables du chariot mobile",
+     help:"Un lot homogène par ligne : même type, même génération, même usage. Un encodage unitaire n'est pas nécessaire."},
+    {k:"type",        lab:"Type",           w:140, t:"select", opts:TYPES, facet:true},
+    {k:"qte",         lab:"Quantité",       w:70,  t:"number", min:0, nb:true,
+     help:"Nombre d'unités concernées par la ligne."},
+    {k:"lieu",        lab:"Localisation",   w:130, t:"text",   ph:"Local, bâtiment, degré",
+     help:"Emplacement habituel ou affectation."},
+    {k:"annee",       lab:"Année d'acquisition", w:92, t:"number", min:1990, max:ANNEE+1, ph:String(ANNEE), nb:true,
+     help:"Sert au calcul de l'âge moyen du parc."},
+    {k:"etat",        lab:"État",           w:150, t:"select", opts:ETATS, facet:true},
+    {k:"finsupport",  lab:"Fin de support", w:100, t:"number", min:ANNEE-10, max:ANNEE+15, ph:"année", nb:true,
+     help:"Année à laquelle le système d'exploitation cesse d'être mis à jour. À laisser vide si l'information n'est pas connue."},
+    {k:"resp",        lab:"Responsable",    w:130, t:"text",   ph:"Personne ou service",
+     help:"Qui assure le suivi et la maintenance de ce lot."}
+  ],
+  logiciels:[
+    {k:"nom",     lab:"Nom de l'outil",      w:165, t:"text", req:true, span:2,
+     ph:"Ex. : plateforme de devoirs en ligne",
+     help:"Y compris les outils mis en place à l'initiative d'un membre de l'équipe."},
+    {k:"usage",   lab:"Usage",               w:180, t:"text", span:2, ph:"Fonction pédagogique réelle",
+     help:"Ce à quoi l'outil sert effectivement, tel qu'il est pratiqué."},
+    {k:"public",  lab:"Qui l'utilise",       w:140, t:"text", ph:"Classes, degrés, équipes"},
+    {k:"paye",    lab:"Prise en charge",     w:165, t:"select", opts:PAYEUR, facet:true,
+     help:"Origine du financement, y compris lorsqu'il est assuré à titre personnel."},
+    {k:"cout",    lab:"Coût annuel (€)",     w:96,  t:"number", min:0, nb:true,
+     help:"Montant récurrent. Indiquer 0 si l'outil est gratuit."},
+    {k:"donnees", lab:"Données d'élèves",    w:140, t:"select", opts:OUINON, facet:true,
+     help:"L'outil traite-t-il des données à caractère personnel concernant des élèves ?"},
+    {k:"contrat", lab:"Contrat",             w:160, t:"select", opts:CONTRAT, facet:true,
+     help:"Existe-t-il un contrat, ou des conditions acceptées au nom de l'établissement ?"},
+    {k:"exportd", lab:"Récupération des données", w:165, t:"select", opts:EXPORT, facet:true,
+     help:"La récupération effective des données a-t-elle été testée, et non seulement annoncée ?"}
+  ]
+};
+
+let state = { meta:{}, materiel:[], logiciels:[] };
+
+/* Ordre d'affichage et filtres — n'altèrent jamais les données encodées. */
+const VIEW = {
+  materiel:  { sort:null, dir:1, q:"", sel:{}, flag:null },
+  logiciels: { sort:null, dir:1, q:"", sel:{}, flag:null }
+};
+
+const FLAGS = {
+  materiel: [
+    { id:"dormant", lab:"Non utilisés", test:r => r.etat === "En stock, inutilisé" },
+    { id:"support", lab:"Fin de support ≤ 2 ans",
+      test:r => { const f = parseInt(r.finsupport,10); return !!f && f <= ANNEE + 2; } },
+    { id:"vieux",   lab:"Cinq ans et plus",
+      test:r => { const a = parseInt(r.annee,10); return !!a && a >= 1990 && ANNEE - a >= 5; } },
+    { id:"noresp",  lab:"Sans responsable", test:r => !(r.resp || "").trim() && !!(r.designation || "").trim() }
+  ],
+  logiciels: [
+    { id:"nocontrat", lab:"Données sans contrat",
+      test:r => r.donnees === "Oui" && r.contrat !== "Oui, signé par l'établissement" },
+    { id:"noexport",  lab:"Récupération non vérifiée",
+      test:r => !!r.exportd && r.exportd !== "Testé, il fonctionne" },
+    { id:"perso",     lab:"Prise en charge personnelle", test:r => r.paye === "Enseignant, à titre personnel" },
+    { id:"payant",    lab:"Payants", test:r => (parseFloat(r.cout) || 0) > 0 }
+  ]
+};
+
+/* =====================================================================
+   Stockage : window.storage → navigateur → mémoire
+   ===================================================================== */
+const KEY = "inventaire-parc-numerique-v1";
+let backend = "memoire", memoryBlob = null, saveTimer = null;
+let aExporter = false;   // des modifications postérieures au dernier export existent
+
+function contientDesDonnees(){
+  const rempli = r => Object.keys(r).some(k => String(r[k] === undefined ? "" : r[k]).trim() !== "");
+  return state.materiel.some(rempli) || state.logiciels.some(rempli) ||
+         Object.keys(state.meta || {}).some(k => k !== "dat" && String(state.meta[k] || "").trim() !== "");
+}
+
+function majRappelExport(){
+  const el = document.getElementById("exportwarn");
+  if (!el) return;
+  el.classList.toggle("on", aExporter && contientDesDonnees());
+}
+
+/* Avertissement à la fermeture de l'onglet. Le texte affiché est imposé par le navigateur ;
+   le bandeau en tête de page porte le message complet. */
+window.addEventListener("beforeunload", function(e){
+  if (!contientDesDonnees()) return;
+  if (!aExporter && backend !== "memoire") return;   // déjà conservé et rien de neuf depuis l'export
+  e.preventDefault();
+  e.returnValue = "";
+  return "";
+});
+
+async function detectBackend(){
+  if (typeof window.storage === "object" && window.storage && typeof window.storage.set === "function"){
+    try { await window.storage.set(KEY + ":probe", "1", false); backend = "window.storage"; return; } catch(e){}
+  }
+  try {
+    const t = "__probe__" + Date.now();
+    window.localStorage.setItem(t,"1"); window.localStorage.removeItem(t);
+    backend = "navigateur";
+  } catch(e){ backend = "memoire"; }
+}
+async function loadState(){
+  try{
+    if (backend === "window.storage"){
+      const r = await window.storage.get(KEY, false);
+      if (r && r.value) return JSON.parse(r.value);
+    } else if (backend === "navigateur"){
+      const raw = window.localStorage.getItem(KEY);
+      if (raw) return JSON.parse(raw);
+    } else if (memoryBlob) return JSON.parse(memoryBlob);
+  } catch(e){}
+  return null;
+}
+function scheduleSave(){
+  clearTimeout(saveTimer);
+  aExporter = true; majRappelExport();
+  setStatus("modifications non enregistrées…");
+  saveTimer = setTimeout(persist, 500);
+}
+async function persist(){
+  const blob = JSON.stringify(state);
+  try{
+    if (backend === "window.storage") await window.storage.set(KEY, blob, false);
+    else if (backend === "navigateur") window.localStorage.setItem(KEY, blob);
+    else memoryBlob = blob;
+    setStatus(backend === "memoire" ? "⚠ non enregistré — exportez"
+      : "enregistré à " + new Date().toLocaleTimeString("fr-BE",{hour:"2-digit",minute:"2-digit"}));
+  } catch(e){ memoryBlob = blob; backend = "memoire"; setStatus("⚠ non enregistré — exportez"); }
+}
+function setStatus(t){ document.getElementById("status").textContent = t; }
+
+/* =====================================================================
+   Onglets
+   ===================================================================== */
+function show(id){
+  ["synthese","materiel","logiciels"].forEach(n => {
+    document.getElementById("p-" + n).classList.toggle("hide", n !== id);
+    document.getElementById("tab-" + n).classList.toggle("on", n === id);
+  });
+  if (id === "synthese") renderSynthese();
+}
+
+/* =====================================================================
+   Signaux par ligne
+   ===================================================================== */
+function flagsMateriel(r){
+  const f = [];
+  const an = parseInt(r.annee, 10);
+  if (an && an >= 1990){
+    const age = ANNEE - an;
+    if (age >= 8) f.push(["warn", age + " ans"]);
+    else if (age >= 5) f.push(["mid", age + " ans"]);
+    else f.push(["ok", age + " an" + (age > 1 ? "s" : "")]);
+  }
+  const fs = parseInt(r.finsupport, 10);
+  if (fs){
+    if (fs <= ANNEE) f.push(["warn","support échu"]);
+    else if (fs <= ANNEE + 2) f.push(["warn","support : " + fs]);
+    else f.push(["ok","support : " + fs]);
+  }
+  if (r.etat === "En stock, inutilisé") f.push(["warn","non utilisé"]);
+  if (r.etat === "À réformer") f.push(["mid","à réformer"]);
+  return f;
+}
+function flagsLogiciel(r){
+  const f = [];
+  if (r.donnees === "Oui" && r.contrat !== "Oui, signé par l'établissement") f.push(["warn","données sans contrat"]);
+  if (r.donnees === "Ne sait pas") f.push(["mid","données ?"]);
+  if (r.exportd && r.exportd !== "Testé, il fonctionne") f.push(["warn","récupération non vérifiée"]);
+  if (r.paye === "Enseignant, à titre personnel") f.push(["warn","prise en charge personnelle"]);
+  if (!f.length && r.nom) f.push(["ok","aucun point d'attention"]);
+  return f;
+}
+
+/* =====================================================================
+   Rendu des tableaux
+   ===================================================================== */
+function visibleRows(which){
+  const v = VIEW[which];
+  let rows = state[which].slice();
+
+  if (v.flag){
+    const f = FLAGS[which].find(x => x.id === v.flag);
+    if (f) rows = rows.filter(f.test);
+  }
+  Object.keys(v.sel).forEach(k => {
+    if (v.sel[k]) rows = rows.filter(r => (r[k] || "") === v.sel[k]);
+  });
+  const q = v.q.trim().toLowerCase();
+  if (q){
+    rows = rows.filter(r => COLS[which].some(c =>
+      String(r[c.k] === undefined ? "" : r[c.k]).toLowerCase().indexOf(q) !== -1));
+  }
+  if (v.sort){
+    const col = COLS[which].find(c => c.k === v.sort);
+    rows.sort((a, b) => {
+      const av = a[v.sort], bv = b[v.sort];
+      const ae = (av === undefined || av === null || av === ""), be = (bv === undefined || bv === null || bv === "");
+      if (ae && be) return 0;
+      if (ae) return 1;            // les valeurs vides toujours en bas
+      if (be) return -1;
+      if (col && col.nb) return ((parseFloat(av)||0) - (parseFloat(bv)||0)) * v.dir;
+      return String(av).localeCompare(String(bv), "fr", {numeric:true, sensitivity:"base"}) * v.dir;
+    });
+  }
+  return rows;
+}
+
+function renderHead(which){
+  const th = document.getElementById(which === "materiel" ? "thMat" : "thLog");
+  const v = VIEW[which];
+  const tr = document.createElement("tr");
+  COLS[which].forEach(c => {
+    const el = document.createElement("th");
+    el.className = "sortable";
+    el.style.minWidth = c.w + "px";
+    el.innerHTML = c.lab + (v.sort === c.k ? '<span class="arw">' + (v.dir === 1 ? "▲" : "▼") + "</span>" : "");
+    el.title = "Trier sur « " + c.lab + " »";
+    el.addEventListener("click", () => {
+      if (v.sort !== c.k){ v.sort = c.k; v.dir = 1; }
+      else if (v.dir === 1){ v.dir = -1; }
+      else { v.sort = null; v.dir = 1; }   // 3e clic : retour à l'ordre d'encodage
+      renderTable(which);
+    });
+    tr.appendChild(el);
+  });
+  const sig = document.createElement("th"); sig.style.minWidth = "150px"; sig.textContent = "Signaux";
+  const act = document.createElement("th"); act.style.width = "126px";
+  tr.appendChild(sig); tr.appendChild(act);
+  th.innerHTML = ""; th.appendChild(tr);
+}
+
+function renderFilterBar(which){
+  const bar = document.getElementById(which === "materiel" ? "fbMat" : "fbLog");
+  if (bar.dataset.built) return;
+  bar.dataset.built = "1";
+  const v = VIEW[which];
+
+  const q = document.createElement("input");
+  q.type = "search"; q.placeholder = "Rechercher dans l'ensemble des colonnes…"; q.value = v.q;
+  q.addEventListener("input", () => { v.q = q.value; renderTable(which); });
+  bar.appendChild(q);
+
+  COLS[which].filter(c => c.facet).forEach(c => {
+    const sel = document.createElement("select");
+    sel.appendChild(new Option(c.lab + " : tous", ""));
+    c.opts.forEach(o => sel.appendChild(new Option(o, o)));
+    sel.value = v.sel[c.k] || "";
+    sel.addEventListener("change", () => { v.sel[c.k] = sel.value; renderTable(which); });
+    bar.appendChild(sel);
+  });
+
+  FLAGS[which].forEach(f => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.textContent = f.lab; b.dataset.flag = f.id;
+    b.addEventListener("click", () => {
+      v.flag = (v.flag === f.id) ? null : f.id;
+      renderTable(which);
+    });
+    bar.appendChild(b);
+  });
+
+  const rst = document.createElement("button");
+  rst.className = "reset"; rst.textContent = "Réinitialiser la sélection";
+  rst.addEventListener("click", () => {
+    v.q = ""; v.sel = {}; v.flag = null; v.sort = null; v.dir = 1;
+    bar.dataset.built = ""; bar.innerHTML = "";
+    renderFilterBar(which); renderTable(which);
+  });
+  bar.appendChild(rst);
+
+  const shown = document.createElement("span");
+  shown.className = "shown"; shown.id = which === "materiel" ? "shMat" : "shLog";
+  bar.appendChild(shown);
+}
+
+function syncFilterBar(which, nb){
+  const v = VIEW[which];
+  const bar = document.getElementById(which === "materiel" ? "fbMat" : "fbLog");
+  bar.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", v.flag === c.dataset.flag));
+  const shown = document.getElementById(which === "materiel" ? "shMat" : "shLog");
+  const tot = state[which].length;
+  if (shown) shown.textContent = (nb === tot)
+    ? tot + " ligne" + (tot > 1 ? "s" : "") + " au total"
+    : nb + " ligne" + (nb > 1 ? "s" : "") + " affichée" + (nb > 1 ? "s" : "") + " sur " + tot;
+
+  const parts = [];
+  if (v.flag){ const f = FLAGS[which].find(x => x.id === v.flag); if (f) parts.push(f.lab); }
+  Object.keys(v.sel).forEach(k => { if (v.sel[k]) parts.push(v.sel[k]); });
+  if (v.q.trim()) parts.push('recherche : « ' + v.q.trim() + ' »');
+  const note = document.getElementById(which === "materiel" ? "fnMat" : "fnLog");
+  note.textContent = parts.length
+    ? "Sélection — " + parts.join(" · ") + " — " + nb + " ligne" + (nb > 1 ? "s" : "") + " sur " + tot + "."
+    : "";
+}
+
+function renderTable(which){
+  renderFilterBar(which);
+  renderHead(which);
+  const tb = document.getElementById(which === "materiel" ? "tbMat" : "tbLog");
+  const rows = visibleRows(which);
+  tb.innerHTML = "";
+  if (!rows.length){
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = COLS[which].length + 2; td.className = "noresult";
+    if (state[which].length){
+      td.textContent = "Aucune ligne ne correspond aux critères sélectionnés.";
+    } else {
+      td.textContent = which === "materiel"
+        ? "Aucun lot de matériel n'a encore été renseigné."
+        : "Aucun outil n'a encore été renseigné.";
+      const b = document.createElement("button");
+      b.className = "chip emptybtn";
+      b.style.display = "block";
+      b.textContent = which === "materiel" ? "+ Ajouter du matériel" : "+ Ajouter un outil";
+      b.addEventListener("click", () => openForm(which));
+      td.appendChild(b);
+    }
+    tr.appendChild(td); tb.appendChild(tr);
+  } else {
+    rows.forEach(row => tb.appendChild(buildRow(which, row)));
+  }
+  syncFilterBar(which, rows.length);
+}
+
+function buildRow(which, row){
+  const tr = document.createElement("tr");
+  COLS[which].forEach(col => {
+    const td = document.createElement("td");
+    let el;
+    if (col.t === "select"){
+      el = document.createElement("select");
+      el.appendChild(new Option("—",""));
+      col.opts.forEach(o => el.appendChild(new Option(o, o)));
+      el.value = row[col.k] || "";
+    } else {
+      el = document.createElement("input");
+      el.type = col.t;
+      if (col.ph) el.placeholder = col.ph;
+      if (col.min !== undefined) el.min = col.min;
+      if (col.max !== undefined) el.max = col.max;
+      el.value = (row[col.k] === undefined || row[col.k] === null) ? "" : row[col.k];
+    }
+    const apply = () => { row[col.k] = el.value; paintFlags(which, tr, row); scheduleSave(); };
+    el.addEventListener("input", apply);
+    el.addEventListener("change", apply);
+    td.appendChild(el);
+    tr.appendChild(td);
+  });
+
+  const tdf = document.createElement("td");
+  tdf.className = "flags";
+  tr.appendChild(tdf);
+
+  const tdd = document.createElement("td");
+  tdd.style.whiteSpace = "nowrap";
+  const e = document.createElement("button");
+  e.className = "edit"; e.textContent = "✎"; e.title = "Modifier dans le formulaire";
+  e.addEventListener("click", () => openForm(which, row));
+  tdd.appendChild(e);
+  const c = document.createElement("button");
+  c.className = "edit"; c.textContent = "⧉"; c.title = "Créer une ligne à partir de celle-ci";
+  c.addEventListener("click", () => openForm(which, null, row));
+  tdd.appendChild(c);
+  const b = document.createElement("button");
+  b.className = "del"; b.textContent = "✕"; b.title = "Supprimer la ligne";
+  b.addEventListener("click", () => {
+    if (!confirm("Confirmez-vous la suppression de cette ligne ?")) return;
+    const i = state[which].indexOf(row);          // par référence : le tri ne fausse rien
+    if (i > -1) state[which].splice(i, 1);
+    renderTable(which); scheduleSave();
+  });
+  tdd.appendChild(b); tr.appendChild(tdd);
+
+  paintFlags(which, tr, row);
+  return tr;
+}
+
+function paintFlags(which, tr, row){
+  const cell = tr.querySelector("td.flags");
+  const f = which === "materiel" ? flagsMateriel(row) : flagsLogiciel(row);
+  cell.innerHTML = f.map(x => '<span class="tag ' + x[0] + '">' + x[1] + '</span>').join("");
+}
+
+/* =====================================================================
+   Formulaire de saisie (fenêtre modale)
+   ===================================================================== */
+const TEXTES = {
+  materiel: {
+    kick:"Matériel",
+    add:{ t:"Ajouter un lot de matériel",
+          s:"Un lot homogène par ligne : même type, même génération, même usage. La désignation est le seul champ obligatoire." },
+    edit:{ t:"Modifier ce lot de matériel",
+           s:"Les modifications sont enregistrées après validation du formulaire." },
+    dup:{ t:"Ajouter un lot à partir d'une copie",
+          s:"Les valeurs du lot d'origine sont reprises. Adaptez ce qui diffère : le lot d'origine n'est pas modifié." }
+  },
+  logiciels: {
+    kick:"Logiciels et services",
+    add:{ t:"Ajouter un outil",
+          s:"Le relevé porte sur les outils effectivement utilisés avec les élèves, quelle qu'en soit l'origine. Le nom est le seul champ obligatoire." },
+    edit:{ t:"Modifier cet outil",
+           s:"Les modifications sont enregistrées après validation du formulaire." },
+    dup:{ t:"Ajouter un outil à partir d'une copie",
+          s:"Les valeurs de l'outil d'origine sont reprises. Adaptez ce qui diffère : l'outil d'origine n'est pas modifié." }
+  }
+};
+
+let FORM = { which:null, row:null, brouillon:{} };
+
+function openForm(which, row, copie){
+  FORM.which = which;
+  FORM.row = row || null;
+  FORM.brouillon = copie ? Object.assign({}, copie) : (row ? Object.assign({}, row) : {});
+
+  const mode = row ? "edit" : (copie ? "dup" : "add");
+  document.getElementById("mdKick").textContent  = TEXTES[which].kick;
+  document.getElementById("mdTitle").textContent = TEXTES[which][mode].t;
+  document.getElementById("mdSub").textContent   = TEXTES[which][mode].s;
+  document.getElementById("mdAgain").style.display = row ? "none" : "";
+  document.getElementById("mdMsg").textContent = "";
+
+  const box = document.getElementById("mdFields");
+  box.innerHTML = "";
+  COLS[which].forEach(c => {
+    const d = document.createElement("div");
+    d.className = "field" + (c.span === 2 ? " full" : "");
+    d.dataset.k = c.k;
+    const lab = document.createElement("label");
+    lab.setAttribute("for", "fld-" + c.k);
+    lab.textContent = c.lab + (c.req ? " *" : "");
+    d.appendChild(lab);
+
+    let el;
+    if (c.t === "select"){
+      el = document.createElement("select");
+      el.appendChild(new Option("— non renseigné —", ""));
+      c.opts.forEach(o => el.appendChild(new Option(o, o)));
+    } else {
+      el = document.createElement("input");
+      el.type = c.t;
+      if (c.ph) el.placeholder = c.ph;
+      if (c.min !== undefined) el.min = c.min;
+      if (c.max !== undefined) el.max = c.max;
+    }
+    el.id = "fld-" + c.k;
+    el.value = (FORM.brouillon[c.k] === undefined || FORM.brouillon[c.k] === null) ? "" : FORM.brouillon[c.k];
+    const apply = () => {
+      FORM.brouillon[c.k] = el.value;
+      d.classList.remove("bad");
+      renderPreview();
+    };
+    el.addEventListener("input", apply);
+    el.addEventListener("change", apply);
+    d.appendChild(el);
+
+    if (c.help){
+      const h = document.createElement("div");
+      h.className = "help"; h.textContent = c.help;
+      d.appendChild(h);
+    }
+    box.appendChild(d);
+  });
+
+  renderPreview();
+  document.getElementById("backdrop").classList.add("on");
+  document.body.style.overflow = "hidden";
+  const first = box.querySelector("input,select");
+  if (first) setTimeout(() => first.focus(), 30);
+}
+
+function renderPreview(){
+  const f = FORM.which === "materiel" ? flagsMateriel(FORM.brouillon) : flagsLogiciel(FORM.brouillon);
+  const utiles = f.filter(x => x[0] !== "ok");
+  const box = document.getElementById("mdPreview");
+  box.innerHTML = utiles.length
+    ? utiles.map(x => '<span class="tag ' + x[0] + '">' + x[1] + '</span>').join("")
+    : '<div class="none">Aucun point d\'attention sur les éléments renseignés à ce stade.</div>';
+}
+
+function closeForm(){
+  document.getElementById("backdrop").classList.remove("on");
+  document.body.style.overflow = "";
+  FORM = { which:null, row:null, brouillon:{} };
+}
+
+function saveForm(encore){
+  const which = FORM.which;
+  if (!which) return;
+  const obligatoire = COLS[which].find(c => c.req);
+  const v = (FORM.brouillon[obligatoire.k] || "").toString().trim();
+  if (!v){
+    const d = document.querySelector('#mdFields .field[data-k="' + obligatoire.k + '"]');
+    if (d){ d.classList.add("bad"); const i = d.querySelector("input,select"); if (i) i.focus(); }
+    document.getElementById("mdMsg").textContent = "Le champ « " + obligatoire.lab + " » doit être renseigné.";
+    return;
+  }
+
+  // on ne conserve que les champs effectivement remplis
+  const propre = {};
+  COLS[which].forEach(c => {
+    const val = (FORM.brouillon[c.k] === undefined || FORM.brouillon[c.k] === null) ? "" : String(FORM.brouillon[c.k]).trim();
+    if (val !== "") propre[c.k] = val;
+  });
+
+  if (FORM.row){
+    COLS[which].forEach(c => { delete FORM.row[c.k]; });
+    Object.assign(FORM.row, propre);
+  } else {
+    state[which].push(propre);
+    reinitSelection(which);      // la nouvelle ligne doit rester visible
+  }
+
+  renderTable(which);
+  renderSynthese();
+  scheduleSave();
+
+  if (encore && !FORM.row){
+    const w = which;
+    closeForm();
+    openForm(w, null);
+    document.getElementById("mdMsg").textContent = "Ligne enregistrée. Vous pouvez en saisir une autre.";
+  } else {
+    closeForm();
+  }
+}
+
+function reinitSelection(which){
+  const v = VIEW[which];
+  v.q = ""; v.sel = {}; v.flag = null; v.sort = null; v.dir = 1;
+  const bar = document.getElementById(which === "materiel" ? "fbMat" : "fbLog");
+  bar.dataset.built = ""; bar.innerHTML = "";
+}
+
+document.addEventListener("keydown", e => {
+  if (!document.getElementById("backdrop").classList.contains("on")) return;
+  if (e.key === "Escape"){ e.preventDefault(); closeForm(); }
+  if (e.key === "Enter" && (e.metaKey || e.ctrlKey)){ e.preventDefault(); saveForm(false); }
+});
+document.getElementById("backdrop").addEventListener("mousedown", e => {
+  if (e.target.id === "backdrop") closeForm();
+});
+
+/* =====================================================================
+   Synthèse
+   ===================================================================== */
+function num(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+
+function renderSynthese(){
+  const M = state.materiel.filter(r => r.designation || r.type || r.qte);
+  const L = state.logiciels.filter(r => r.nom);
+
+  /* --- matériel --- */
+  const unites = M.reduce((s,r) => s + (num(r.qte) || 0), 0);
+  let pond = 0, pondQ = 0, vieux = 0, dormant = 0, finProche = 0;
+  M.forEach(r => {
+    const q = num(r.qte) || 1;
+    const an = parseInt(r.annee,10);
+    if (an && an >= 1990){ pond += (ANNEE - an) * q; pondQ += q; if (ANNEE - an >= 5) vieux += q; }
+    if (r.etat === "En stock, inutilisé") dormant += q;
+    const fs = parseInt(r.finsupport,10);
+    if (fs && fs <= ANNEE + 2) finProche += q;
+  });
+  const age = pondQ ? (pond / pondQ) : 0;
+  const pctVieux = unites ? Math.round(vieux / unites * 100) : 0;
+
+  document.getElementById("kpiMat").innerHTML = [
+    kpi(unites, "unités recensées", false),
+    kpi(pondQ ? age.toFixed(1) + " ans" : "—", "âge moyen, pondéré par les quantités", false),
+    kpi(unites ? pctVieux + " %" : "—", "du parc est âgé de cinq ans ou plus", pctVieux >= 50),
+    kpi(finProche, "unités dont le support logiciel s'achève dans les deux ans", finProche > 0),
+    kpi(dormant, "unités en stock, non utilisées", dormant > 0)
+  ].join("");
+
+  /* --- logiciels --- */
+  const cout = L.reduce((s,r) => s + num(r.cout), 0);
+  const sansContrat = L.filter(r => r.donnees === "Oui" && r.contrat !== "Oui, signé par l'établissement").length;
+  const sansExport  = L.filter(r => r.exportd && r.exportd !== "Testé, il fonctionne").length;
+  const perso       = L.filter(r => r.paye === "Enseignant, à titre personnel").length;
+
+  document.getElementById("kpiLog").innerHTML = [
+    kpi(L.length, "outils recensés", false),
+    kpi(cout ? Math.round(cout).toLocaleString("fr-BE") + " €" : "—", "de coût annuel identifié", false),
+    kpi(sansContrat, "outils traitant des données d'élèves sans contrat signé par l'établissement", sansContrat > 0),
+    kpi(sansExport, "outils dont la récupération des données n'a pas été vérifiée", sansExport > 0),
+    kpi(perso, "outils pris en charge à titre personnel par un membre de l'équipe", perso > 0)
+  ].join("");
+
+  /* --- complétude du relevé --- */
+  const compte = (rows, which) => {
+    let attendus = 0, renseignes = 0, nsp = 0;
+    rows.forEach(r => {
+      COLS[which].forEach(c => {
+        attendus++;
+        const v = (r[c.k] === undefined || r[c.k] === null) ? "" : String(r[c.k]).trim();
+        if (v === "") return;
+        if (v === "Ne sait pas"){ nsp++; return; }
+        renseignes++;
+      });
+    });
+    return { attendus, renseignes, nsp, pct: attendus ? Math.round(renseignes / attendus * 100) : 0 };
+  };
+  const cM = compte(M, "materiel");
+  const cL = compte(L, "logiciels");
+  const nsp = cM.nsp + cL.nsp;
+  const attTot = cM.attendus + cL.attendus;
+  const pctTot = attTot ? Math.round((cM.renseignes + cL.renseignes) / attTot * 100) : 0;
+
+  document.getElementById("kpiComp").innerHTML = [
+    kpi(cM.attendus ? cM.pct + " %" : "—", "du relevé « Matériel » est renseigné", cM.attendus && cM.pct < 70),
+    kpi(cL.attendus ? cL.pct + " %" : "—", "du relevé « Logiciels et services » est renseigné", cL.attendus && cL.pct < 70),
+    kpi(nsp, "points renseignés « Ne sait pas »", nsp > 0)
+  ].join("");
+
+  /* --- constats --- */
+  const out = [];
+  if (!M.length && !L.length){
+    out.push(['', "Relevé non renseigné",
+      "La saisie s'effectue dans les onglets « Matériel » et « Logiciels et services ». Une ligne par lot homogène suffit ; l'état des lieux se construit au fur et à mesure."]);
+  }
+  if (dormant > 0) out.push(["hot", dormant + " unité" + (dormant>1?"s":"") + " en stock, non utilisée" + (dormant>1?"s":""),
+    "Les causes de non-utilisation sont à identifier avant tout investissement de même nature."]);
+  if (finProche > 0) out.push(["hot", finProche + " unité" + (finProche>1?"s":"") + " dont le support s'achève dans les deux ans",
+    "Échéance à intégrer au budget de l'exercice suivant, ou à traiter par un changement de système permettant de prolonger l'usage du matériel."]);
+  if (pctVieux >= 50 && unites) out.push(["hot", pctVieux + " % du parc est âgé de cinq ans ou plus",
+    "Un renouvellement groupé pèse davantage sur un exercice qu'un renouvellement échelonné. La planification s'établit avant l'échéance."]);
+  if (sansContrat > 0) out.push(["hot", sansContrat + " outil" + (sansContrat>1?"s":"") + " traite" + (sansContrat>1?"nt":"") + " des données d'élèves sans contrat signé",
+    "La responsabilité du traitement incombe à l'établissement, indépendamment de la personne ayant ouvert le compte. Une régularisation ou un remplacement est à prévoir."]);
+  if (sansExport > 0) out.push(["hot", sansExport + " outil" + (sansExport>1?"s":"") + " dont la récupération des données n'a pas été vérifiée",
+    "Une fonction d'export annoncée n'équivaut pas à un export testé. En l'absence de vérification, la réversibilité du choix n'est pas établie."]);
+  if (perso > 0) out.push(["hot", perso + " outil" + (perso>1?"s":"") + " pris en charge à titre personnel par un membre de l'équipe",
+    "La continuité du service et l'accès aux données dépendent de la présence de cette personne dans l'établissement."]);
+  if (cout > 0) out.push(["", Math.round(cout).toLocaleString("fr-BE") + " € de dépenses annuelles récurrentes identifiées",
+    "Montant rarement consolidé à l'échelle de l'établissement. Il est à rapprocher du budget consacré au matériel."]);
+  if (nsp > 0) out.push(["hot", nsp + " point" + (nsp>1?"s":"") + " du relevé" + (nsp>1?" sont renseignés":" est renseigné") + " « Ne sait pas »",
+    "Ces réponses constituent une information à part entière : elles délimitent le périmètre sur lequel l'établissement n'est pas en mesure de se prononcer. Une vérification auprès du fournisseur ou de la personne ayant mis l'outil en place est à prévoir."]);
+  if (attTot && pctTot < 70) out.push(["", "Relevé complété à " + pctTot + " %",
+    "Les indicateurs ci-dessus ne portent que sur les éléments renseignés. Un relevé partiel tend à sous-estimer le nombre de points d'attention."]);
+
+  if ((M.length || L.length) && out.length === 0) out.push(["",
+    "Aucun point d'attention sur les lignes renseignées",
+    "Ce résultat peut traduire une situation maîtrisée ou un relevé incomplet. Les réponses « Ne sait pas » constituent en elles-mêmes une information."]);
+
+  document.getElementById("findings").innerHTML = out.map(f =>
+    '<div class="finding ' + (f[0] || '') + '"><div class="dot"></div><div><b>' + esc(f[1]) + '</b><span>' + esc(f[2]) + '</span></div></div>'
+  ).join("");
+}
+
+function kpi(n, l, alert){
+  const zero = (n === 0 || n === "—");
+  return '<div class="kpi ' + (alert && !zero ? 'alert' : (zero ? 'zero' : '')) + '">' +
+         '<div class="n">' + n + '</div><div class="l">' + l + '</div></div>';
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* =====================================================================
+   Métadonnées
+   ===================================================================== */
+function bindMeta(){
+  document.querySelectorAll("[data-meta]").forEach(el => {
+    el.addEventListener("input", () => { state.meta[el.dataset.meta] = el.value; scheduleSave(); });
+  });
+}
+function applyMeta(){
+  document.querySelectorAll("[data-meta]").forEach(el => {
+    if (state.meta[el.dataset.meta] !== undefined) el.value = state.meta[el.dataset.meta];
+  });
+}
+
+/* =====================================================================
+   Export / import
+   ===================================================================== */
+function slug(){
+  return (state.meta.etab || "etablissement").toString().trim()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-zA-Z0-9]+/g,"-").replace(/^-|-$/g,"").toLowerCase() || "etablissement";
+}
+function download(blob, name){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+function exportJSON(){
+  const payload = { format:"inventaire-parc-numerique", version:1, exporte_le:new Date().toISOString(), donnees:state };
+  download(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),
+    "inventaire-" + slug() + "-" + new Date().toISOString().slice(0,10) + ".json");
+  aExporter = false; majRappelExport();
+  setStatus("export effectué");
+}
+function csvCell(v){
+  const s = (v === undefined || v === null) ? "" : String(v);
+  return /[";\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+}
+function exportCSV(){
+  const L = [];
+  L.push(["Établissement", state.meta.etab || ""].map(csvCell).join(";"));
+  L.push(["Relevé par", state.meta.qui || ""].map(csvCell).join(";"));
+  L.push(["Date", state.meta.dat || ""].map(csvCell).join(";"));
+  L.push("");
+  L.push("MATÉRIEL");
+  L.push(["Désignation","Type","Quantité","Localisation","Année d'achat","État","Fin de support","Responsable","Âge"].map(csvCell).join(";"));
+  state.materiel.forEach(r => {
+    const an = parseInt(r.annee,10);
+    L.push([r.designation,r.type,r.qte,r.lieu,r.annee,r.etat,r.finsupport,r.resp,
+      (an && an>=1990) ? (ANNEE-an) : ""].map(csvCell).join(";"));
+  });
+  L.push(""); L.push("LOGICIELS ET SERVICES");
+  L.push(["Outil","Usage","Qui l'utilise","Payé par","Coût €/an","Données d'élèves","Contrat","Export des données"].map(csvCell).join(";"));
+  state.logiciels.forEach(r => {
+    L.push([r.nom,r.usage,r.public,r.paye,r.cout,r.donnees,r.contrat,r.exportd].map(csvCell).join(";"));
+  });
+  download(new Blob(["\uFEFF" + L.join("\r\n")],{type:"text/csv;charset=utf-8"}),
+    "inventaire-" + slug() + "-" + new Date().toISOString().slice(0,10) + ".csv");
+  aExporter = false; majRappelExport();
+  setStatus("export CSV effectué");
+}
+function importFile(ev){
+  const f = ev.target.files && ev.target.files[0];
+  if (!f) return;
+  const rd = new FileReader();
+  const isCSV = /\.csv$/i.test(f.name);
+  rd.onload = () => {
+    try{
+      const d = isCSV ? parseCSV(rd.result) : normalise(JSON.parse(rd.result));
+      if (!d) throw new Error("format");
+      state = d;
+      applyMeta(); renderTable("materiel"); renderTable("logiciels"); renderSynthese(); persist();
+      aExporter = false; majRappelExport();
+      setStatus(isCSV ? "CSV rechargé" : "fichier rechargé");
+      show("synthese");
+    } catch(e){
+      alert("Le fichier sélectionné ne correspond pas à un export de cet outil (format JSON ou CSV attendu).");
+    }
+    ev.target.value = "";
+  };
+  rd.readAsText(f);
+}
+
+function normalise(p){
+  const d = (p && p.donnees) ? p.donnees : p;
+  if (!d || typeof d !== "object") return null;
+  return { meta:d.meta || {}, materiel:Array.isArray(d.materiel)?d.materiel:[],
+           logiciels:Array.isArray(d.logiciels)?d.logiciels:[] };
+}
+
+/* Analyse le CSV produit par cet outil : deux sections, séparateur point-virgule. */
+function splitCSVLine(line){
+  const out = []; let cur = "", q = false;
+  for (let i = 0; i < line.length; i++){
+    const c = line[i];
+    if (q){
+      if (c === '"'){ if (line[i+1] === '"'){ cur += '"'; i++; } else q = false; }
+      else cur += c;
+    } else {
+      if (c === '"') q = true;
+      else if (c === ';'){ out.push(cur); cur = ""; }
+      else cur += c;
+    }
+  }
+  out.push(cur);
+  return out.map(v => v.trim());
+}
+
+function parseCSV(txt){
+  const lines = txt.replace(/^\uFEFF/, "").split(/\r?\n/);
+  const res = { meta:{}, materiel:[], logiciels:[] };
+  const MK = ["designation","type","qte","lieu","annee","etat","finsupport","resp"];
+  const LK = ["nom","usage","public","paye","cout","donnees","contrat","exportd"];
+  let mode = null, skipHeader = false;
+  lines.forEach(raw => {
+    if (!raw.trim()) return;
+    const first = splitCSVLine(raw)[0].toUpperCase();
+    if (first.indexOf("ÉTABLISSEMENT") === 0 || first.indexOf("ETABLISSEMENT") === 0){
+      const c = splitCSVLine(raw); res.meta.etab = c[1] || ""; return;
+    }
+    if (first.indexOf("RELEVÉ PAR") === 0 || first.indexOf("RELEVE PAR") === 0){
+      const c = splitCSVLine(raw); res.meta.qui = c[1] || ""; return;
+    }
+    if (first.indexOf("DATE") === 0 && splitCSVLine(raw).length === 2){
+      const c = splitCSVLine(raw); res.meta.dat = c[1] || ""; return;
+    }
+    if (first.indexOf("MATÉRIEL") === 0 || first.indexOf("MATERIEL") === 0){ mode = "materiel"; skipHeader = true; return; }
+    if (first.indexOf("LOGICIELS") === 0){ mode = "logiciels"; skipHeader = true; return; }
+    if (!mode) return;
+    if (skipHeader){ skipHeader = false; return; }
+    const cells = splitCSVLine(raw);
+    if (!cells.some(c => c !== "")) return;
+    const keys = mode === "materiel" ? MK : LK;
+    const row = {};
+    keys.forEach((k, i) => { if (cells[i] !== undefined && cells[i] !== "") row[k] = cells[i]; });
+    if (Object.keys(row).length) res[mode].push(row);
+  });
+  if (!res.materiel.length && !res.logiciels.length) return null;
+  return res;
+}
+
+function resetAll(){
+  if (!confirm("Confirmez-vous l'effacement complet du relevé ? Un export préalable est recommandé.")) return;
+  state = { meta:{}, materiel:[], logiciels:[] };
+  applyMeta();
+  document.querySelectorAll("[data-meta]").forEach(el => el.value = "");
+  reinitSelection("materiel"); reinitSelection("logiciels");
+  renderTable("materiel"); renderTable("logiciels");
+  aExporter = false; majRappelExport();
+  renderSynthese(); persist();
+}
+
+/* =====================================================================
+   Démarrage
+   ===================================================================== */
+(async function init(){
+  bindMeta();
+  await detectBackend();
+  const loaded = await loadState();
+  if (loaded) state = { meta:loaded.meta || {}, materiel:loaded.materiel || [], logiciels:loaded.logiciels || [] };
+  if (!state.meta.dat) state.meta.dat = new Date().toISOString().slice(0,10);
+  applyMeta();
+  renderTable("materiel"); renderTable("logiciels"); renderSynthese();
+  aExporter = (backend === "memoire" && contientDesDonnees());
+  majRappelExport();
+  setStatus(backend === "memoire"
+    ? "⚠ session seulement — export requis"
+    : "enregistrement automatique actif");
+})();
+</script>
+</body>
+</html>
