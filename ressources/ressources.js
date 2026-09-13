@@ -38,12 +38,7 @@ const RESSOURCES = {
         { nom: "Le jeu complet à imprimer",
           type: "Jeu de cartes",
           fichier: "cartes-narratives-jeu-complet.pdf",
-          description: "38 cartes au format 63 × 88 mm, cinq dos différents, traits de coupe. Dix planches A4 à imprimer en recto-verso avec retournement sur le bord long, sur un papier de 250 à 300 g. Un jeu couvre quatre groupes." },
-
-        { nom: "Planche de complément",
-          type: "Jeu de cartes",
-          fichier: "cartes-narratives-complement.pdf",
-          description: "Les cinq temps du récit et les quatre points de vue, les deux paquets les moins fournis. À imprimer autant de fois que nécessaire : deux exemplaires suffisent pour neuf groupes." }
+          description: "38 cartes au format 63 × 88 mm, cinq dos différents, traits de coupe. Dix planches A4 à imprimer en recto-verso avec retournement sur le bord long, sur un papier de 250 à 300 g. Un jeu couvre quatre groupes." }
       ]
     },
     {
