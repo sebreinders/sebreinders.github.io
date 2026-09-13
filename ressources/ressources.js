@@ -24,6 +24,34 @@ const RESSOURCES = {
      --------------------------------------------------------- */
   activites: [
     {
+      titre: "Scénario multimédia — Séance 1",
+      date: "Année académique 2026-2027",
+      lieu: "IPSMA, bachelier en communication",
+      dossier: "IPSMA/S1",
+      resume: "Le pacte passé avec le lecteur, les cinq leviers du récit et le schéma quinaire. Les ressources de l'atelier d'écriture : un jeu de cartes narratif, en ligne et à imprimer.",
+      fichiers: [
+        { nom: "Le récit tiré aux cartes",
+          type: "Outil",
+          fichier: "",
+          description: "Le tirage en ligne : une carte dans chacun des cinq paquets, puis un carnet pour rédiger les cinq étapes du récit, désigner le levier confié au lecteur et formuler le pacte. Tout reste dans le navigateur, rien n'est envoyé." },
+
+        { nom: "Le jeu complet à imprimer",
+          type: "Jeu de cartes",
+          fichier: "cartes-narratives-jeu-complet.pdf",
+          description: "38 cartes au format 63 × 88 mm, cinq dos différents, traits de coupe. Dix planches A4 à imprimer en recto-verso avec retournement sur le bord long, sur un papier de 250 à 300 g. Un jeu couvre quatre groupes." },
+
+        { nom: "Planche de complément",
+          type: "Jeu de cartes",
+          fichier: "cartes-narratives-complement.pdf",
+          description: "Les cinq temps du récit et les quatre points de vue, les deux paquets les moins fournis. À imprimer autant de fois que nécessaire : deux exemplaires suffisent pour neuf groupes." },
+
+        { nom: "Les cartes en images",
+          type: "Images",
+          fichier: "cartes-narratives-images.zip",
+          description: "Chaque carte en PNG à 300 dpi, plus les cinq dos. Pour projeter une carte, l'insérer dans un support ou fabriquer son propre tirage." }
+      ]
+    },
+    {
       titre: "Université d'été du SeGEC",
       date: "19 août 2026",
       lieu: "Aula Magna, Louvain-la-Neuve",
