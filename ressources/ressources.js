@@ -43,12 +43,7 @@ const RESSOURCES = {
         { nom: "Planche de complément",
           type: "Jeu de cartes",
           fichier: "cartes-narratives-complement.pdf",
-          description: "Les cinq temps du récit et les quatre points de vue, les deux paquets les moins fournis. À imprimer autant de fois que nécessaire : deux exemplaires suffisent pour neuf groupes." },
-
-        { nom: "Les cartes en images",
-          type: "Images",
-          fichier: "cartes-narratives-images.zip",
-          description: "Chaque carte en PNG à 300 dpi, plus les cinq dos. Pour projeter une carte, l'insérer dans un support ou fabriquer son propre tirage." }
+          description: "Les cinq temps du récit et les quatre points de vue, les deux paquets les moins fournis. À imprimer autant de fois que nécessaire : deux exemplaires suffisent pour neuf groupes." }
       ]
     },
     {
