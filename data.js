@@ -124,11 +124,11 @@ const SITE = {
       detail: "Intervention annuelle dans le cours « Introduction aux Usages du Numérique en Éducation » de Jean-François Céci, en binôme sur le volet Pix. Une heure : ce que l'État peut et ne peut pas faire pour outiller une école.",
       contexteLabel: "Date", contexte: "23 septembre 2026" },
 
-    { annee: 2026, verbe: "parlé", date: "2026-09-14",
+    { annee: 2026, verbe: "parlé", date: "2026-10-12",
       titre: "L'IA au travail : comprendre avant de décider",
       meta: "Conférence · Trivières · 20 pers.",
       detail: "Sensibilisation de l'équipe du Centre Régional d'Intégration Centre & Wallonie picarde. Objectif assumé : construire une culture commune de l'IA avant d'écrire une charte d'usage, pas l'inverse.",
-      contexteLabel: "Date", contexte: "14 septembre 2026" },
+      contexteLabel: "Date", contexte: "Lundi 12 octobre 2026" },
 
     { annee: 2026, verbe: "parlé", date: "2026-08-19",
       titre: "Du plan d'équipement au pilotage pédagogique",
