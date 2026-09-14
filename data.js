@@ -37,7 +37,7 @@ const SITE = {
     // Colonne de droite : ce que le site est.
     pitch: "Tout ce que j'ai dit, écrit et fait publiquement autour du numérique en éducation.",
 
-    misAJour: "Août 2026",
+    misAJour: "Septembre 2026",
 
     // Portrait, repris sur le CV et sur la page bio.
     photo: "fichiers/portrait.webp"
@@ -1031,6 +1031,20 @@ const SITE = {
       meta: "Université d'été · Ax-les-Thermes",
       detail: "Université d'été du numérique éducatif, à Ax-les-Thermes (Ariège). Thème de l'édition : « Interactivité et interactions ».",
       contexteLabel: "Dates", contexte: "Août 2010" },
+
+    { annee: 2026, verbe: "écrit", date: "2026-09-09",
+      titre: "L'école qui devait fermer",
+      meta: "Article · Medium",
+      detail: "À Barlin, une maternelle promise à la fermeture s'installe dans une maison de repos. Trois ans plus tard, enfants et résidents y ont gagné : ce que les échanges entre générations apportent aux apprentissages.",
+      contexteLabel: "Publié", contexte: "9 septembre 2026",
+      lien: "https://medium.com/@sebastienreinders/l%C3%A9cole-qui-devait-fermer-ec1a557cb9e3", lienLabel: "Lire l'article" },
+
+    { annee: 2026, verbe: "écrit", date: "2026-09-01",
+      titre: "L'Europe consulte sur son école de 2040. Qui répondra ?",
+      meta: "Article · Medium",
+      detail: "La Commission européenne prépare pour novembre un « Paquet Éducation » structurant pour la décennie, et sa consultation publique passe presque inaperçue en francophonie. Ce qui se joue, et pourquoi y répondre.",
+      contexteLabel: "Publié", contexte: "1er septembre 2026",
+      lien: "https://medium.com/@sebastienreinders/leurope-consulte-sur-son-%C3%A9cole-de-2040-qui-r%C3%A9pondra-d69f3f9c8002", lienLabel: "Lire l'article" },
 
   ],
 
