@@ -51,14 +51,21 @@ button.primary{background:var(--btn);color:var(--btn-ink);border-color:transpare
 .ctrl button{padding:6px 12px;font-size:13px;flex:1}
 .ctrl button.on{background:var(--focus);border-color:transparent;color:#fff}
 .meta{margin:14px 0 0;color:var(--muted);font-size:14px}
+.codebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px;padding:12px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--panel)}
+.codebar .lab{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.codebar code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:17px;font-weight:700;letter-spacing:.06em;color:var(--ink);background:var(--bg);padding:5px 12px;border-radius:7px;border:1.5px solid var(--line)}
+.codebar .sep{flex:1;min-width:0}
+.codebar input{font:inherit;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;width:11em;padding:7px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);text-transform:uppercase}
+.codebar button{padding:7px 14px;font-size:13px}
+@media (max-width:620px){.codebar .sep{display:none}.codebar{gap:8px}}
 section.book{margin-top:44px;background:var(--panel);border:1.5px solid var(--line);border-radius:18px;padding:26px clamp(18px,3vw,34px)}
 .book h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:22px;margin:0 0 4px;text-wrap:balance}
 .book p.lead{margin:0 0 20px;color:var(--muted);max-width:65ch}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.steps{display:grid;grid-template-columns:1fr;gap:18px}
 .step label,.q label{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .step small,.q small{display:block;font-size:13px;color:var(--muted);margin:-2px 0 8px;font-style:italic}
-textarea{width:100%;min-height:104px;resize:vertical;font:inherit;font-size:15px;line-height:1.45;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
-.qs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:22px;padding-top:22px;border-top:1.5px solid var(--line)}
+textarea{width:100%;min-height:96px;resize:vertical;font:inherit;font-size:15px;line-height:1.45;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.qs{display:grid;grid-template-columns:1fr;gap:18px;margin-top:22px;padding-top:22px;border-top:1.5px solid var(--line)}
 .q .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .q .row button{padding:6px 12px;font-size:13px}
 .q .row button.on{background:var(--btn);color:var(--btn-ink);border-color:transparent}
@@ -81,10 +88,15 @@ footer{margin-top:34px;color:var(--muted);font-size:13px;display:flex;flex-wrap:
 <a class="retour" href="../../">← Les ressources</a>
 <header>
   <div><h1>Le récit tiré aux cartes</h1><p class="sub">Cinq cartes, cinq contraintes. Gardez celles qui vous inspirent, retirez les autres, puis rédigez le schéma quinaire dans le carnet en dessous.</p></div>
-  <div class="actions"><button class="primary" id="draw">Tirer cinq cartes</button><button id="reset" title="Vide le carnet et libère toutes les cartes">Tout effacer</button><span class="kbd">Espace : nouveau tirage</span></div>
+  <div class="actions"><button class="primary" id="draw">Tirer cinq cartes</button><button id="keepAll">Tout garder</button><button id="reset" title="Vide le carnet et libère toutes les cartes">Tout effacer</button><span class="kbd">Espace : nouveau tirage</span></div>
 </header>
 <div class="deck" id="deck"></div>
 <p class="meta" id="meta"></p>
+<div class="codebar">
+  <span class="lab">Code du tirage</span><code id="code">—</code><button id="copyCode">Copier</button>
+  <span class="sep"></span>
+  <span class="lab">Reprendre un code</span><input id="codeIn" maxlength="19" placeholder="P03C04L05T05V02" aria-label="Code de tirage à reprendre"><button id="loadCode">Ouvrir</button>
+</div>
 <section class="book" aria-labelledby="bk">
   <h2 id="bk">Le carnet</h2>
   <p class="lead">Trois à cinq lignes par étape, au présent, dans le point de vue tiré. Ce que vous écrivez reste dans ce navigateur jusqu'à ce que vous l'effaciez.</p>
@@ -101,7 +113,7 @@ footer{margin-top:34px;color:var(--muted);font-size:13px;display:flex;flex-wrap:
     <div class="q"><label for="p1">Le pacte, en trois lignes</label><small>Ce que le lecteur pourra changer. Ce qu'il ne pourra pas changer. Ce qu'on attend de lui.</small>
       <textarea id="p1" style="min-height:70px" placeholder="Vous pourrez…" aria-label="Le pacte"></textarea></div>
   </div>
-  <div class="bar"><button class="primary" id="copyAll">Copier le tirage et le carnet</button><button id="copyDraw">Copier le tirage seul</button><span class="toast" id="toast" role="status"></span></div>
+  <div class="bar"><button class="primary" id="copyAll">Copier le tirage et le carnet</button><button id="save">Enregistrer sur mon ordinateur</button><button id="openFile">Ouvrir un fichier</button><input type="file" id="fileIn" accept=".txt,text/plain" hidden><span class="toast" id="toast" role="status"></span></div>
 </section>
 <section class="dl" aria-labelledby="dl">
   <h2 id="dl">Les cartes à imprimer</h2>
@@ -110,7 +122,6 @@ footer{margin-top:34px;color:var(--muted);font-size:13px;display:flex;flex-wrap:
     <a class="file" href="cartes-narratives-jeu-complet.pdf" download><span class="ft">PDF</span><span><b>Le jeu complet</b><span>Les 38 cartes et les cinq dos, sur dix planches A4 recto-verso.</span></span></a>
   </div>
 </section>
-
 <footer><span>Scénario multimédia · IPSMA</span><span>Icônes : game-icons.net (CC BY 3.0)</span><span><a href="../../" style="color:inherit">Sébastien Reinders — ressources</a></span></footer>
 </div>
 <script>
@@ -118,6 +129,7 @@ const D = {"FAM":{"P":{"name":"Personnages","dark":"4A2F8F","mid":"6B4BC4","ligh
 const ORDER = ['P','C','L','T','V'];
 const LEVERS = ['Personnage','Conflit','Lieu','Temps','Point de vue'];
 const byFam = {}; for (const c of D.cards) (byFam[c.fam] ||= []).push(c);
+const byNum = {}; for (const c of D.cards) byNum[c.num] = c;
 const $ = s => document.querySelector(s);
 const store = { get(){ try { return JSON.parse(localStorage.getItem('rtc-v1')||'{}'); } catch(e){ return {}; } }, set(v){ try { localStorage.setItem('rtc-v1', JSON.stringify(v)); } catch(e){} } };
 let state = Object.assign({ draw:{}, locked:{}, text:{}, lever:null }, store.get());
@@ -135,6 +147,10 @@ function render(){
   const n = ORDER.reduce((a,f)=>a*byFam[f].length,1);
   $('#meta').textContent = Object.keys(state.draw).length ? 'Tirage : ' + ORDER.map(f=>state.draw[f]?state.draw[f].num:'—').join(' · ') + '  ·  ' + n.toLocaleString('fr-BE') + ' combinaisons possibles.' : '';
   $('#levers').innerHTML = LEVERS.map(l => '<button class="lv'+(state.lever===l?' on':'')+'" data-l="'+l+'" aria-pressed="'+(state.lever===l)+'">'+l+'</button>').join('');
+  const cd = code();
+  $('#code').textContent = cd || '—';
+  $('#keepAll').textContent = ORDER.every(f => state.locked[f]) ? 'Tout libérer' : 'Tout garder';
+  if (cd) { try { history.replaceState(null, '', '#' + cd); } catch(e) {} }
   ['s1','s2','s3','s4','s5','why','p1'].forEach(id => { const el = document.getElementById(id); if (el.value !== (state.text[id]||'')) el.value = state.text[id]||''; });
 }
 function flipTo(fam, c, delay){ const el = document.getElementById('flip-'+fam); if (!el) { state.draw[fam]=c; return; }
@@ -146,6 +162,42 @@ function drawAll(){ let k=0; ORDER.forEach(fam => { if (state.locked[fam] && sta
 function toast(m){ const t=$('#toast'); t.textContent=m; clearTimeout(t._t); t._t=setTimeout(()=>t.textContent='',3200); }
 function text(){ const g = id => (state.text[id]||'').trim(); const d = ORDER.map(f => state.draw[f] ? D.FAM[f].name + ' : ' + state.draw[f].title + ' (' + state.draw[f].num + ')' : D.FAM[f].name + ' : —');
   return { draw: 'TIRAGE\n' + d.join('\n'), all: 'TIRAGE\n' + d.join('\n') + '\n\nSCHÉMA QUINAIRE\n1. Situation initiale\n' + g('s1') + '\n\n2. Complication\n' + g('s2') + '\n\n3. Actions\n' + g('s3') + '\n\n4. Résolution\n' + g('s4') + '\n\n5. Situation finale\n' + g('s5') + '\n\nLEVIER CONFIÉ AU LECTEUR\n' + (state.lever||'—') + '\n' + g('why') + '\n\nPACTE\n' + g('p1') }; }
+function code(){ return ORDER.every(f=>state.draw[f]) ? ORDER.map(f=>state.draw[f].num).join('') : ''; }
+function applyCode(s){
+  const m = String(s||'').toUpperCase().match(/[PCLTV]\d{2}/g);
+  if (!m || m.length !== 5) return false;
+  const nd = {};
+  for (const n of m) { const c = byNum[n]; if (!c) return false; nd[c.fam] = c; }
+  if (ORDER.some(f => !nd[f])) return false;
+  state.draw = nd; state.locked = {}; store.set(state); render(); return true;
+}
+function saveFile(){
+  const cd = code();
+  let payload = '';
+  try { payload = btoa(unescape(encodeURIComponent(JSON.stringify({ draw: cd, text: state.text, lever: state.lever })))); } catch(e) {}
+  const body = text().all + '\n\n\n-- Ligne technique : elle permet de rouvrir ce carnet dans la page. Ne la modifiez pas. --\nRTC1:' + payload + '\n';
+  try {
+    const url = URL.createObjectURL(new Blob([body], { type: 'text/plain;charset=utf-8' }));
+    const a = document.createElement('a'); a.href = url; a.download = 'carnet-' + (cd || 'tirage') + '.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    toast('Carnet enregistré : cherchez le fichier dans vos téléchargements.');
+  } catch(e) { toast("Enregistrement impossible depuis cette page : utilisez le bouton Copier."); }
+}
+function openTxt(file){
+  const r = new FileReader();
+  r.onload = () => {
+    const m = String(r.result).match(/RTC1:([A-Za-z0-9+/=]+)/);
+    if (!m) { toast("Ce fichier ne contient pas de carnet enregistré par cette page."); return; }
+    let o = null;
+    try { o = JSON.parse(decodeURIComponent(escape(atob(m[1])))); } catch(e) { toast('Fichier illisible.'); return; }
+    state.text = o.text || {}; state.lever = o.lever || null;
+    if (!applyCode(o.draw)) { store.set(state); render(); }
+    toast('Carnet rouvert.');
+  };
+  r.onerror = () => toast('Lecture du fichier impossible.');
+  r.readAsText(file);
+}
 async function copy(s, label){ try { await navigator.clipboard.writeText(s); toast(label + ' copié. Collez-le dans votre fiche.'); } catch(e) { const ta=document.createElement('textarea'); ta.value=s; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); toast(label+' copié.');}catch(_){toast('Impossible de copier automatiquement : sélectionnez le texte à la main.');} ta.remove(); } }
 document.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
   if (b.id==='draw') drawAll();
@@ -153,12 +205,21 @@ document.addEventListener('click', e => { const b = e.target.closest('button'); 
   else if (b.classList.contains('lock')) { const f=b.dataset.fam; state.locked[f]=!state.locked[f]; store.set(state); render(); }
   else if (b.classList.contains('one')) { const f=b.dataset.fam; state.locked[f]=false; flipTo(f, pick(f, state.draw[f]&&state.draw[f].num), 0); }
   else if (b.classList.contains('lv')) { state.lever = state.lever===b.dataset.l ? null : b.dataset.l; store.set(state); render(); }
+  else if (b.id==='keepAll') { const all = ORDER.every(f => state.locked[f]); ORDER.forEach(f => { state.locked[f] = !all; }); store.set(state); render(); toast(all ? 'Cartes libérées : le prochain tirage les remplacera toutes.' : 'Cartes gardées : le prochain tirage ne les changera pas.'); }
+  else if (b.id==='copyCode') { const cd = code(); if (cd) copy(cd, 'Le code du tirage'); else toast('Tirez d’abord cinq cartes.'); }
+  else if (b.id==='loadCode') { const v = $('#codeIn').value; if (applyCode(v)) { $('#codeIn').value=''; toast('Tirage retrouvé.'); } else toast('Code invalide : il faut cinq cartes, par exemple P03C04L05T05V02.'); }
+  else if (b.id==='save') saveFile();
+  else if (b.id==='openFile') $('#fileIn').click();
   else if (b.id==='copyAll') copy(text().all, 'Le tirage et le carnet');
   else if (b.id==='copyDraw') copy(text().draw, 'Le tirage');
 });
+document.addEventListener('change', e => { if (e.target.id === 'fileIn' && e.target.files && e.target.files[0]) { openTxt(e.target.files[0]); e.target.value = ''; } });
+document.addEventListener('keydown', e => { if (e.target.id === 'codeIn' && e.key === 'Enter') { e.preventDefault(); if (applyCode(e.target.value)) { e.target.value=''; toast('Tirage retrouvé.'); } else toast('Code invalide.'); } });
 document.addEventListener('input', e => { if (e.target.tagName==='TEXTAREA') { state.text[e.target.id]=e.target.value; store.set(state); } });
 document.addEventListener('keydown', e => { if (e.code==='Space' && !['TEXTAREA','INPUT','BUTTON'].includes(document.activeElement.tagName)) { e.preventDefault(); drawAll(); } });
 render();
+const h0 = (location.hash || '').replace('#', '');
+if (h0) applyCode(h0);
 if (!Object.keys(state.draw).length) { ORDER.forEach(f => state.draw[f] = pick(f)); store.set(state); render(); }
 </script>
 </body></html>
