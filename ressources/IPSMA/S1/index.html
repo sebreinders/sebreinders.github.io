@@ -51,7 +51,7 @@ button.primary{background:var(--btn);color:var(--btn-ink);border-color:transpare
 .ctrl button{padding:6px 12px;font-size:13px;flex:1}
 .ctrl button.on{background:var(--focus);border-color:transparent;color:#fff}
 .meta{margin:14px 0 0;color:var(--muted);font-size:14px}
-.codebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px;padding:12px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--panel)}
+.codebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:22px;padding:12px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--panel)}
 .codebar .lab{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .codebar code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:17px;font-weight:700;letter-spacing:.06em;color:var(--ink);background:var(--bg);padding:5px 12px;border-radius:7px;border:1.5px solid var(--line)}
 .codebar .sep{flex:1;min-width:0}
@@ -92,11 +92,6 @@ footer{margin-top:34px;color:var(--muted);font-size:13px;display:flex;flex-wrap:
 </header>
 <div class="deck" id="deck"></div>
 <p class="meta" id="meta"></p>
-<div class="codebar">
-  <span class="lab">Code du tirage</span><code id="code">—</code><button id="copyCode">Copier</button>
-  <span class="sep"></span>
-  <span class="lab">Reprendre un code</span><input id="codeIn" maxlength="19" placeholder="P03C04L05T05V02" aria-label="Code de tirage à reprendre"><button id="loadCode">Ouvrir</button>
-</div>
 <section class="book" aria-labelledby="bk">
   <h2 id="bk">Le carnet</h2>
   <p class="lead">Trois à cinq lignes par étape, au présent, dans le point de vue tiré. Ce que vous écrivez reste dans ce navigateur jusqu'à ce que vous l'effaciez.</p>
@@ -115,6 +110,11 @@ footer{margin-top:34px;color:var(--muted);font-size:13px;display:flex;flex-wrap:
   </div>
   <div class="bar"><button class="primary" id="copyAll">Copier le tirage et le carnet</button><button id="save">Enregistrer sur mon ordinateur</button><button id="openFile">Ouvrir un fichier</button><input type="file" id="fileIn" accept=".txt,text/plain" hidden><span class="toast" id="toast" role="status"></span></div>
 </section>
+<div class="codebar">
+  <span class="lab">Code du tirage</span><code id="code">—</code><button id="copyCode">Copier</button>
+  <span class="sep"></span>
+  <span class="lab">Reprendre un code</span><input id="codeIn" maxlength="19" placeholder="P03C04L05T05V02" aria-label="Code de tirage à reprendre"><button id="loadCode">Ouvrir</button>
+</div>
 <section class="dl" aria-labelledby="dl">
   <h2 id="dl">Les cartes à imprimer</h2>
   <p class="lead">Le même jeu au format physique : 38 cartes en 63 × 88 mm, cinq dos différents, traits de coupe. À imprimer en recto-verso avec retournement sur le bord long, sur un papier de 250 à 300 g.</p>
