@@ -1,0 +1,93 @@
+{
+  "_aide": "Module provisoire écrit par les enseignants pour que le jeu complet se teste. Le groupe le remplace entièrement par son propre fichier.",
+  "id": "ensor",
+  "nom": "La salle des masques",
+  "artiste": "James Ensor",
+  "dates": "1860–1949",
+  "couleur": "#8A3E3E",
+  "symbole": "Le masque",
+  "lettre": "E",
+  "entree": "L'aile d'Ensor se descelle. Une foule de masques en carton vous regarde, et l'un d'eux, au fond, a un visage.",
+  "invite": {
+    "nom": "James Ensor",
+    "presentation": "Peintre ostendais, né et mort à Ostende. Cette nuit-là, il tient la boutique de souvenirs de sa mère, pleine de masques de carnaval, et il compte les visiteurs qui n'osent pas en essayer un.",
+    "sait": "À compléter par le groupe.",
+    "ignore": "Tout ce qui est postérieur à sa mort.",
+    "refuse": "La solution des énigmes de sa salle.",
+    "voix": "Il tutoie, moqueur, rapide. Il rit de ce qui fait peur.",
+    "defaut": [
+      "Ensor éclate de rire. « Redis ça avec un masque, on verra si c'est plus clair. »",
+      "« Je n'ai pas entendu. La foule fait du bruit, même en carton. »",
+      "« Tu poses des questions comme un critique. Pose-les comme un carnaval. »",
+      "Il hausse les épaules. « Demande au squelette, là. Il a plus de patience que moi. »",
+      "« Quoi ? Ostende m'a rendu sourd d'une oreille, le vent. Répète. »"
+    ],
+    "reponses": [
+      {
+        "mots": [
+          "qui",
+          "êtes-vous",
+          "nom",
+          "présentez"
+        ],
+        "reponse": "« James Ensor, Ostende, 1860. Peintre, graveur, et vendeur de coquillages par héritage. On m'a fait baron sur le tard ; les masques ont bien ri. »"
+      },
+      {
+        "mots": [
+          "masque",
+          "masques",
+          "cache",
+          "cacher",
+          "visage"
+        ],
+        "reponse": "« Un masque ne cache rien. Il montre ce que le visage n'osait pas. Regarde la foule : le seul qui a l'air faux, c'est celui qui n'en porte pas. »"
+      },
+      {
+        "mots": [
+          "mort",
+          "décès",
+          "fin"
+        ],
+        "reponse": "« 1949, à Ostende, évidemment. Où voulais-tu que je meure ? »"
+      },
+      {
+        "mots": [
+          "indice",
+          "aide",
+          "bloqué",
+          "comment",
+          "commencer",
+          "solution",
+          "réponse",
+          "code"
+        ],
+        "reponse": "« Je ne donne rien. Mais je te dis ceci : dans une foule de masques, cherche celui qui ne rit pas. »"
+      }
+    ]
+  },
+  "verrous": [
+    {
+      "id": "v1",
+      "libelle": "Le visage. Parmi les douze masques des cartes, un seul cache un visage qui ne rit pas. Tapez son numéro.",
+      "reponse": "9",
+      "variantes": [
+        "neuf",
+        "carte 9",
+        "09"
+      ],
+      "juste": "Le masque tombe. Ensor : « Voilà. C'est moi, évidemment. Prends le masque, il te va mieux qu'à lui. »",
+      "faux": "La foule rit un peu plus fort.",
+      "indices": [
+        "Ensor : « Regarde les bouches, pas les yeux. Les yeux mentent, c'est leur métier. »",
+        "Ensor : « Onze rient. Compte les dents. Celui qui n'en montre pas est celui que tu cherches. »",
+        "Le masque de la carte 9 a la bouche fermée. La réponse est 9."
+      ]
+    }
+  ],
+  "symbole_remis": "Le module rend son symbole : un masque doré, à poser dans l'encoche rouge du vestibule.",
+  "remise_en_etat": [
+    "Remettre les cartes dans l'ordre.",
+    "Reprendre le symbole.",
+    "Refermer le module."
+  ]
+}

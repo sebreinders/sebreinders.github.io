@@ -1,0 +1,95 @@
+{
+  "_aide": "Module provisoire écrit par les enseignants pour que le jeu complet se teste. Le groupe le remplace entièrement par son propre fichier.",
+  "id": "magritte",
+  "nom": "La chambre sans noms",
+  "artiste": "René Magritte",
+  "dates": "1898–1967",
+  "couleur": "#5A5A7A",
+  "symbole": "Le mot",
+  "lettre": "Ê",
+  "entree": "L'aile de Magritte se descelle. Une chambre ordinaire, avec des cartes qui montrent des objets et des cartels qui les nomment. Aucun cartel n'est sous le bon objet. Un homme au chapeau vous demande si vous avez vu son nom.",
+  "invite": {
+    "nom": "René Magritte",
+    "presentation": "Peintre, né à Lessines, mort à Bruxelles. Cette nuit-là, il cherche le cartel de son propre portrait, qu'on a mal accroché, et il refuse de dire ce que montre chaque tableau.",
+    "sait": "À compléter par le groupe.",
+    "ignore": "Tout ce qui est postérieur à sa mort.",
+    "refuse": "La solution des énigmes de sa salle.",
+    "voix": "Il vouvoie, calme, précis, presque bureaucratique. Il répond souvent par une question.",
+    "defaut": [
+      "Magritte ajuste son chapeau. « Ceci n'est pas une question. Ou bien si ? »",
+      "« Je ne comprends pas, et c'est peut-être le début d'une bonne image. »",
+      "« Vous confondez le mot et la chose. C'est un métier, je vous l'accorde. »",
+      "Il regarde par la fenêtre peinte. « Reformulez. Les mots ne sont pas les seuls à mal tomber ici. »",
+      "« Pardon ? J'étais en train de ne pas penser à une pipe. »"
+    ],
+    "reponses": [
+      {
+        "mots": [
+          "qui",
+          "êtes-vous",
+          "nom",
+          "présentez"
+        ],
+        "reponse": "« René Magritte. Lessines, 1898. Peintre, d'un genre que les mots ont du mal à suivre. J'ai vécu à Bruxelles, dans une maison ordinaire, et j'ai peint des choses qui ne le sont pas. »"
+      },
+      {
+        "mots": [
+          "pipe",
+          "ceci",
+          "n'est pas",
+          "trahison",
+          "image",
+          "images"
+        ],
+        "reponse": "« Ceci n'est pas une pipe : on ne peut pas la bourrer. C'est une image, et l'image n'est pas la chose, et le mot n'est ni l'une ni l'autre. Vous voyez la difficulté de cette chambre. »"
+      },
+      {
+        "mots": [
+          "chapeau",
+          "melon",
+          "costume",
+          "pomme",
+          "bourgeois"
+        ],
+        "reponse": "« Le chapeau ? C'est celui que portent tous les hommes qu'on ne remarque pas. Je l'ai peint pour qu'on remarque qu'on ne les remarquait pas. »"
+      },
+      {
+        "mots": [
+          "indice",
+          "aide",
+          "bloqué",
+          "comment",
+          "commencer",
+          "solution",
+          "réponse",
+          "code"
+        ],
+        "reponse": "« Vous voudriez que je vous dise ce que montre chaque carte. Mais je ne dis jamais ce que montrent mes tableaux. Je vous dirai seulement que le cartel qui semble le plus faux est le seul qui dise vrai. »"
+      }
+    ]
+  },
+  "verrous": [
+    {
+      "id": "v1",
+      "libelle": "Le cartel juste. Un seul cartel, dans la chambre, désigne exactement ce que montre sa carte. Tapez le mot qu'il porte.",
+      "reponse": "miroir",
+      "variantes": [
+        "le miroir",
+        "un miroir"
+      ],
+      "juste": "Le mot tient. Magritte : « Un miroir montre ce qu'on y met. C'est le seul objet honnête de cette pièce. Prenez le mot, il ne montre rien d'autre. »",
+      "faux": "Le cartel glisse encore d'un objet à l'autre.",
+      "indices": [
+        "Magritte : « Cherchez la carte qui vous montre vous. Elle ne peut pas mentir sur son nom. »",
+        "Magritte : « Six lettres. Un objet dans lequel le visiteur est la seule image. »",
+        "La carte 5 est un miroir, et son cartel dit « miroir ». La réponse est miroir."
+      ]
+    }
+  ],
+  "symbole_remis": "Le module rend son symbole : un mot en lettres dorées, à poser dans l'encoche grise du vestibule.",
+  "remise_en_etat": [
+    "Remettre les cartes dans l'ordre.",
+    "Reprendre le symbole.",
+    "Refermer le module."
+  ]
+}

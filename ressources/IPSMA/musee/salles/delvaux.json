@@ -1,0 +1,302 @@
+{
+  "_aide": "Module d'exemple, écrit par les enseignants pour montrer le format. Les groupes remplacent tout. Les faits sur Delvaux sont à vérifier au cours d'histoire de l'art.",
+  "id": "delvaux",
+  "nom": "La gare des heures perdues",
+  "artiste": "Paul Delvaux",
+  "dates": "1897–1994",
+  "couleur": "#3E5C8A",
+  "symbole": "L'horloge arrêtée",
+  "lettre": "R",
+  "entree": "Vous posez la main sur l'aile de Delvaux. Le module se descelle. À l'intérieur : une gare de nuit, des quais vides, des horloges qui ne disent pas la même heure. Un homme en costume sombre attend sur un banc. Il ne vous regarde pas ; il regarde les trains qui ne partent pas.",
+  "invite": {
+    "nom": "Paul Delvaux",
+    "presentation": "Peintre belge, né à Antheit en 1897, mort à Furnes en 1994. Cette nuit-là, il attend un train dans la gare qu'il a peinte toute sa vie : quais déserts, éclairage électrique, femmes immobiles qui ne se regardent pas, horloges arrêtées. Il cherche l'heure exacte à laquelle son enfance s'est arrêtée.",
+    "sait": "Sa vie ; les gares de Bruxelles et les petites gares de campagne ; les trains ; De Chirico, qu'il a découvert en 1934 et qui l'a bouleversé ; Magritte, qu'il connaît mais qu'il n'imite pas ; les squelettes du Musée d'histoire naturelle ; les foires de Bruxelles, la Vénus endormie de la baraque Spitzner ; Furnes, où il a fini sa vie.",
+    "ignore": "Tout ce qui est postérieur à 1994. Il ne connaît pas internet, ni les téléphones que les visiteurs tiennent en main.",
+    "refuse": "Il refuse de dire l'heure qu'indiquent ses horloges : « Si je la disais, elle repartirait. »",
+    "voix": "Il vouvoie. Lent, courtois, un peu absent. Il parle des trains comme d'autres parlent des gens. Quand il ne comprend pas, il regarde l'horloge.",
+    "defaut": [
+      "Delvaux regarde l'horloge, longuement, puis vous : « Pardonnez-moi. Je croyais avoir entendu un train. »",
+      "« Vous me posez là une question que je n'ai jamais peinte. Reformulez, si vous voulez bien. »",
+      "Il incline la tête. « Dans mes gares, personne ne parle. J'ai un peu perdu l'habitude. »",
+      "« Je ne sais pas. Ce n'est pas une réponse, je sais. C'est ce que disent mes tableaux. »",
+      "Il se lève, va jusqu'au quai, revient. « Vous disiez ? »"
+    ],
+    "reponses": [
+      {
+        "mots": [
+          "qui",
+          "êtes-vous",
+          "nom",
+          "présentez"
+        ],
+        "reponse": "« Paul Delvaux. Peintre. Né à Antheit, sur la Meuse, en 1897. J'ai passé ma vie à peindre des gares où les trains ne partent jamais, et des femmes qui ne se regardent pas. On m'a dit surréaliste. Je n'ai jamais bien su. »"
+      },
+      {
+        "mots": [
+          "né",
+          "naissance",
+          "enfance",
+          "enfant",
+          "petit"
+        ],
+        "reponse": "« À Antheit, un village près de Huy. Mon père était avocat à Bruxelles ; nous y avons vécu. Enfant, je dessinais des gares et des trains sur les murs de ma chambre. Ma mère n'aimait pas cela. Elle n'aimait pas grand-chose de ce que j'aimais. »"
+      },
+      {
+        "mots": [
+          "mort",
+          "décès",
+          "décédé",
+          "fin",
+          "vieux"
+        ],
+        "reponse": "Il sourit à peine. « Je suis mort à Furnes, en 1994. Quatre-vingt-seize ans. Beaucoup trop longtemps pour un homme qui a toujours peint la même nuit. »"
+      },
+      {
+        "mots": [
+          "gare",
+          "gares",
+          "train",
+          "trains",
+          "quai",
+          "rail"
+        ],
+        "reponse": "« La gare, c'est le lieu de l'attente. On y est déjà parti et pas encore arrivé. Enfant, je regardais les locomotives à la gare du Luxembourg. Je ne les ai jamais peintes en marche. Un train en marche, c'est du bruit. Un train arrêté, c'est du temps. »"
+      },
+      {
+        "mots": [
+          "horloge",
+          "heure",
+          "montre",
+          "temps",
+          "aiguille",
+          "aiguilles"
+        ],
+        "reponse": "Il détourne les yeux. « Toutes mes horloges indiquent une heure que je ne dirai pas. Si je la disais, elle repartirait. Regardez plutôt celles de cette gare : elles ne sont pas d'accord entre elles, et l'une d'elles a raison. »"
+      },
+      {
+        "mots": [
+          "femme",
+          "femmes",
+          "nue",
+          "nues",
+          "regard",
+          "regardent"
+        ],
+        "reponse": "« Elles ne se regardent pas, vous avez remarqué. Elles sont là, immobiles, comme des statues qui auraient décidé d'attendre. On m'a beaucoup reproché ces femmes. Je crois qu'elles ne sont pas des femmes. Elles sont l'attente elle-même. »"
+      },
+      {
+        "mots": [
+          "squelette",
+          "squelettes",
+          "os",
+          "mort",
+          "crucifixion"
+        ],
+        "reponse": "« Le Musée d'histoire naturelle, à Bruxelles. J'y allais voir les squelettes comme on va voir des amis. Ils ont une élégance que les vivants n'ont pas. Je les ai peints en conversation, en crucifixion, en visite. Personne ne s'en est jamais plaint, sauf l'Église. »"
+      },
+      {
+        "mots": [
+          "chirico",
+          "italien",
+          "influence",
+          "influencé",
+          "découvert"
+        ],
+        "reponse": "« 1934. Une exposition à Bruxelles, Minotaure. Les places vides de De Chirico, les ombres longues, les statues. J'ai compris ce soir-là qu'on pouvait peindre le silence. Tout ce que j'ai fait ensuite vient de là, et je ne m'en cache pas. »"
+      },
+      {
+        "mots": [
+          "magritte",
+          "rené",
+          "surréaliste",
+          "surréalisme",
+          "breton"
+        ],
+        "reponse": "« Magritte, oui. Nous étions de la même ville et du même mot. Mais lui pense avec des images ; moi je rêve avec. Il n'a jamais aimé mes gares. Je n'ai jamais aimé ses pipes. Nous nous respections, de loin. »"
+      },
+      {
+        "mots": [
+          "spitzner",
+          "foire",
+          "baraque",
+          "vénus",
+          "cire"
+        ],
+        "reponse": "« La baraque Spitzner, à la foire du Midi. Une Vénus de cire, endormie, qui respirait grâce à un mécanisme. Des gens payaient pour la voir dormir. J'avais passé trente ans et je n'en suis jamais revenu. Elle est dans presque tous mes tableaux, si vous savez regarder. »"
+      },
+      {
+        "mots": [
+          "furnes",
+          "veurne",
+          "musée",
+          "maison",
+          "habitez",
+          "vivez"
+        ],
+        "reponse": "« Furnes, en Flandre, à la fin. Une petite ville qui a le bon goût de ne pas bouger. Il y a un musée à mon nom, m'a-t-on dit. J'espère qu'ils y ont laissé une horloge arrêtée. »"
+      },
+      {
+        "mots": [
+          "musique",
+          "silence",
+          "bruit",
+          "écoutez",
+          "son"
+        ],
+        "reponse": "« Je peins la nuit, sans musique. Les gens croient que mes tableaux sont silencieux. Ils sont pleins de trains qu'on n'entend pas. »"
+      },
+      {
+        "mots": [
+          "tableau",
+          "œuvre",
+          "oeuvre",
+          "préféré",
+          "meilleur",
+          "connu"
+        ],
+        "reponse": "« On me demande souvent lequel. Les Trains du soir, peut-être, à cause de la lampe. Ou La Ville inquiète, qui m'a pris deux ans. Mais celui que je préfère est toujours celui où l'heure est la plus juste, et je ne vous dirai pas laquelle. »"
+      },
+      {
+        "mots": [
+          "pourquoi",
+          "ici",
+          "enfermé",
+          "nuit",
+          "minuit",
+          "faites"
+        ],
+        "reponse": "« Pourquoi ici ? Parce qu'un musée la nuit est une gare. Tout le monde est parti et tout est encore là. J'attends un train qui me ramènera à l'heure où j'ai commencé. Vous cherchez la sortie ; je cherche l'arrivée. »"
+      },
+      {
+        "mots": [
+          "indice",
+          "aide",
+          "aidez",
+          "bloqué",
+          "bloque",
+          "comment",
+          "commencer",
+          "commence"
+        ],
+        "reponse": "Il désigne le module d'un geste vague. « Commencez par ce qui n'est pas d'accord. Dans une gare, tout devrait dire la même heure. Quand ce n'est pas le cas, l'une des horloges sait quelque chose. »"
+      },
+      {
+        "mots": [
+          "solution",
+          "réponse",
+          "code",
+          "mot de passe",
+          "combinaison",
+          "donnez"
+        ],
+        "reponse": "« Non. Si je vous la donnais, vous seriez sortis avant d'être arrivés. Regardez encore. Les trains attendent depuis toujours, ils peuvent attendre une minute de plus. »"
+      },
+      {
+        "mots": [
+          "banc",
+          "assis",
+          "attendez",
+          "attends",
+          "attente"
+        ],
+        "reponse": "« J'attends. C'est ce que font les gens dans les gares, et c'est ce que font les gens dans mes tableaux. La différence, c'est que dans les miens, le train ne vient jamais. Ici, je ne sais pas encore. »"
+      },
+      {
+        "mots": [
+          "lumière",
+          "lampe",
+          "nuit",
+          "électrique",
+          "éclairage",
+          "lune"
+        ],
+        "reponse": "« La lumière électrique, dans une gare de nuit. Une ampoule nue, une lune très ronde. Deux lumières qui ne s'aiment pas, et entre elles, tout ce que je voulais peindre. »"
+      },
+      {
+        "mots": [
+          "mère",
+          "père",
+          "parents",
+          "famille",
+          "mariage",
+          "tam"
+        ],
+        "reponse": "« Mon père était un homme de loi, ma mère une femme de règles. J'ai aimé une jeune fille, Tam, qu'on m'a interdite. Je l'ai retrouvée vingt ans plus tard, et épousée. Vous comprenez peut-être mieux mes horloges. »"
+      },
+      {
+        "mots": [
+          "bruxelles",
+          "ville",
+          "belgique",
+          "belge",
+          "pays"
+        ],
+        "reponse": "« Bruxelles, la gare du Luxembourg, les tramways, le Musée d'histoire naturelle, la foire du Midi. Une ville où l'on peut être surréaliste sans le savoir. C'est un pays de brume et de briques. On y rêve bien. »"
+      }
+    ]
+  },
+  "verrous": [
+    {
+      "id": "v1",
+      "libelle": "L'heure vraie. Trois horloges sur les cartes de la gare ; une seule est d'accord avec le tableau des départs. Tapez l'heure qu'elle indique, en quatre chiffres.",
+      "reponse": "2347",
+      "variantes": [
+        "23h47",
+        "23:47",
+        "23 47",
+        "23 h 47"
+      ],
+      "juste": "Une horloge s'arrête pour de bon. Delvaux, sans se lever : « Vous l'avez trouvée. C'est l'heure où le dernier train aurait dû partir. »",
+      "faux": "Les trois horloges continuent de se contredire.",
+      "indices": [
+        "Delvaux : « Dans une gare, tout devrait dire la même heure. Quand ce n'est pas le cas, regardez ce qui est écrit noir sur blanc, pas ce qui est peint. »",
+        "Delvaux : « Le tableau des départs ne ment jamais, il est trop administratif pour cela. Une seule horloge est d'accord avec lui. Le train de nuit, dernière ligne. »",
+        "L'horloge de droite indique vingt-trois heures quarante-sept, comme la dernière ligne du tableau des départs. La réponse est 2347."
+      ]
+    },
+    {
+      "id": "v2",
+      "libelle": "Le nom de la gare. Le panneau est effacé ; les cinq cartes billets portent chacune une lettre dorée. Remettez-les dans l'ordre du voyage.",
+      "reponse": "wanze",
+      "variantes": [
+        "gare de wanze",
+        "wanze-sur-meuse"
+      ],
+      "juste": "Le panneau se lit à nouveau. Delvaux ferme les yeux. « On y est. La gare de mon enfance. Je n'y suis pas retourné depuis. »",
+      "faux": "Les lettres retombent dans le désordre.",
+      "indices": [
+        "Delvaux : « Le voyage part de Bruxelles et remonte la Meuse. Les billets sont numérotés, on ne les lit pas dans n'importe quel ordre. »",
+        "Delvaux : « C'est la commune de mon village natal, sur la Meuse, près de Huy. Cinq lettres, une seule syllabe quand on la prononce. »",
+        "Les billets, rangés par numéro, donnent W-A-N-Z-E. La gare s'appelle Wanze."
+      ]
+    },
+    {
+      "id": "v3",
+      "libelle": "Le quai. Les femmes des cartes regardent chacune dans une direction. Une seule regarde un train. Son quai est le bon.",
+      "reponse": "7",
+      "variantes": [
+        "quai 7",
+        "sept",
+        "quai sept",
+        "07"
+      ],
+      "juste": "Le train du quai sept allume ses lampes. Delvaux se lève enfin. « Voilà. Prenez l'horloge, elle est à vous. Elle ne repartira pas. »",
+      "faux": "Le quai reste désert.",
+      "indices": [
+        "Delvaux : « Dans mes tableaux, personne ne se regarde. Alors quand quelqu'un regarde quelque chose, c'est important. »",
+        "Delvaux : « Suivez le regard de la seule femme qui n'est pas de profil. Il tombe sur un numéro de quai, pas sur un visage. »",
+        "La femme de la carte 14 regarde de face vers le quai numéro 7. La réponse est 7."
+      ]
+    }
+  ],
+  "symbole_remis": "Le module rend son symbole : une horloge arrêtée, en carton doré, à poser dans l'encoche de l'aile bleue du vestibule. Delvaux reste sur son banc. Il ne partira pas avec vous ; il a son propre train.",
+  "remise_en_etat": [
+    "Rassembler les cartes horloges (1 à 3) et les remettre face cachée sous le tableau des départs.",
+    "Remettre les cinq billets dans la pochette, dans le désordre.",
+    "Ranger les cartes femmes (10 à 15) en pile, la 14 au milieu.",
+    "Reprendre le symbole dans l'encoche du vestibule et le glisser dans l'enveloppe du fond.",
+    "Refermer le module et reposer le sceau adhésif.",
+    "Vérifier dans le compagnon que la salle est réinitialisée."
+  ]
+}

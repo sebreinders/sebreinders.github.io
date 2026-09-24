@@ -1,0 +1,58 @@
+{
+  "_aide": "Modèle du fichier de salle. Remplissez les champs entre guillemets, sans toucher aux noms à gauche des deux-points. Les lignes qui commencent par _aide sont des explications : vous pouvez les supprimer. Le plus simple reste le mode Conception du compagnon, qui remplit ce fichier pour vous à partir d'un formulaire.",
+  "id": "",
+  "_aide_id": "Un mot en minuscules sans accent ni espace : ensor, boch, magritte, delvaux.",
+  "nom": "",
+  "_aide_nom": "Le nom de la salle, tel que la voix du musée l'annonce.",
+  "artiste": "",
+  "dates": "",
+  "couleur": "#3E5C8A",
+  "_aide_couleur": "La couleur de l'aile sur le plateau, en code hexadécimal.",
+  "symbole": "",
+  "_aide_symbole": "Le nom du symbole que la salle rend, à la forme commune décidée en A1.",
+  "lettre": "",
+  "_aide_lettre": "La lettre dorée au dos du symbole, attribuée par les enseignants pour la dernière porte.",
+  "entree": "",
+  "_aide_entree": "Ce que dit la voix quand les visiteurs descellent le module. Trois ou quatre phrases : ce qu'on voit, où est l'invité.",
+  "invite": {
+    "nom": "",
+    "presentation": "",
+    "_aide_presentation": "Qui il est cette nuit-là dans le musée : ce qu'il fait, ce qu'il cherche. Copié de la fiche d'invité.",
+    "sait": "",
+    "_aide_sait": "Ce dont il peut parler. Sert surtout à l'option modèle de langue.",
+    "ignore": "",
+    "refuse": "",
+    "voix": "",
+    "_aide_voix": "Tutoie ou vouvoie, trois adjectifs, un tic de langage.",
+    "defaut": ["", "", "", "", ""],
+    "_aide_defaut": "Cinq phrases en caractère pour quand il ne comprend pas. Aucune ne doit ressembler à un message d'erreur.",
+    "reponses": [
+      { "mots": ["qui", "êtes-vous", "nom"], "reponse": "" },
+      { "mots": ["né", "naissance", "enfance"], "reponse": "" },
+      { "mots": ["mort", "décès", "fin"], "reponse": "" },
+      { "mots": ["pourquoi", "ici", "musée", "enfermé"], "reponse": "" },
+      { "mots": ["tableau", "œuvre", "préféré"], "reponse": "" },
+      { "mots": ["indice", "aide", "bloqué", "commencer"], "reponse": "" },
+      { "mots": ["solution", "réponse", "code"], "reponse": "" }
+    ],
+    "_aide_reponses": "Trente questions au moins. Pour chacune, les mots qui la déclenchent, et la réponse dans sa voix, en deux ou trois phrases. Les questions sur les énigmes reçoivent une réponse qui oriente sans donner."
+  },
+  "verrous": [
+    {
+      "id": "v1",
+      "libelle": "",
+      "_aide_libelle": "Ce que l'écran affiche au-dessus du champ : ce qu'il faut trouver, où, sous quelle forme (chiffres, un mot, un numéro de carte).",
+      "reponse": "",
+      "variantes": [],
+      "_aide_variantes": "Les autres façons d'écrire la bonne réponse, qu'on accepte aussi. Majuscules, accents et espaces sont déjà ignorés.",
+      "juste": "",
+      "faux": "",
+      "indices": ["", "", ""],
+      "_aide_indices": "Niveau 1, l'invité oriente. Niveau 2, l'invité précise sans donner. Niveau 3, le musée donne la réponse ; il coûte deux minutes."
+    }
+  ],
+  "symbole_remis": "",
+  "_aide_symbole_remis": "Ce que dit la voix quand le dernier verrou s'ouvre : où est le symbole dans le module, où le poser sur le plateau.",
+  "remise_en_etat": ["", "", ""],
+  "_aide_remise_en_etat": "La liste ordonnée des gestes qui remettent le module à zéro, affichée au maître du jeu. Trois minutes maximum."
+}

@@ -24,6 +24,23 @@ const RESSOURCES = {
      --------------------------------------------------------- */
   activites: [
     {
+      titre: "Scénario multimédia — Atelier : Le Musée des Songes Retenus",
+      date: "Année académique 2026-2027",
+      lieu: "IPSMA, bachelier en communication",
+      dossier: "IPSMA/musee",
+      resume: "Un escape game de table conçu avec le cours d'histoire de l'art : le plateau est le musée, quatre modules de salle, quatre peintres à interroger. Le compagnon numérique tient l'horloge, vérifie les codes, fait parler les invités et se souvient de la partie.",
+      fichiers: [
+        { nom: "Le compagnon numérique",
+          type: "Outil",
+          fichier: "",
+          description: "La voix du musée, sur une tablette posée près du plateau : soixante minutes, les verrous à ouvrir, les indices en trois niveaux, les invités qui répondent, la dernière porte. Un mode conception permet à chaque groupe de charger son propre module et de le tester seul. Tout reste dans le navigateur." },
+        { nom: "Le modèle de fichier de salle",
+          type: "Modèle",
+          fichier: "modele-salle.json",
+          description: "Ce que chaque groupe remplit pour son module : la salle, l'invité et ses réponses, les verrous et leurs indices, la remise en état. Le mode conception du compagnon le remplit à partir d'un formulaire." }
+      ]
+    },
+    {
       titre: "Scénario multimédia — Séance 1",
       date: "Année académique 2026-2027",
       lieu: "IPSMA, bachelier en communication",

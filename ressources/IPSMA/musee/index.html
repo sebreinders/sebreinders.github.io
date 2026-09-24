@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Le Musée des Songes Retenus — compagnon</title>
+<meta name="description" content="Le compagnon numérique de l'escape game de table Le Musée des Songes Retenus : horloge, verrous, invités, indices, dernière porte.">
+<style>
+:root{
+  --fond:#131a2b; --fond2:#1b2440; --carte:#222d4d; --ligne:#34426b;
+  --texte:#ece6d8; --texte2:#b8b2a4; --or:#c9a227; --or2:#e6c760;
+  --ok:#5fae7a; --non:#c95c5c; --voix:#2a3558;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--fond);color:var(--texte);font:17px/1.5 Georgia,"Times New Roman",serif;-webkit-text-size-adjust:100%}
+body{min-height:100vh;display:flex;flex-direction:column}
+button,input,textarea,select{font:inherit}
+h1,h2,h3{font-weight:normal;margin:0 0 .5rem;line-height:1.2}
+h1{font-size:1.7rem;color:var(--or2)}
+h2{font-size:1.35rem;color:var(--or2)}
+h3{font-size:1.1rem;color:var(--or)}
+p{margin:.4rem 0 .8rem}
+a{color:var(--or2)}
+.hidden{display:none!important}
+header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 1rem;background:var(--fond2);border-bottom:1px solid var(--ligne);position:sticky;top:0;z-index:5}
+header .titre{font-size:.95rem;color:var(--texte2);letter-spacing:.04em;text-transform:uppercase}
+#horloge{font-size:2rem;color:var(--or2);font-variant-numeric:tabular-nums;letter-spacing:.05em;min-width:5.2ch;text-align:center}
+#horloge.pause{opacity:.5}
+#horloge.alerte{color:var(--non)}
+header .btn-mini{background:none;border:1px solid var(--ligne);color:var(--texte2);border-radius:6px;padding:.3rem .6rem;font-size:.85rem;cursor:pointer}
+main{flex:1;width:100%;max-width:860px;margin:0 auto;padding:1rem 16px 3rem}
+.voix{background:var(--voix);border-left:3px solid var(--or);padding:.8rem 1rem;margin:.8rem 0;border-radius:0 8px 8px 0;font-style:italic}
+.voix.invite{border-left-color:var(--texte2);font-style:normal}
+.voix .qui{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--or);font-style:normal;margin-bottom:.25rem}
+.voix.invite .qui{color:var(--texte2)}
+.cartel{background:linear-gradient(160deg,#3b2f10,#6b5518 60%,#3b2f10);color:#f4e9c6;border:2px solid var(--or);padding:1.2rem 1.4rem;border-radius:4px;font-style:italic;text-align:center;box-shadow:0 0 0 6px #1b2440, 0 0 0 7px var(--ligne)}
+.carte{background:var(--carte);border:1px solid var(--ligne);border-radius:10px;padding:1rem;margin:.8rem 0}
+.btn{display:inline-block;background:var(--or);color:#1a1405;border:0;border-radius:8px;padding:.7rem 1.1rem;cursor:pointer;font-size:1rem;margin:.25rem .25rem .25rem 0}
+.btn:hover{background:var(--or2)}
+.btn.second{background:transparent;color:var(--texte);border:1px solid var(--ligne)}
+.btn.second:hover{border-color:var(--or)}
+.btn.danger{background:var(--non);color:#fff}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.large{display:block;width:100%;text-align:left;padding:1rem 1.1rem;margin:.5rem 0}
+.ailes{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1rem 0}
+@media (max-width:520px){.ailes{grid-template-columns:1fr}}
+.aile{border:1px solid var(--ligne);border-radius:10px;padding:.9rem 1rem;cursor:pointer;background:var(--carte);text-align:left;color:var(--texte);border-left-width:8px}
+.aile:hover{border-color:var(--or)}
+.aile .nom{display:block;font-size:1.1rem;color:var(--or2)}
+.aile .art{display:block;font-size:.9rem;color:var(--texte2)}
+.aile .etat{display:block;margin-top:.4rem;font-size:.85rem}
+.aile.faite{opacity:.75}
+.encoches{display:flex;gap:.6rem;justify-content:center;margin:.6rem 0 1rem}
+.encoche{width:56px;height:56px;border-radius:50%;border:2px dashed var(--ligne);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--texte2);text-align:center;line-height:1.1;padding:4px}
+.encoche.pleine{border:2px solid var(--or);background:radial-gradient(circle,#6b5518,#3b2f10);color:var(--or2)}
+.verrou{border:1px solid var(--ligne);border-radius:10px;padding:.9rem 1rem;margin:.7rem 0;background:var(--carte)}
+.verrou.ouvert{border-color:var(--ok)}
+.verrou .lib{margin:0 0 .6rem}
+.saisie{display:flex;gap:.5rem;flex-wrap:wrap}
+.saisie input{flex:1;min-width:0;background:var(--fond);color:var(--texte);border:1px solid var(--ligne);border-radius:8px;padding:.6rem .8rem;font-size:1.1rem}
+.saisie input:focus{outline:2px solid var(--or)}
+.retour{margin:.5rem 0 0;font-size:.95rem}
+.retour.ok{color:var(--ok)}
+.retour.non{color:var(--non)}
+.indices{margin-top:.6rem;display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.indice-txt{margin:.4rem 0 0;padding:.5rem .7rem;background:var(--fond);border-radius:6px;font-size:.95rem}
+.indice-txt.n3{border-left:3px solid var(--non)}
+.chat{border:1px solid var(--ligne);border-radius:10px;background:var(--fond2);padding:.8rem 1rem;margin-top:1.2rem}
+.chat .fil{max-height:260px;overflow:auto;margin:.5rem 0}
+.chat .q{color:var(--texte2);margin:.3rem 0;font-size:.95rem}
+.chat .r{margin:.2rem 0 .7rem}
+.petit{font-size:.85rem;color:var(--texte2)}
+.ligne-btn{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.8rem}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:flex-start;justify-content:center;padding:2rem 16px;z-index:20;overflow:auto}
+.modal .boite{background:var(--fond2);border:1px solid var(--ligne);border-radius:12px;padding:1.2rem;width:100%;max-width:760px}
+.grille{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+@media (max-width:600px){.grille{grid-template-columns:1fr}}
+.champ{margin:.5rem 0}
+.champ label{display:block;font-size:.85rem;color:var(--texte2);margin-bottom:.2rem}
+.champ input,.champ textarea,.champ select{width:100%;background:var(--fond);color:var(--texte);border:1px solid var(--ligne);border-radius:8px;padding:.5rem .7rem}
+.champ textarea{min-height:70px;resize:vertical}
+.bloc{border:1px solid var(--ligne);border-radius:10px;padding:.8rem;margin:.6rem 0;background:var(--carte)}
+.bloc h3{display:flex;justify-content:space-between;align-items:center}
+.sup{background:none;border:0;color:var(--non);cursor:pointer;font-size:.9rem}
+.onglets{display:flex;gap:.3rem;flex-wrap:wrap;margin:.6rem 0 1rem}
+.onglets button{background:transparent;border:1px solid var(--ligne);color:var(--texte2);border-radius:20px;padding:.35rem .9rem;cursor:pointer}
+.onglets button.actif{border-color:var(--or);color:var(--or2)}
+.ok-liste li{margin:.2rem 0}
+.ok-liste .non{color:var(--non)}
+.ok-liste .oui{color:var(--ok)}
+table.etat{width:100%;border-collapse:collapse;font-size:.9rem}
+table.etat td{padding:.3rem .4rem;border-bottom:1px solid var(--ligne);vertical-align:top}
+.centre{text-align:center}
+.pied{margin-top:2rem;font-size:.8rem;color:var(--texte2);text-align:center}
+.pied a{color:var(--texte2)}
+</style>
+</head>
+<body>
+<header>
+  <div class="titre" id="titre">Le Musée des Songes Retenus</div>
+  <div id="horloge">60:00</div>
+  <button class="btn-mini" id="btn-maitre" title="Maître du jeu">⚙</button>
+</header>
+<main id="vue"></main>
+<div id="modal" class="modal hidden"></div>
+
+<script>
+/* ============================================================
+   Le compagnon numérique — Le Musée des Songes Retenus
+   Une page, quatre modules, une voix. Tout reste dans le navigateur.
+   ============================================================ */
+'use strict';
+
+const CLE_ETAT = 'msr_partie', CLE_DATA = 'msr_data', CLE_REGL = 'msr_reglages', CLE_BROUILLON = 'msr_brouillon';
+let MUSEE = null, SALLES = [], etat = null, regl = null, tickId = null, mode = 'jeu', brouillon = null;
+
+/* ---------- utilitaires ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '');
+const mots = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const mmss = s => { s = Math.max(0, Math.round(s)); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); };
+const minutesTexte = s => { const m = Math.floor(Math.max(0, s) / 60); return m + (m > 1 ? ' minutes' : ' minute'); };
+function lire(cle, defaut) { try { const v = localStorage.getItem(cle); return v ? JSON.parse(v) : defaut; } catch (e) { return defaut; } }
+function garder(cle, v) { try { localStorage.setItem(cle, JSON.stringify(v)); } catch (e) {} }
+function remplir(t, vars) { return String(t || '').replace(/\{(\w+)\}/g, (m, k) => (vars[k] != null ? vars[k] : m)); }
+function dire(texte) {
+  if (!regl.parle || !('speechSynthesis' in window)) return;
+  try {
+    const u = new SpeechSynthesisUtterance(String(texte).replace(/[«»]/g, ''));
+    u.lang = 'fr-FR'; u.rate = 0.95;
+    const v = speechSynthesis.getVoices().find(x => /^fr/.test(x.lang) && /Thomas|Audrey|Amélie|Google/.test(x.name)) || speechSynthesis.getVoices().find(x => /^fr/.test(x.lang));
+    if (v) u.voice = v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+/* ---------- chargement des données ---------- */
+async function chargerJson(url) { const r = await fetch(url, {cache: 'no-store'}); if (!r.ok) throw new Error(url + ' : ' + r.status); return r.json(); }
+async function chargerTout() {
+  try {
+    const m = await chargerJson('musee.json');
+    const s = [];
+    for (const u of m.salles || []) { try { s.push(await chargerJson(u)); } catch (e) { console.warn('Salle absente', u, e); } }
+    MUSEE = m; SALLES = s;
+    garder(CLE_DATA, {musee: m, salles: s});
+  } catch (e) {
+    const d = lire(CLE_DATA, null);
+    if (d) { MUSEE = d.musee; SALLES = d.salles; }
+    else { MUSEE = {titre: 'Le Musée des Songes Retenus', duree_minutes: 60, penalite_code_minutes: 1, penalite_indice3_minutes: 2, pin_maitre: '0000', cartel: '', accueil: {choix: []}, vestibule: {retour: ['Vous êtes de retour au vestibule.']}, faux_code: ['Non.'], derniere_porte: {}}; SALLES = []; }
+  }
+  $('#titre').textContent = MUSEE.titre || 'Le Musée des Songes Retenus';
+}
+
+/* ---------- état de la partie ---------- */
+function etatNeuf(sallesActives, minutes) {
+  const s = {};
+  for (const x of sallesActives) s[x.id] = {ouverts: [], codesRates: 0, indices: {}, questions: [], symbole: false, fil: [], entree: false};
+  return {phase: 'accueil', restant: minutes * 60, enCours: false, derniereMaj: Date.now(), memoire: {}, ordre: [], salles: s, salleCourante: null, retours: 0, porte: {ouverte: false, codesRates: 0}, choixFinal: null, journal: [], mode, sallesIds: sallesActives.map(x => x.id)};
+}
+function sauver() { etat.derniereMaj = Date.now(); garder(mode === 'jeu' ? CLE_ETAT : CLE_ETAT + '_conception', etat); }
+function journal(t) { etat.journal.push({t: Date.now(), r: Math.round(etat.restant), m: t}); if (etat.journal.length > 300) etat.journal.shift(); }
+function sallesActives() { return mode === 'jeu' ? SALLES : (brouillon ? [brouillon] : []); }
+function salle(id) { return sallesActives().find(s => s.id === id); }
+function penalite(sec, raison) { etat.restant = Math.max(0, etat.restant - sec); journal(raison + ' (−' + mmss(sec) + ')'); majHorloge(); verifierTemps(); }
+function nbSymboles() { return Object.values(etat.salles).filter(s => s.symbole).length; }
+function totalCodesRates() { return Object.values(etat.salles).reduce((a, s) => a + s.codesRates, 0) + (etat.porte.codesRates || 0); }
+function totalIndices() { return Object.values(etat.salles).reduce((a, s) => a + Object.values(s.indices).reduce((b, n) => b + n, 0), 0); }
+
+/* ---------- horloge ---------- */
+function majHorloge() {
+  const h = $('#horloge');
+  h.textContent = mmss(etat ? etat.restant : 0);
+  h.classList.toggle('pause', !(etat && etat.enCours));
+  h.classList.toggle('alerte', etat && etat.restant <= 300);
+}
+function demarrerTick() {
+  if (tickId) clearInterval(tickId);
+  let dernier = Date.now();
+  tickId = setInterval(() => {
+    const maintenant = Date.now();
+    if (etat && etat.enCours && ['vestibule', 'salle', 'porte'].includes(etat.phase)) {
+      etat.restant = Math.max(0, etat.restant - (maintenant - dernier) / 1000);
+      if (Math.floor(maintenant / 5000) !== Math.floor(dernier / 5000)) sauver();
+      majHorloge(); verifierTemps();
+    }
+    dernier = maintenant;
+  }, 1000);
+}
+function verifierTemps() {
+  if (etat.restant <= 0 && etat.phase !== 'fin' && etat.phase !== 'temps') { etat.phase = 'temps'; etat.enCours = false; sauver(); rendre(); }
+}
+
+/* ---------- rendu ---------- */
+function rendre() {
+  majHorloge();
+  const v = $('#vue');
+  if (mode === 'conception' && !etat) return rendreConception();
+  switch (etat.phase) {
+    case 'accueil': return vueAccueil(v);
+    case 'vestibule': return vueVestibule(v);
+    case 'salle': return vueSalle(v);
+    case 'porte': return vuePorte(v);
+    case 'fin': return vueFin(v);
+    case 'temps': return vueTemps(v);
+  }
+}
+function voix(t, qui) { return '<div class="voix' + (qui ? ' invite' : '') + '"><span class="qui">' + esc(qui || 'La voix du musée') + '</span>' + esc(t) + '</div>'; }
+
+function vueAccueil(v) {
+  const a = MUSEE.accueil || {};
+  let h = '<h1>' + esc(MUSEE.titre) + '</h1>';
+  if (mode === 'conception') h += '<p class="petit">Mode conception : seul le module « ' + esc(brouillon.nom || brouillon.id) + ' » est chargé. L\'horloge est à quinze minutes.</p>';
+  h += '<div class="cartel">' + esc(MUSEE.cartel) + '</div>';
+  if (!etat.memoire._accueilFait) {
+    h += '<p style="margin-top:1.2rem">' + esc(a.scene || '') + '</p>';
+    if (a.question) h += '<h3>' + esc(a.question) + '</h3>';
+    for (const c of a.choix || []) h += '<button class="btn large second" data-choix="' + esc(c.id) + '">' + esc(c.texte) + '</button>';
+    if (!(a.choix || []).length) h += '<button class="btn" data-choix="_aucun">Entrer dans le musée</button>';
+  } else {
+    h += voix(etat.memoire._accuse || '');
+    h += '<p class="centre" style="margin-top:1rem"><button class="btn" id="btn-entrer">Entrer dans le musée — l\'horloge démarre</button></p>';
+  }
+  v.innerHTML = h;
+  v.querySelectorAll('[data-choix]').forEach(b => b.onclick = () => {
+    const c = (a.choix || []).find(x => x.id === b.dataset.choix);
+    if (c) { if (c.memoire) etat.memoire[c.memoire] = true; etat.memoire._accuse = c.accuse || ''; journal('Accueil : ' + c.texte); dire(c.accuse); }
+    etat.memoire._accueilFait = true; sauver(); rendre();
+  });
+  const e = $('#btn-entrer'); if (e) e.onclick = () => { etat.phase = 'vestibule'; etat.enCours = true; journal('Entrée dans le musée'); sauver(); rendre(); };
+}
+
+function phraseRetour() {
+  const vb = MUSEE.vestibule || {};
+  const parts = [];
+  if (etat.retours === 0) parts.push(vb.consigne || 'Choisissez une aile.');
+  else {
+    const r = vb.retour || ['Vous êtes de retour au vestibule.'];
+    parts.push(r[(etat.retours - 1) % r.length]);
+    const derniere = etat.ordre[etat.ordre.length - 1]; const sd = derniere && etat.salles[derniere]; const s = derniere && salle(derniere);
+    if (etat.memoire.a_voulu_partir && etat.retours === 1 && vb.retour_si_a_voulu_partir_premiere_fois) parts.push(vb.retour_si_a_voulu_partir_premiere_fois);
+    if (sd && sd.codesRates >= 3 && vb.retour_si_codes_rates) parts.push(remplir(vb.retour_si_codes_rates, {codes_rates: sd.codesRates, artiste: s ? s.artiste : ''}));
+    if (sd && Object.values(sd.indices).some(n => n >= 3) && vb.retour_si_indice3) parts.push(vb.retour_si_indice3);
+    if (nbSymboles() === 3 && vb.retour_si_trois_symboles) parts.push(vb.retour_si_trois_symboles);
+  }
+  return parts.join(' ');
+}
+
+function vueVestibule(v) {
+  const actives = sallesActives();
+  let h = '<h2>Le vestibule</h2>';
+  h += voix(etat.memoire._retourTexte || phraseRetour());
+  if (mode === 'jeu') {
+    h += '<div class="encoches">' + actives.map(s => '<div class="encoche' + (etat.salles[s.id].symbole ? ' pleine' : '') + '" title="' + esc(s.artiste) + '">' + (etat.salles[s.id].symbole ? esc(s.symbole) : '') + '</div>').join('') + '</div>';
+  }
+  h += '<div class="ailes">' + actives.map(s => {
+    const e = etat.salles[s.id];
+    const et = e.symbole ? 'Symbole obtenu' : (e.ouverts.length ? e.ouverts.length + ' verrou(s) ouvert(s) sur ' + s.verrous.length : 'À visiter');
+    return '<button class="aile' + (e.symbole ? ' faite' : '') + '" style="border-left-color:' + esc(s.couleur || '#888') + '" data-salle="' + esc(s.id) + '"><span class="nom">' + esc(s.nom) + '</span><span class="art">' + esc(s.artiste) + '</span><span class="etat">' + et + '</span></button>';
+  }).join('') + '</div>';
+  if (mode === 'jeu') {
+    const tous = actives.length > 0 && actives.every(s => etat.salles[s.id].symbole);
+    h += '<div class="carte"><h3>La dernière porte</h3><p class="petit">' + (tous ? 'Les quatre symboles sont posés. La porte a cessé d\'être un mur.' : 'Elle ne s\'ouvre qu\'avec les ' + actives.length + ' symboles. ' + nbSymboles() + ' posé(s).') + '</p>' + (tous ? '<button class="btn" id="btn-porte">S\'avancer vers la porte</button>' : '') + '</div>';
+  } else {
+    const s = actives[0];
+    if (s && etat.salles[s.id].symbole) h += '<div class="carte"><h3>Module terminé</h3><p>' + esc(s.verrous.length) + ' verrou(s), ' + etat.salles[s.id].codesRates + ' code(s) refusé(s), ' + Object.values(etat.salles[s.id].indices).reduce((a, n) => a + n, 0) + ' indice(s), ' + esc(mmss((15 * 60) - etat.restant)) + ' de jeu.</p><button class="btn second" id="btn-rejouer">Rejouer le module</button> <button class="btn second" id="btn-editer">Revenir au formulaire</button></div>';
+  }
+  v.innerHTML = h;
+  v.querySelectorAll('[data-salle]').forEach(b => b.onclick = () => {
+    const id = b.dataset.salle; if (etat.salles[id].symbole) return;
+    etat.salleCourante = id; etat.phase = 'salle'; etat.memoire._retourTexte = null;
+    if (!etat.ordre.includes(id)) etat.ordre.push(id);
+    journal('Entrée : ' + id); sauver(); rendre();
+  });
+  const p = $('#btn-porte'); if (p) p.onclick = () => { etat.phase = 'porte'; journal('Dernière porte'); sauver(); rendre(); };
+  const rj = $('#btn-rejouer'); if (rj) rj.onclick = () => { etat = etatNeuf([brouillon], 15); sauver(); rendre(); };
+  const ed = $('#btn-editer'); if (ed) ed.onclick = () => { etat = null; rendreConception(); };
+}
+
+function vueSalle(v) {
+  const s = salle(etat.salleCourante), e = etat.salles[s.id];
+  let h = '<h2 style="color:' + esc(s.couleur || 'var(--or2)') + '">' + esc(s.nom) + '</h2><p class="petit">' + esc(s.artiste) + (s.dates ? ' · ' + esc(s.dates) : '') + '</p>';
+  if (!e.entree) { h += voix(s.entree || 'Le module se descelle.'); e.entree = true; dire(s.entree); sauver(); }
+  else if (e._dernierMsg) h += voix(e._dernierMsg.t, e._dernierMsg.qui);
+  h += '<h3>Les verrous</h3>';
+  s.verrous.forEach((vr, i) => {
+    const ouvert = e.ouverts.includes(vr.id), niv = e.indices[vr.id] || 0;
+    h += '<div class="verrou' + (ouvert ? ' ouvert' : '') + '" data-v="' + esc(vr.id) + '"><p class="lib"><strong>' + (i + 1) + '.</strong> ' + esc(vr.libelle) + '</p>';
+    if (ouvert) h += '<p class="retour ok">Ouvert. ' + esc(vr.juste || '') + '</p>';
+    else {
+      h += '<div class="saisie"><input type="text" autocomplete="off" autocapitalize="off" placeholder="Votre réponse" aria-label="Réponse au verrou ' + (i + 1) + '"><button class="btn">Essayer</button></div><p class="retour" aria-live="polite"></p>';
+      h += '<div class="indices"><span class="petit">Indices :</span>';
+      for (let n = 1; n <= 3; n++) {
+        if (n <= niv) h += '<button class="btn second" disabled>Niveau ' + n + ' vu</button>';
+        else if (n === niv + 1) h += '<button class="btn second" data-indice="' + n + '">' + (n < 3 ? 'Demander à ' + esc(s.invite && s.invite.nom ? s.invite.nom.split(' ').pop() : 'l\'invité') + ' (niveau ' + n + ')' : 'Demander au musée (niveau 3, −' + (MUSEE.penalite_indice3_minutes || 2) + ' min)') + '</button>';
+      }
+      h += '</div>';
+      for (let n = 1; n <= niv; n++) h += '<div class="indice-txt' + (n === 3 ? ' n3' : '') + '"><span class="petit">Niveau ' + n + ' — </span>' + esc((vr.indices || [])[n - 1] || '') + '</div>';
+    }
+    h += '</div>';
+  });
+  if (e.symbole) {
+    h += '<div class="carte">' + voix(s.symbole_remis || 'Le module rend son symbole.') + '<p class="centre"><button class="btn" id="btn-vestibule">Poser le symbole au vestibule</button></p></div>';
+  }
+  if (s.invite) {
+    h += '<div class="chat"><h3>Interroger ' + esc(s.invite.nom) + '</h3><p class="petit">' + esc(s.invite.presentation || '') + '</p><div class="fil" id="fil">' + e.fil.map(x => '<p class="q">Vous : ' + esc(x.q) + '</p><p class="r">' + esc(x.r) + '</p>').join('') + '</div>';
+    h += '<div class="saisie"><input type="text" id="question" autocomplete="off" placeholder="Posez-lui une question"><button class="btn second" id="btn-question">Demander</button></div></div>';
+  }
+  h += '<div class="ligne-btn"><button class="btn second" id="btn-retour">Revenir au vestibule</button></div>';
+  v.innerHTML = h;
+  e._dernierMsg = null;
+
+  v.querySelectorAll('.verrou').forEach(div => {
+    const vr = s.verrous.find(x => x.id === div.dataset.v);
+    const inp = div.querySelector('input'), btn = div.querySelector('.saisie .btn'), ret = div.querySelector('.retour');
+    if (inp && btn) {
+      const essayer = () => {
+        const val = inp.value.trim(); if (!val) return;
+        if (bonneReponse(val, vr)) {
+          e.ouverts.push(vr.id); journal(s.id + ' · ' + vr.id + ' ouvert avec « ' + val + ' »'); dire(vr.juste);
+          if (e.ouverts.length >= s.verrous.length) { e.symbole = true; journal(s.id + ' · symbole obtenu'); }
+          sauver(); rendre();
+        } else {
+          e.codesRates++; const msg = (vr.faux ? vr.faux + ' ' : '') + hasard(MUSEE.faux_code || ['Non.']);
+          ret.textContent = msg; ret.className = 'retour non'; inp.value = ''; inp.focus();
+          journal(s.id + ' · ' + vr.id + ' refusé : « ' + val + ' »'); penalite((MUSEE.penalite_code_minutes || 1) * 60, 'Code refusé'); dire(msg); sauver();
+        }
+      };
+      btn.onclick = essayer; inp.onkeydown = ev => { if (ev.key === 'Enter') essayer(); };
+    }
+    div.querySelectorAll('[data-indice]').forEach(b => b.onclick = () => {
+      const n = +b.dataset.indice;
+      if (n === 3) return confirmer(MUSEE.indice3_confirmation || 'Le musée prend deux minutes. Vous acceptez ?', () => { e.indices[vr.id] = 3; journal(s.id + ' · ' + vr.id + ' indice 3'); penalite((MUSEE.penalite_indice3_minutes || 2) * 60, 'Indice de niveau 3'); dire((vr.indices || [])[2]); sauver(); rendre(); });
+      e.indices[vr.id] = n; journal(s.id + ' · ' + vr.id + ' indice ' + n); dire((vr.indices || [])[n - 1]); sauver(); rendre();
+    });
+  });
+  const q = $('#question'), bq = $('#btn-question');
+  if (q && bq) {
+    const demander = async () => {
+      const txt = q.value.trim(); if (!txt) return; q.value = '';
+      const fil = $('#fil'); fil.insertAdjacentHTML('beforeend', '<p class="q">Vous : ' + esc(txt) + '</p><p class="r" id="attente">…</p>'); fil.scrollTop = fil.scrollHeight;
+      const rep = await reponseInvite(s, txt, e);
+      const att = $('#attente'); if (att) { att.textContent = rep; att.id = ''; }
+      e.fil.push({q: txt, r: rep}); if (e.fil.length > 40) e.fil.shift(); e.questions.push(txt);
+      journal(s.id + ' · question : « ' + txt + ' »'); dire(rep); sauver(); fil.scrollTop = fil.scrollHeight;
+    };
+    bq.onclick = demander; q.onkeydown = ev => { if (ev.key === 'Enter') demander(); };
+  }
+  const bv = $('#btn-vestibule'), br = $('#btn-retour');
+  const retour = () => { etat.retours++; etat.phase = 'vestibule'; etat.salleCourante = null; etat.memoire._retourTexte = phraseRetour(); journal('Retour au vestibule'); dire(etat.memoire._retourTexte); sauver(); rendre(); };
+  if (bv) bv.onclick = retour; if (br) br.onclick = retour;
+}
+
+function bonneReponse(val, vr) {
+  const n = norm(val); if (!n) return false;
+  if (n === norm(vr.reponse)) return true;
+  return (vr.variantes || []).some(x => norm(x) === n);
+}
+
+/* ---------- l'invité ---------- */
+function reponseScriptee(s, question, e) {
+  const inv = s.invite || {}; const q = ' ' + mots(question) + ' ';
+  let meilleur = null, score = 0;
+  for (const r of inv.reponses || []) {
+    let sc = 0;
+    for (const m of r.mots || []) { const mm = mots(m); if (mm && (q.includes(' ' + mm + ' ') || (mm.length >= 5 && q.includes(mm)))) sc += mm.includes(' ') ? 2 : 1; }
+    if (sc > score) { score = sc; meilleur = r; }
+  }
+  if (meilleur && meilleur.reponse) return meilleur.reponse;
+  const d = (inv.defaut || []).filter(x => x && x.trim());
+  if (!d.length) return inv.nom ? inv.nom + ' ne répond pas.' : 'Personne ne répond.';
+  let choix = hasard(d); if (d.length > 1 && choix === e._dernierDefaut) choix = d[(d.indexOf(choix) + 1) % d.length];
+  e._dernierDefaut = choix; return choix;
+}
+async function reponseInvite(s, question, e) {
+  if (regl.llm && regl.cle) {
+    try { const r = await reponseModele(s, question, e); if (r) return r; } catch (err) { console.warn('Modèle indisponible', err); }
+  }
+  return reponseScriptee(s, question, e);
+}
+async function reponseModele(s, question, e) {
+  const inv = s.invite || {};
+  const secrets = s.verrous.map(v => [v.reponse].concat(v.variantes || []).join(' / ')).join(' ; ');
+  const systeme = [
+    'Tu joues ' + inv.nom + ' (' + (s.dates || '') + '), invité du Musée des Songes Retenus, un escape game de table joué par des visiteurs autour d\'un plateau. Tu réponds en français, en une à trois phrases, dans la voix décrite, sans jamais sortir du personnage ni mentionner que tu es un modèle.',
+    'Qui tu es cette nuit-là : ' + (inv.presentation || ''),
+    'Ce que tu sais : ' + (inv.sait || ''),
+    'Ce que tu ignores : ' + (inv.ignore || '') + ' Tu ne connais rien de postérieur à ta mort.',
+    'Ce que tu refuses : ' + (inv.refuse || ''),
+    'Comment tu parles : ' + (inv.voix || ''),
+    'Trois bornes absolues. 1) Tu ne donnes JAMAIS la solution d\'une énigme ni un code ; tu orientes, tu racontes, tu détournes. Les solutions à ne jamais prononcer ni confirmer : ' + secrets + '. 2) Tu ne sais que ce que tu pouvais savoir de ton vivant. 3) Quand tu ne comprends pas, tu réponds en caractère, jamais par un message d\'erreur.',
+    'Réponses écrites par les auteurs, à reprendre de préférence quand la question correspond :\n' + (inv.reponses || []).map(r => '- [' + (r.mots || []).join(', ') + '] ' + r.reponse).join('\n'),
+    'Réponses par défaut possibles : ' + (inv.defaut || []).join(' | ')
+  ].join('\n\n');
+  const historique = e.fil.slice(-6).flatMap(x => [{role: 'user', content: x.q}, {role: 'assistant', content: x.r}]);
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {'content-type': 'application/json', 'x-api-key': regl.cle, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true'},
+    body: JSON.stringify({model: regl.modele || 'claude-sonnet-4-5', max_tokens: 300, system: systeme, messages: historique.concat([{role: 'user', content: question}])})
+  });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  const j = await r.json();
+  return (j.content || []).map(c => c.text || '').join('').trim();
+}
+
+/* ---------- la dernière porte ---------- */
+function vuePorte(v) {
+  const dp = MUSEE.derniere_porte || {}, en = dp.enigme || {};
+  let h = '<h2>La dernière porte</h2>' + voix(dp.intro || '');
+  if (etat.memoire.a_voulu_partir && dp.si_a_voulu_partir) h += voix(dp.si_a_voulu_partir);
+  if (!etat.porte.ouverte && en.reponse) {
+    h += '<div class="verrou"><p class="lib">' + esc(en.libelle || '') + '</p><div class="saisie"><input type="text" id="porte-rep" autocomplete="off" placeholder="Le mot"><button class="btn" id="porte-btn">Essayer</button></div><p class="retour" id="porte-ret"></p></div>';
+  } else {
+    if (en.juste) h += voix(en.juste);
+    const q = dp.question || {};
+    h += '<div class="carte"><p>' + esc(q.texte || '') + '</p>' + (q.choix || []).map(c => '<button class="btn large second" data-fin="' + esc(c.id) + '">' + esc(c.texte) + '</button>').join('') + '</div>';
+  }
+  v.innerHTML = h;
+  const b = $('#porte-btn'), i = $('#porte-rep');
+  if (b) { const essayer = () => { const val = i.value.trim(); if (!val) return; if (bonneReponse(val, en)) { etat.porte.ouverte = true; journal('Dernière porte ouverte'); dire(en.juste); sauver(); rendre(); } else { etat.porte.codesRates++; $('#porte-ret').textContent = en.faux || 'Non.'; $('#porte-ret').className = 'retour non'; i.value = ''; penalite((MUSEE.penalite_code_minutes || 1) * 60, 'Dernière porte refusée'); sauver(); } }; b.onclick = essayer; i.onkeydown = ev => { if (ev.key === 'Enter') essayer(); }; }
+  v.querySelectorAll('[data-fin]').forEach(x => x.onclick = () => { etat.choixFinal = x.dataset.fin; etat.phase = 'fin'; etat.enCours = false; journal('Choix final : ' + x.dataset.fin); sauver(); rendre(); });
+}
+function vueFin(v) {
+  const dp = MUSEE.derniere_porte || {}, c = ((dp.question || {}).choix || []).find(x => x.id === etat.choixFinal);
+  let h = '<h2>La fin</h2>';
+  if (c) { h += voix(c.fin || ''); dire(c.fin); }
+  const ordre = etat.ordre.map(id => (salle(id) || {}).artiste || id).join(', ');
+  h += '<div class="carte"><p>' + esc(remplir(dp.bilan || '', {ordre, codes_rates: totalCodesRates(), indices: totalIndices(), temps_restant: minutesTexte(etat.restant)})) + '</p></div>';
+  h += '<p class="centre"><button class="btn second" id="btn-nouvelle">Nouvelle partie (maître du jeu)</button></p>';
+  v.innerHTML = h;
+  $('#btn-nouvelle').onclick = () => ouvrirMaitre();
+}
+function vueTemps(v) {
+  v.innerHTML = '<h2>Minuit, encore</h2>' + voix(MUSEE.temps_ecoule || 'Le temps est écoulé.') + '<p class="centre"><button class="btn second" id="btn-nouvelle">Maître du jeu</button></p>';
+  dire(MUSEE.temps_ecoule); $('#btn-nouvelle').onclick = () => ouvrirMaitre();
+}
+
+/* ---------- modales ---------- */
+function modal(html) { const m = $('#modal'); m.innerHTML = '<div class="boite">' + html + '</div>'; m.classList.remove('hidden'); m.onclick = ev => { if (ev.target === m) fermer(); }; }
+function fermer() { $('#modal').classList.add('hidden'); $('#modal').innerHTML = ''; }
+function confirmer(texte, oui) { modal('<p>' + esc(texte) + '</p><div class="ligne-btn"><button class="btn" id="m-oui">Oui</button><button class="btn second" id="m-non">Non</button></div>'); $('#m-oui').onclick = () => { fermer(); oui(); }; $('#m-non').onclick = fermer; }
+
+/* ---------- maître du jeu ---------- */
+function ouvrirMaitre() {
+  if (mode === 'conception') return panneauMaitre();
+  modal('<h3>Maître du jeu</h3><p class="petit">Code du musée.</p><div class="saisie"><input type="password" id="pin" inputmode="numeric" autocomplete="off"><button class="btn" id="pin-ok">Ouvrir</button></div><p class="retour non" id="pin-ret"></p><p class="petit" style="margin-top:1rem"><a href="#" id="lien-conception">Mode conception (pour les groupes)</a></p>');
+  const ok = () => { if ($('#pin').value === String(MUSEE.pin_maitre || '0000')) panneauMaitre(); else $('#pin-ret').textContent = 'Le musée ne reconnaît pas ce code.'; };
+  $('#pin-ok').onclick = ok; $('#pin').onkeydown = ev => { if (ev.key === 'Enter') ok(); }; $('#pin').focus();
+  $('#lien-conception').onclick = ev => { ev.preventDefault(); fermer(); passerEnConception(); };
+}
+function panneauMaitre() {
+  const actives = sallesActives();
+  let h = '<h3>Maître du jeu</h3>';
+  if (etat) {
+    h += '<table class="etat"><tr><td>Phase</td><td>' + esc(etat.phase) + (etat.salleCourante ? ' · ' + esc(etat.salleCourante) : '') + '</td></tr><tr><td>Temps</td><td>' + mmss(etat.restant) + (etat.enCours ? ' (en cours)' : ' (suspendu)') + '</td></tr><tr><td>Symboles</td><td>' + nbSymboles() + ' / ' + actives.length + '</td></tr><tr><td>Codes refusés</td><td>' + totalCodesRates() + '</td></tr><tr><td>Indices</td><td>' + totalIndices() + '</td></tr><tr><td>Mémoire</td><td>' + esc(Object.keys(etat.memoire).filter(k => !k.startsWith('_')).join(', ') || '—') + '</td></tr></table>';
+    h += '<div class="ligne-btn"><button class="btn" id="m-pause">' + (etat.enCours ? 'Suspendre' : 'Reprendre') + '</button><button class="btn second" data-min="1">+1 min</button><button class="btn second" data-min="5">+5 min</button><button class="btn second" data-min="-1">−1 min</button></div>';
+    h += '<h3 style="margin-top:1rem">Les modules</h3>';
+    for (const s of actives) {
+      const e = etat.salles[s.id]; if (!e) continue;
+      h += '<div class="bloc"><strong>' + esc(s.nom) + '</strong> <span class="petit">' + esc(s.artiste) + ' · ' + e.ouverts.length + '/' + s.verrous.length + ' · ' + e.codesRates + ' refusé(s)</span><div class="ligne-btn">';
+      s.verrous.forEach((vr, i) => { if (!e.ouverts.includes(vr.id)) h += '<button class="btn second" data-deb="' + esc(s.id) + '|' + esc(vr.id) + '">Ouvrir le verrou ' + (i + 1) + '</button>'; });
+      if (!e.symbole) h += '<button class="btn second" data-sym="' + esc(s.id) + '">Marquer le symbole obtenu</button>';
+      h += '<button class="btn second" data-rem="' + esc(s.id) + '">Remise en état</button></div><div class="hidden" id="rem-' + esc(s.id) + '"><ol>' + (s.remise_en_etat || []).map(x => '<li>' + esc(x) + '</li>').join('') + '</ol><p class="petit">Réponses : ' + s.verrous.map((vr, i) => (i + 1) + ' = ' + esc(vr.reponse)).join(' · ') + '</p></div></div>';
+    }
+  }
+  h += '<h3 style="margin-top:1rem">Réglages</h3>';
+  h += '<div class="champ"><label><input type="checkbox" id="r-parle"' + (regl.parle ? ' checked' : '') + '> La voix du musée est lue à voix haute (synthèse vocale du navigateur)</label></div>';
+  h += '<div class="champ"><label><input type="checkbox" id="r-llm"' + (regl.llm ? ' checked' : '') + '> Les invités répondent par un modèle de langue (option, connexion et clé nécessaires ; la version scriptée reste la référence)</label></div>';
+  h += '<div class="grille"><div class="champ"><label>Clé d\'API (reste sur cette tablette)</label><input type="password" id="r-cle" value="' + esc(regl.cle || '') + '"></div><div class="champ"><label>Modèle</label><input type="text" id="r-modele" value="' + esc(regl.modele || 'claude-sonnet-4-5') + '"></div></div>';
+  h += '<div class="ligne-btn"><button class="btn" id="m-regl">Enregistrer les réglages</button></div>';
+  h += '<h3 style="margin-top:1rem">La partie</h3><div class="ligne-btn"><button class="btn danger" id="m-reset">Nouvelle partie (tout remettre à zéro)</button>' + (mode === 'jeu' ? '<button class="btn second" id="m-conception">Mode conception</button>' : '<button class="btn second" id="m-jeu">Revenir au jeu complet</button>') + '<button class="btn second" id="m-journal">Journal</button><button class="btn second" id="m-fermer">Fermer</button></div>';
+  h += '<div class="hidden petit" id="journal" style="max-height:200px;overflow:auto;margin-top:.6rem"></div>';
+  modal(h);
+  const bp = $('#m-pause'); if (bp) bp.onclick = () => { etat.enCours = !etat.enCours; journal(etat.enCours ? 'Reprise' : 'Suspension'); sauver(); panneauMaitre(); majHorloge(); };
+  document.querySelectorAll('[data-min]').forEach(b => b.onclick = () => { etat.restant = Math.max(0, etat.restant + (+b.dataset.min) * 60); journal('Maître du jeu : ' + b.dataset.min + ' min'); sauver(); majHorloge(); panneauMaitre(); });
+  document.querySelectorAll('[data-deb]').forEach(b => b.onclick = () => { const [sid, vid] = b.dataset.deb.split('|'); const e = etat.salles[sid]; e.ouverts.push(vid); if (e.ouverts.length >= salle(sid).verrous.length) e.symbole = true; journal('Maître du jeu : ' + sid + ' · ' + vid + ' ouvert'); sauver(); panneauMaitre(); rendre(); });
+  document.querySelectorAll('[data-sym]').forEach(b => b.onclick = () => { const e = etat.salles[b.dataset.sym]; e.symbole = true; e.ouverts = salle(b.dataset.sym).verrous.map(v => v.id); journal('Maître du jeu : symbole ' + b.dataset.sym); sauver(); panneauMaitre(); rendre(); });
+  document.querySelectorAll('[data-rem]').forEach(b => b.onclick = () => $('#rem-' + b.dataset.rem).classList.toggle('hidden'));
+  $('#m-regl').onclick = () => { regl.parle = $('#r-parle').checked; regl.llm = $('#r-llm').checked; regl.cle = $('#r-cle').value.trim(); regl.modele = $('#r-modele').value.trim(); garder(CLE_REGL, regl); fermer(); };
+  $('#m-reset').onclick = () => confirmer('Tout remettre à zéro ? La partie en cours est perdue.', () => { etat = etatNeuf(actives, mode === 'jeu' ? (MUSEE.duree_minutes || 60) : 15); sauver(); fermer(); rendre(); });
+  const mc = $('#m-conception'); if (mc) mc.onclick = () => { fermer(); passerEnConception(); };
+  const mj = $('#m-jeu'); if (mj) mj.onclick = () => { fermer(); passerEnJeu(); };
+  $('#m-journal').onclick = () => { const j = $('#journal'); j.classList.toggle('hidden'); j.innerHTML = (etat ? etat.journal : []).slice().reverse().map(x => mmss(x.r) + ' — ' + esc(x.m)).join('<br>') || 'Rien encore.'; };
+  $('#m-fermer').onclick = fermer;
+}
+
+/* ---------- mode conception : le formulaire du groupe ---------- */
+function salleVide() { return {id: '', nom: '', artiste: '', dates: '', couleur: '#3E5C8A', symbole: '', lettre: '', entree: '', invite: {nom: '', presentation: '', sait: '', ignore: '', refuse: '', voix: '', defaut: ['', '', '', '', ''], reponses: [{mots: ['qui', 'êtes-vous', 'nom'], reponse: ''}, {mots: ['né', 'naissance', 'enfance'], reponse: ''}, {mots: ['mort', 'décès', 'fin'], reponse: ''}, {mots: ['pourquoi', 'ici', 'musée', 'enfermé'], reponse: ''}, {mots: ['tableau', 'œuvre', 'préféré'], reponse: ''}, {mots: ['indice', 'aide', 'bloqué', 'commencer'], reponse: ''}, {mots: ['solution', 'réponse', 'code'], reponse: ''}]}, verrous: [{id: 'v1', libelle: '', reponse: '', variantes: [], juste: '', faux: '', indices: ['', '', '']}], symbole_remis: '', remise_en_etat: ['', '', '']}; }
+function nettoyer(o) { if (Array.isArray(o)) return o.map(nettoyer); if (o && typeof o === 'object') { const r = {}; for (const k of Object.keys(o)) if (!k.startsWith('_aide')) r[k] = nettoyer(o[k]); return r; } return o; }
+function passerEnConception() { mode = 'conception'; etat = null; brouillon = lire(CLE_BROUILLON, null) || salleVide(); location.hash = 'conception'; rendreConception(); }
+function passerEnJeu() { mode = 'jeu'; brouillon = null; location.hash = ''; etat = lire(CLE_ETAT, null); if (!etat || etat.mode !== 'jeu' || JSON.stringify(etat.sallesIds) !== JSON.stringify(SALLES.map(s => s.id))) etat = etatNeuf(SALLES, MUSEE.duree_minutes || 60); rendre(); }
+let ongletC = 'salle';
+function rendreConception() {
+  const b = brouillon; const inv = b.invite;
+  const v = $('#vue');
+  let h = '<h2>Mode conception</h2><p class="petit">Le formulaire remplit le fichier de votre salle. Tout reste dans ce navigateur jusqu\'à ce que vous l\'exportiez : exportez souvent, et déposez le fichier dans le fil Teams du groupe.</p>';
+  h += '<div class="ligne-btn"><button class="btn second" id="c-import">Importer un fichier</button><button class="btn" id="c-export">Exporter le fichier</button><button class="btn second" id="c-verif">Vérifier</button><button class="btn second" id="c-tester">Tester le module</button><button class="btn second" id="c-neuf">Repartir du modèle</button><button class="btn second" id="c-jeu">Jeu complet</button><input type="file" id="c-fichier" accept="application/json,.json" class="hidden"></div>';
+  h += '<div class="onglets">' + [['salle', 'La salle'], ['invite', 'L\'invité'], ['reponses', 'Ses réponses (' + inv.reponses.length + ')'], ['verrous', 'Les verrous (' + b.verrous.length + ')'], ['fin', 'Symbole et remise en état']].map(([k, t]) => '<button class="' + (ongletC === k ? 'actif' : '') + '" data-onglet="' + k + '">' + t + '</button>').join('') + '</div>';
+  const ch = (label, cle, val, aide, multi) => '<div class="champ"><label>' + esc(label) + (aide ? ' <span class="petit">— ' + esc(aide) + '</span>' : '') + '</label>' + (multi ? '<textarea data-cle="' + cle + '">' + esc(val) + '</textarea>' : '<input type="text" data-cle="' + cle + '" value="' + esc(val) + '">') + '</div>';
+  if (ongletC === 'salle') {
+    h += '<div class="grille">' + ch('Identifiant', 'id', b.id, 'un mot sans accent : delvaux') + ch('Nom de la salle', 'nom', b.nom) + ch('Artiste', 'artiste', b.artiste) + ch('Dates', 'dates', b.dates) + ch('Couleur de l\'aile', 'couleur', b.couleur, 'code hexadécimal') + ch('Symbole rendu', 'symbole', b.symbole) + ch('Lettre au dos du symbole', 'lettre', b.lettre, 'donnée par les enseignants') + '</div>';
+    h += ch('Ce que dit la voix quand le module se descelle', 'entree', b.entree, 'trois ou quatre phrases', true);
+  } else if (ongletC === 'invite') {
+    h += ch('Nom, tel que le musée l\'appelle', 'invite.nom', inv.nom) + ch('Qui il est cette nuit-là', 'invite.presentation', inv.presentation, 'ce qu\'il fait, ce qu\'il cherche', true) + ch('Ce qu\'il sait', 'invite.sait', inv.sait, 'sa vie, son geste, ses œuvres, ses proches, son époque', true) + ch('Ce qu\'il ignore', 'invite.ignore', inv.ignore, 'tout ce qui est postérieur à sa mort', true) + ch('Ce qu\'il refuse', 'invite.refuse', inv.refuse, 'et comment il détourne quand on lui demande la solution', true) + ch('Comment il parle', 'invite.voix', inv.voix, 'tutoie ou vouvoie, trois adjectifs, un tic', true);
+    h += '<h3>Les cinq réponses par défaut</h3><p class="petit">Quand il ne comprend pas. Aucune ne doit ressembler à un message d\'erreur.</p>';
+    inv.defaut.forEach((d, i) => { h += ch('Réponse ' + (i + 1), 'invite.defaut.' + i, d, '', true); });
+  } else if (ongletC === 'reponses') {
+    h += '<p class="petit">Trente questions au moins. À gauche, les mots qui déclenchent la réponse, séparés par des virgules. Les accents et majuscules ne comptent pas.</p>';
+    inv.reponses.forEach((r, i) => { h += '<div class="bloc"><h3>Question ' + (i + 1) + ' <button class="sup" data-suprep="' + i + '">supprimer</button></h3>' + ch('Mots-clés', 'invite.reponses.' + i + '.mots', (r.mots || []).join(', ')) + ch('Sa réponse', 'invite.reponses.' + i + '.reponse', r.reponse, '', true) + '</div>'; });
+    h += '<button class="btn second" id="c-addrep">Ajouter une question</button>';
+  } else if (ongletC === 'verrous') {
+    h += '<p class="petit">Trois à cinq verrous. Chaque verrou est un code, un mot ou un numéro de carte que les visiteurs tapent.</p>';
+    b.verrous.forEach((vr, i) => { h += '<div class="bloc"><h3>Verrou ' + (i + 1) + ' <button class="sup" data-supver="' + i + '">supprimer</button></h3>' + ch('Ce que l\'écran affiche', 'verrous.' + i + '.libelle', vr.libelle, 'quoi trouver, où, sous quelle forme', true) + '<div class="grille">' + ch('La réponse', 'verrous.' + i + '.reponse', vr.reponse) + ch('Variantes acceptées', 'verrous.' + i + '.variantes', (vr.variantes || []).join(', '), 'séparées par des virgules') + '</div>' + ch('Ce que dit la voix quand c\'est juste', 'verrous.' + i + '.juste', vr.juste, '', true) + ch('Ce qu\'elle ajoute quand c\'est faux', 'verrous.' + i + '.faux', vr.faux, 'le musée ajoute lui-même la pénalité', true) + ch('Indice 1 — l\'invité oriente', 'verrous.' + i + '.indices.0', vr.indices[0], '', true) + ch('Indice 2 — l\'invité précise, sans donner', 'verrous.' + i + '.indices.1', vr.indices[1], '', true) + ch('Indice 3 — le musée donne la réponse', 'verrous.' + i + '.indices.2', vr.indices[2], 'coûte deux minutes', true) + '</div>'; });
+    h += '<button class="btn second" id="c-addver">Ajouter un verrou</button>';
+  } else {
+    h += ch('Ce que dit la voix quand le dernier verrou s\'ouvre', 'symbole_remis', b.symbole_remis, 'où est le symbole, où le poser', true);
+    h += '<h3>La remise en état</h3><p class="petit">La liste ordonnée des gestes, pour quelqu\'un qui n\'a pas conçu le module. Trois minutes maximum.</p>';
+    b.remise_en_etat.forEach((r, i) => { h += '<div class="saisie" style="margin:.3rem 0"><input type="text" data-cle="remise_en_etat.' + i + '" value="' + esc(r) + '" placeholder="Geste ' + (i + 1) + '"><button class="sup" data-suprem="' + i + '">supprimer</button></div>'; });
+    h += '<button class="btn second" id="c-addrem">Ajouter un geste</button>';
+  }
+  h += '<div id="c-resultat"></div>';
+  v.innerHTML = h;
+  v.querySelectorAll('[data-onglet]').forEach(x => x.onclick = () => { ongletC = x.dataset.onglet; rendreConception(); });
+  v.querySelectorAll('[data-cle]').forEach(inp => inp.oninput = () => { poser(b, inp.dataset.cle, inp.value); garder(CLE_BROUILLON, b); });
+  v.querySelectorAll('[data-suprep]').forEach(x => x.onclick = () => { inv.reponses.splice(+x.dataset.suprep, 1); garder(CLE_BROUILLON, b); rendreConception(); });
+  v.querySelectorAll('[data-supver]').forEach(x => x.onclick = () => { b.verrous.splice(+x.dataset.supver, 1); garder(CLE_BROUILLON, b); rendreConception(); });
+  v.querySelectorAll('[data-suprem]').forEach(x => x.onclick = () => { b.remise_en_etat.splice(+x.dataset.suprem, 1); garder(CLE_BROUILLON, b); rendreConception(); });
+  const on = (id, f) => { const el = $(id); if (el) el.onclick = f; };
+  on('#c-addrep', () => { inv.reponses.push({mots: [], reponse: ''}); garder(CLE_BROUILLON, b); rendreConception(); setTimeout(() => window.scrollTo(0, document.body.scrollHeight), 0); });
+  on('#c-addver', () => { b.verrous.push({id: 'v' + (b.verrous.length + 1), libelle: '', reponse: '', variantes: [], juste: '', faux: '', indices: ['', '', '']}); garder(CLE_BROUILLON, b); rendreConception(); setTimeout(() => window.scrollTo(0, document.body.scrollHeight), 0); });
+  on('#c-addrem', () => { b.remise_en_etat.push(''); garder(CLE_BROUILLON, b); rendreConception(); });
+  on('#c-export', () => { const nom = (norm(b.id) || 'salle') + '.json'; const blob = new Blob([JSON.stringify(nettoyer(b), null, 2)], {type: 'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = nom; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); });
+  on('#c-import', () => $('#c-fichier').click());
+  const f = $('#c-fichier'); if (f) f.onchange = () => { const file = f.files[0]; if (!file) return; const r = new FileReader(); r.onload = () => { try { const o = nettoyer(JSON.parse(r.result)); brouillon = Object.assign(salleVide(), o); brouillon.invite = Object.assign(salleVide().invite, o.invite || {}); brouillon.verrous = (o.verrous || []).map((x, i) => Object.assign({id: 'v' + (i + 1), variantes: [], indices: ['', '', '']}, x, {indices: (x.indices || []).concat(['', '', '']).slice(0, 3)})); brouillon.remise_en_etat = o.remise_en_etat || []; garder(CLE_BROUILLON, brouillon); rendreConception(); } catch (e) { $('#c-resultat').innerHTML = '<p class="retour non">Ce fichier n\'est pas lisible : ' + esc(e.message) + '</p>'; } }; r.readAsText(file); };
+  on('#c-verif', () => { $('#c-resultat').innerHTML = verifier(b); });
+  on('#c-tester', () => { const pb = problemes(b).filter(p => p.bloquant); if (pb.length) { $('#c-resultat').innerHTML = '<p class="retour non">Le module ne peut pas encore se tester : ' + esc(pb.map(p => p.t).join(' ; ')) + '.</p>'; return; } etat = etatNeuf([b], 15); etat.enCours = false; sauver(); rendre(); });
+  on('#c-neuf', () => confirmer('Repartir du modèle vide ? Le brouillon actuel est effacé de ce navigateur (exportez-le d\'abord si besoin).', () => { brouillon = salleVide(); garder(CLE_BROUILLON, brouillon); rendreConception(); }));
+  on('#c-jeu', () => passerEnJeu());
+}
+function poser(o, chemin, val) {
+  const p = chemin.split('.'); let cur = o;
+  for (let i = 0; i < p.length - 1; i++) cur = cur[p[i]];
+  const k = p[p.length - 1];
+  if (chemin.endsWith('.mots') || chemin.endsWith('.variantes')) cur[k] = val.split(',').map(x => x.trim()).filter(Boolean);
+  else cur[k] = val;
+}
+function problemes(b) {
+  const P = []; const inv = b.invite || {};
+  const vide = s => !s || !String(s).trim();
+  if (vide(b.id) || norm(b.id) !== b.id) P.push({t: 'l\'identifiant doit être un mot en minuscules sans accent', bloquant: true});
+  if (vide(b.nom)) P.push({t: 'le nom de la salle manque', bloquant: true});
+  if (vide(b.artiste)) P.push({t: 'l\'artiste manque', bloquant: true});
+  if (vide(b.symbole)) P.push({t: 'le symbole rendu manque', bloquant: false});
+  if (vide(b.entree)) P.push({t: 'le texte d\'entrée dans le module manque', bloquant: false});
+  if (vide(inv.nom)) P.push({t: 'le nom de l\'invité manque', bloquant: true});
+  if (vide(inv.presentation)) P.push({t: 'la présentation de l\'invité manque', bloquant: false});
+  if (vide(inv.voix)) P.push({t: 'la manière dont l\'invité parle n\'est pas décrite', bloquant: false});
+  const def = (inv.defaut || []).filter(x => !vide(x)); if (def.length < 5) P.push({t: 'il manque ' + (5 - def.length) + ' réponse(s) par défaut sur cinq', bloquant: def.length === 0});
+  const reps = (inv.reponses || []).filter(r => (r.mots || []).length && !vide(r.reponse)); if (reps.length < 30) P.push({t: reps.length + ' question(s) complète(s) sur les trente attendues', bloquant: false});
+  const rep = (b.verrous || []); if (rep.length < 3) P.push({t: rep.length + ' verrou(s) : le cahier des charges en demande trois à cinq', bloquant: rep.length === 0});
+  if (rep.length > 5) P.push({t: rep.length + ' verrous : au-delà de cinq, le module dépasse quinze minutes', bloquant: false});
+  rep.forEach((v, i) => {
+    if (vide(v.libelle)) P.push({t: 'verrou ' + (i + 1) + ' : le libellé manque', bloquant: false});
+    if (vide(v.reponse)) P.push({t: 'verrou ' + (i + 1) + ' : la réponse manque', bloquant: true});
+    if ((v.indices || []).filter(x => !vide(x)).length < 3) P.push({t: 'verrou ' + (i + 1) + ' : les trois niveaux d\'indices ne sont pas tous écrits', bloquant: false});
+    if (!vide(v.reponse) && (v.indices || [])[0] && norm(v.indices[0]).includes(norm(v.reponse)) && norm(v.reponse).length > 2) P.push({t: 'verrou ' + (i + 1) + ' : l\'indice de niveau 1 contient la réponse', bloquant: false});
+    if (!vide(v.reponse) && (v.indices || [])[1] && norm(v.indices[1]).includes(norm(v.reponse)) && norm(v.reponse).length > 2) P.push({t: 'verrou ' + (i + 1) + ' : l\'indice de niveau 2 contient la réponse', bloquant: false});
+  });
+  const secrets = rep.map(v => norm(v.reponse)).filter(x => x.length > 2);
+  (inv.reponses || []).forEach((r, i) => { if (secrets.some(s => norm(r.reponse).includes(s))) P.push({t: 'question ' + (i + 1) + ' : la réponse de l\'invité contient la solution d\'un verrou', bloquant: false}); });
+  if (vide(b.symbole_remis)) P.push({t: 'le texte de remise du symbole manque', bloquant: false});
+  if ((b.remise_en_etat || []).filter(x => !vide(x)).length < 3) P.push({t: 'la remise en état compte moins de trois gestes', bloquant: false});
+  return P;
+}
+function verifier(b) {
+  const P = problemes(b);
+  if (!P.length) return '<div class="carte"><p class="retour ok">Rien à signaler. Le fichier est complet ; il reste à le jouer.</p></div>';
+  return '<div class="carte"><h3>Ce qui manque encore</h3><ul class="ok-liste">' + P.map(p => '<li class="' + (p.bloquant ? 'non' : '') + '">' + esc(p.t) + (p.bloquant ? ' (bloquant pour le test)' : '') + '</li>').join('') + '</ul></div>';
+}
+
+/* ---------- démarrage ---------- */
+(async function () {
+  regl = lire(CLE_REGL, {parle: false, llm: false, cle: '', modele: 'claude-sonnet-4-5'});
+  await chargerTout();
+  $('#btn-maitre').onclick = ouvrirMaitre;
+  if (location.hash === '#conception') { mode = 'conception'; brouillon = lire(CLE_BROUILLON, null) || salleVide(); const ec = lire(CLE_ETAT + '_conception', null); etat = (ec && ec.mode === 'conception' && ec.sallesIds[0] === brouillon.id && ec.phase !== 'accueil') ? ec : null; }
+  else { mode = 'jeu'; etat = lire(CLE_ETAT, null); if (!etat || etat.mode !== 'jeu' || JSON.stringify(etat.sallesIds) !== JSON.stringify(SALLES.map(s => s.id))) etat = etatNeuf(SALLES, MUSEE.duree_minutes || 60); }
+  if (etat) { etat.enCours = etat.enCours && ['vestibule', 'salle', 'porte'].includes(etat.phase); }
+  demarrerTick();
+  if ('speechSynthesis' in window) speechSynthesis.getVoices();
+  if (mode === 'conception' && !etat) rendreConception(); else rendre();
+  const pied = document.createElement('p'); pied.className = 'pied'; pied.innerHTML = 'Le Musée des Songes Retenus · IPSMA, Scénario multimédia · <a href="#" id="lien-c">mode conception</a> · <a href="modele-salle.json" download>modèle de fichier</a> · <a href="../../">ressources</a>';
+  document.body.appendChild(pied);
+  $('#lien-c').onclick = ev => { ev.preventDefault(); passerEnConception(); };
+  window.addEventListener('hashchange', () => { if (location.hash === '#conception' && mode !== 'conception') passerEnConception(); else if (location.hash === '' && mode !== 'jeu') passerEnJeu(); });
+})();
+</script>
+</body>
+</html>

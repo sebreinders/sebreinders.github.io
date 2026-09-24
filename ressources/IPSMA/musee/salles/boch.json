@@ -1,0 +1,97 @@
+{
+  "_aide": "Module provisoire écrit par les enseignants pour que le jeu complet se teste. Le groupe le remplace entièrement par son propre fichier.",
+  "id": "boch",
+  "nom": "Le jardin à distance",
+  "artiste": "Anna Boch",
+  "dates": "1848–1936",
+  "couleur": "#4E7A4E",
+  "symbole": "La touche de couleur",
+  "lettre": "V",
+  "entree": "L'aile d'Anna Boch se descelle. Une toile posée trop près : des points de couleur qui ne font pas encore une image. Une femme en tenue de voyage recule de deux pas et vous invite à faire de même.",
+  "invite": {
+    "nom": "Anna Boch",
+    "presentation": "Peintre et collectionneuse, née à Saint-Vaast, morte à Ixelles. Membre des XX. Cette nuit-là, elle accroche et décroche un tableau qu'elle ne parvient pas à voir d'assez loin.",
+    "sait": "À compléter par le groupe.",
+    "ignore": "Tout ce qui est postérieur à sa mort.",
+    "refuse": "La solution des énigmes de sa salle.",
+    "voix": "Elle vouvoie, précise, chaleureuse. Elle parle de lumière comme d'une personne qu'on attend.",
+    "defaut": [
+      "Anna Boch recule d'un pas. « Redites-le d'un peu plus loin ; de près, je n'entends que les couleurs. »",
+      "« Pardon, je regardais la lumière. Elle change si vite à cette heure. »",
+      "« Voilà une question que Van Gogh aurait aimée. Moi, je vais la laisser reposer. »",
+      "Elle sourit. « Je ne sais pas. Je peins ce que je ne sais pas, c'est plus prudent. »",
+      "« Répétez, je vous prie. Le jardin fait du bruit, la nuit. »"
+    ],
+    "reponses": [
+      {
+        "mots": [
+          "qui",
+          "êtes-vous",
+          "nom",
+          "présentez"
+        ],
+        "reponse": "« Anna Boch. Peintre, née en 1848 dans une famille de faïenciers, à Saint-Vaast. J'ai exposé avec les XX, j'ai voyagé, j'ai acheté un tableau à un peintre que personne ne voulait. Il s'appelait Vincent. »"
+      },
+      {
+        "mots": [
+          "van gogh",
+          "vincent",
+          "vigne",
+          "acheté",
+          "achat"
+        ],
+        "reponse": "« La Vigne rouge, en 1890, à Bruxelles. On dit que c'est le seul tableau qu'il a vendu de son vivant. Je ne l'ai pas acheté par charité. Je l'ai acheté parce qu'il avait raison sur la couleur. »"
+      },
+      {
+        "mots": [
+          "couleur",
+          "touche",
+          "point",
+          "points",
+          "loin",
+          "distance",
+          "près"
+        ],
+        "reponse": "« De près, des taches. De loin, la lumière. Tout le secret est dans la distance ; c'est le regard qui mélange, pas le pinceau. Reculez, vous verrez. »"
+      },
+      {
+        "mots": [
+          "indice",
+          "aide",
+          "bloqué",
+          "comment",
+          "commencer",
+          "solution",
+          "réponse",
+          "code"
+        ],
+        "reponse": "« Je ne vous dirai pas ce que c'est. Mais je vous dirai comment on regarde : à bout de bras, en fermant à demi les yeux. »"
+      }
+    ]
+  },
+  "verrous": [
+    {
+      "id": "v1",
+      "libelle": "Le mot dans la lumière. La grande carte, tenue à bout de bras, laisse apparaître un mot dans les touches de couleur. Tapez-le.",
+      "reponse": "lumiere",
+      "variantes": [
+        "lumière",
+        "la lumière",
+        "la lumiere"
+      ],
+      "juste": "Les points se rejoignent. Anna Boch : « Vous voyez ? Il suffisait de la bonne distance. Emportez cette touche, elle est à vous. »",
+      "faux": "Les points restent des points.",
+      "indices": [
+        "Anna Boch : « Ne lisez pas. Regardez. À la distance d'un bras tendu, en plissant les yeux. »",
+        "Anna Boch : « C'est ce que je cherchais dans chaque jardin. Un mot de sept lettres, qui commence comme lune. »",
+        "Vue à distance, la carte forme le mot LUMIÈRE. La réponse est lumiere."
+      ]
+    }
+  ],
+  "symbole_remis": "Le module rend son symbole : une touche de couleur en carton doré, à poser dans l'encoche verte du vestibule.",
+  "remise_en_etat": [
+    "Remettre les cartes dans l'ordre.",
+    "Reprendre le symbole.",
+    "Refermer le module."
+  ]
+}

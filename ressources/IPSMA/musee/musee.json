@@ -1,0 +1,58 @@
+{
+  "_aide": "Fichier du musée, tenu par les enseignants. Les quatre modules sont dans le dossier salles/. Tout ce qui est écrit ici est dit par la voix du musée, dans la charte de voix.",
+  "titre": "Le Musée des Songes Retenus",
+  "duree_minutes": 60,
+  "penalite_code_minutes": 1,
+  "penalite_indice3_minutes": 2,
+  "pin_maitre": "1897",
+  "salles": ["salles/delvaux.json", "salles/ensor.json", "salles/boch.json", "salles/magritte.json"],
+  "cartel": "Les œuvres qui défient la raison ne peuvent retrouver la lumière qu'au terme d'un voyage à travers l'imaginaire. Traversez les salles. Résolvez les énigmes. Déchiffrez les symboles. Alors seulement les portes du monde réel vous seront rendues.",
+  "accueil": {
+    "scene": "Minuit. La porte s'est refermée derrière vous et derrière les quatre invités. Le vestibule est vide, à l'exception d'un cartel doré sur un pupitre et d'une horloge dont les aiguilles tournent à l'envers. Une voix, qui semble venir des murs eux-mêmes, vous souhaite la bienvenue.",
+    "question": "Que faites-vous d'abord ?",
+    "choix": [
+      { "id": "voix", "texte": "Demander à la voix où vous êtes", "memoire": "a_interroge_la_voix", "accuse": "Vous êtes là où l'on garde ce que la raison n'a pas voulu. Quatre salles vous attendent. Elles ne vous attendront pas longtemps." },
+      { "id": "cartel", "texte": "Lire le cartel doré", "memoire": "a_lu_le_cartel", "accuse": "Vous lisez. La voix se tait, le temps que vous finissiez. Puis, presque aimable : « Vous avez compris ce qu'on vous demande. C'est rare. »" },
+      { "id": "porte", "texte": "Essayer la porte par laquelle vous êtes entrés", "memoire": "a_voulu_partir", "accuse": "La porte ne bouge pas. La voix : « Déjà ? Les autres attendent en général d'avoir vu une salle. »" }
+    ]
+  },
+  "vestibule": {
+    "consigne": "Choisissez une aile. Le module de la salle est scellé sur le plateau : ouvrez-le quand la voix vous y invite.",
+    "retour": [
+      "Vous êtes de retour au vestibule. L'horloge a continué de tourner à l'envers.",
+      "Le vestibule vous reconnaît. Les cadres ont changé de mur pendant votre absence.",
+      "Retour au centre. Les murmures derrière les cadres se sont tus quand vous êtes entrés."
+    ],
+    "retour_si_a_voulu_partir_premiere_fois": "La voix, plus bas : « Vous pourrez toujours réessayer la porte. Plus tard. »",
+    "retour_si_codes_rates": "Le musée a compté vos {codes_rates} tentatives chez {artiste}. Il ne les oubliera pas.",
+    "retour_si_indice3": "Vous avez demandé au musée de parler. Il a parlé, et il s'est payé.",
+    "retour_si_trois_symboles": "Trois symboles dans leurs encoches. La dernière porte, au fond, a cessé de faire semblant d'être un mur."
+  },
+  "faux_code": [
+    "Non. L'horloge recule d'une minute, et le musée s'en souvient.",
+    "Le musée refuse. Il vous en coûte une minute.",
+    "Ce n'est pas cela. Une minute de moins, et les murs ont entendu."
+  ],
+  "indice3_confirmation": "Le musée peut vous donner la réponse. Il prend deux minutes en échange. Vous acceptez ?",
+  "indice3_intro": "Le musée parle, à contrecœur :",
+  "derniere_porte": {
+    "intro": "Quatre symboles dans quatre encoches. La dernière porte est là, où il n'y avait qu'un mur. Elle porte une serrure sans clé et un mot à trouver.",
+    "si_a_voulu_partir": "Vous l'aviez essayée, cette porte. Elle n'attendait pas une clé. Elle attendait que vous ayez quelque chose à emporter.",
+    "enigme": {
+      "libelle": "Retournez les quatre symboles. Chacun porte une lettre dorée au dos. Ensemble, elles forment ce que ce musée retient.",
+      "reponse": "reve",
+      "variantes": ["rêve", "un rêve", "le rêve", "reves", "rêves"],
+      "juste": "La serrure tourne d'elle-même. Derrière la porte, il n'y a pas encore la rue.",
+      "faux": "Le mot n'est pas celui-là. La porte reste porte, et le musée garde une minute."
+    },
+    "question": {
+      "texte": "La voix, une dernière fois : « Vous pouvez sortir. Vous pouvez aussi rester, et voir ce qu'il y a sous les salles. Quittez-vous le musée, ou n'avez-vous jamais fait qu'en explorer les profondeurs ? »",
+      "choix": [
+        { "id": "quitter", "texte": "Quitter le musée", "fin": "La porte s'ouvre sur une rue ordinaire, à l'heure où les cafés ferment. Vous emportez ce que vous avez compris des quatre salles ; le musée garde le reste. Derrière vous, l'horloge repart dans le bon sens." },
+        { "id": "rester", "texte": "Rester, et explorer les profondeurs", "fin": "La porte se referme doucement, sans bruit. Un escalier que personne n'avait vu descend sous le vestibule. La voix, satisfaite : « Enfin des visiteurs qui restent. » Le musée vous compte désormais parmi ses œuvres retenues." }
+      ]
+    },
+    "bilan": "Vous avez traversé les salles dans cet ordre : {ordre}. {codes_rates} code(s) refusé(s), {indices} indice(s) demandé(s), {temps_restant} restantes au compteur."
+  },
+  "temps_ecoule": "Minuit est passé une seconde fois. Les portes du monde réel ne se sont pas ouvertes ; le musée garde ses visiteurs, et le maître du jeu décide de la suite."
+}
