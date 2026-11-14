@@ -37,7 +37,7 @@ const SITE = {
     // Colonne de droite : ce que le site est.
     pitch: "Tout ce que j'ai dit, écrit et fait publiquement autour du numérique en éducation.",
 
-    misAJour: "Septembre 2026",
+    misAJour: "Novembre 2026",
 
     // Portrait, repris sur le CV et sur la page bio.
     photo: "fichiers/portrait.webp"
@@ -118,6 +118,26 @@ const SITE = {
   registre: [
 
     /* ----- 2026 ----- */
+    { annee: 2026, verbe: "parlé", date: "2026-11-04",
+      titre: "Est-ce qu'on sait tout de la formation avec le numérique ?",
+      meta: "Émission · Command'O",
+      detail: "Invité de l'émission Command'O consacrée à la formation avec le numérique : ce que les outils changent réellement dans la manière d'apprendre et de former.",
+      contexteLabel: "Tournage", contexte: "Mercredi 4 novembre 2026",
+      lien: "https://youtu.be/p2v8nOk7WIc", lienLabel: "Voir l'émission" },
+
+    { annee: 2026, verbe: "écrit", date: "2026-11-06",
+      titre: "« Ouh, c'est compliqué, mais ça va aller »",
+      meta: "Article · Medium",
+      detail: "Le premier rapport de l'OCDE consacré aux directeurs d'école (TALIS 2024) documente le « compliqué » : charge administrative, exigences changeantes, stress au-dessus de la moyenne en Belgique. Le « ça va aller », lui, ne tient qu'aux personnes.",
+      contexteLabel: "Publié", contexte: "6 novembre 2026",
+      lien: "https://medium.com/@sebastienreinders/ouh-cest-compliqu%C3%A9-mais-%C3%A7a-va-aller-8e803e79e02f", lienLabel: "Lire l'article" },
+
+    { annee: 2026, verbe: "écrit", date: "2026-09-17",
+      titre: "« Choix positif » : une promesse qui fête ses vingt et un ans",
+      meta: "Article · Medium",
+      detail: "« Filière d'excellence », « choix positif » : d'où viennent ces promesses faites au qualifiant depuis 1971, ce qu'elles ont donné, et à quelles conditions une filière devient réellement choisie.",
+      contexteLabel: "Publié", contexte: "17 septembre 2026",
+      lien: "https://medium.com/@sebastienreinders/choix-positif-une-promesse-qui-f%C3%AAte-ses-vingt-et-un-ans-9479cfa48617", lienLabel: "Lire l'article" },
     { annee: 2026, verbe: "parlé", date: "2026-09-23",
       titre: "Politiques publiques du numérique éducatif",
       meta: "Cours · ULiège · Master Sc. Éduc.",
@@ -143,11 +163,11 @@ const SITE = {
       detail: "Édition suisse du colloque, sur le thème « Repenser l'apprentissage à l'ère de l'IA et de l'innovation ».",
       contexteLabel: "Date", contexte: "21–22 avril 2026" },
 
-    { annee: 2026, verbe: "fait", date: "2026-01-01", serie: "digital-youth",
+    { annee: 2026, verbe: "fait", date: "2026-10-22", serie: "digital-youth",
       titre: "Jury du Fonds Digital for Youth",
       meta: "Mandat · Fondation Roi Baudouin",
-      detail: "Évaluation des dossiers de l'appel annuel et participation aux délibérations. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
-      contexteLabel: "Rôle", contexte: "Membre du jury" },
+      detail: "Évaluation des dossiers de l'appel annuel et participation à la délibération du jury. Le fonds soutient les initiatives numériques destinées aux enfants et aux jeunes.",
+      contexteLabel: "Délibération", contexte: "22 octobre 2026" },
      
       { annee: 2026, verbe: "écrit", date: "2026-08-17",
       titre: "Faut-il financer toutes les écoles de la même manière ?",
